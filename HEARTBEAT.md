@@ -23,25 +23,30 @@
 - [ ] 飞书渠道连接状态
 - [ ] 磁盘空间使用情况
 
-### 4. AI 每周精选（每周五下午 6:00）
-- [ ] 运行周刊收集脚本: `python skills/ai-content-collector/scripts/collect_weekly.py`
-- [ ] 按「工具/资源 + 文章 + 工具」三段式整理内容
-- [ ] 添加链接引用（标题链接 + 来源标注）
-- [ ] 发布新一期周刊到飞书知识库
+### 4. AI 资讯自动归档（每周五下午 6:00）
+- [ ] 运行AI内容收集: `python skills/ai-content-collector/scripts/collect_weekly.py`
+- [ ] 自动分类到四个模块（资讯/工具技巧/深度研究/案例分享）
+- [ ] 按「年/月/周/日」层级归档到本地
+- [ ] 同步更新飞书知识库
 
-### 5. 游戏开发周刊（每周五下午 6:00）
-- [ ] 运行游戏开发内容收集脚本: `python skills/game-content-collector/scripts/collect_weekly.py`
-- [ ] 按「引擎/设计/技术/美术/音频/独游」分类整理
-- [ ] 添加链接引用（标题链接 + 来源标注）
-- [ ] 发布新一期游戏周刊到飞书知识库
+### 5. 游戏开发自动归档（每周五下午 6:00）
+- [ ] 运行游戏内容收集: `python skills/game-content-collector/scripts/collect_weekly.py`
+- [ ] 自动分类到六个模块（引擎/设计/技术/美术/音频/独游）
+- [ ] 按「年/月/周/日」层级归档
+- [ ] 同步更新飞书知识库
 
-### 6. 健康生活周刊（每周五下午 6:00）
-- [ ] 运行健康生活内容收集脚本: `python skills/health-content-collector/scripts/collect_weekly.py`
-- [ ] 按「运动/饮食/心理/睡眠/医疗/妙招」分类整理
-- [ ] 添加链接引用（标题链接 + 来源标注）
-- [ ] 发布新一期健康生活周刊到飞书知识库
+### 6. 健康生活自动归档（每周五下午 6:00）
+- [ ] 运行健康内容收集: `python skills/health-content-collector/scripts/collect_weekly.py`
+- [ ] 自动分类到六个模块（运动/饮食/心理/睡眠/医疗/妙招）
+- [ ] 按「年/月/周/日」层级归档
+- [ ] 同步更新飞书知识库
 
-### 7. 知识库日报推送（每天早上 8:00）
+### 7. 通用归档任务（按需执行）
+- [ ] 自动分类链接: `python skills/link-collector/scripts/universal_archive.py --url "..."`
+- [ ] 支持所有知识库：AI/游戏/健康/链接收藏
+- [ ] 自动判断知识库+模块，带置信度反馈
+
+### 8. 知识库日报推送（每天早上 8:00）
 - [ ] 运行日报推送脚本: `python skills/link-collector/scripts/daily_push.py`
 - [ ] 检查三个知识库（AI最新资讯/游戏开发/链接收藏）更新
 - [ ] 生成推送消息和飞书卡片
