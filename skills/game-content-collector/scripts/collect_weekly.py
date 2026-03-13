@@ -221,8 +221,8 @@ def generate_weekly_markdown(contents, week_info):
     
     # 刊头
     md += "---\n\n"
-    md += f"**本期编辑** | OpenClaw AI  ")
-    md += f"**出版日期** | {date}  ")
+    md += f"**本期编辑** | OpenClaw AI  \n"
+    md += f"**出版日期** | {date}  \n"
     md += f"**总第{issue}期**\n\n"
     md += "---\n\n"
     

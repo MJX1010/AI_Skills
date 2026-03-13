@@ -1,0 +1,127 @@
+{
+  "week_info": {
+    "year": 2026,
+    "week": 11,
+    "issue_number": 11,
+    "friday_date": "2026-03-13",
+    "friday_display": "2026年03月13日",
+    "week_range": "03.13"
+  },
+  "contents": {
+    "游戏引擎": [
+      {
+        "url": "https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0",
+        "title": "Unreal Fest Stockholm 開幕セッションのハイライト",
+        "summary": "Fetching: https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0... **URL**: https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0 ストック...",
+        "domain": "unrealengine.com",
+        "date": "2026-03-13"
+      }
+    ],
+    "游戏设计": [],
+    "开发技术": [
+      {
+        "url": "https://blog.csdn.net/weixin_49715102/article/details/155612491",
+        "title": "Perforce《2025游戏技术现状报告》Part 3：不同行业挑战以及Unreal、Godot、自研游戏引擎的应用趋势 原创",
+        "summary": "Fetching: https://blog.csdn.net/weixin_49715102/article/details/155612491... **URL**: https://blog.csdn.net/weixin_49715102/article/details/155612491 ![Image](https://aka.doubaocdn.com/s/tJF21w3c2z) !...",
+        "domain": "blog.csdn.net",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://blog.csdn.net/gitblog_00061/article/details/139850138",
+        "title": "探索游戏开发的宝藏：Awesome Gamedev 原创",
+        "summary": "Fetching: https://blog.csdn.net/gitblog_00061/article/details/139850138... **URL**: https://blog.csdn.net/gitblog_00061/article/details/139850138 ![Image](https://aka.doubaocdn.com/s/MrqA1w3c3S) ![Ima...",
+        "domain": "blog.csdn.net",
+        "date": "2026-03-13"
+      }
+    ],
+    "美术资源": [],
+    "音频音效": [],
+    "独立游戏": [],
+    "行业资讯": [
+      {
+        "url": "http://news.qq.com/rain/a/20260310A03RU100",
+        "title": "Unity 2026 游戏报告：78% 靠“每日任务与排行榜”留存玩家",
+        "summary": "Fetching: http://news.qq.com/rain/a/20260310A03RU100... **URL**: https://news.qq.com/rain/a/20260310A03RU100 ![Image](https://aka.doubaocdn.com/s/dOUK1w3c3B) ![Image](https://aka.doubaocdn.com/s/icp31...",
+        "domain": "news.qq.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://news.17173.com/content/02012026/132039597.shtml",
+        "title": "2026年2月份新游情报：买断制单机为主，春节档新作寥寥！",
+        "summary": "Fetching: https://news.17173.com/content/02012026/132039597.shtml... **URL**: https://news.17173.com/content/02012026/132039597.shtml 2026-02-01 13:20:39来源：公众号作者：游戏萝卜 2026年2月新游情报：买断制单机为主，春节档新作寥寥！《沙石镇时...",
+        "domain": "news.17173.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026-week-9",
+        "title": "This week's game Launches on PC, PS5, Xbox: February 2026 (Week 9)",
+        "summary": "Fetching: https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026-week-9... **URL**: https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026...",
+        "domain": "dlcompare.co.uk",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://www.comicbasics.com/all-the-playstation-games-releasing-in-february-2026/",
+        "title": "All the PlayStation Games Releasing in February 2026",
+        "summary": "Fetching: https://www.comicbasics.com/all-the-playstation-games-releasing-in-february-2026/... **URL**: https://www.comicbasics.com/all-the-playstation-games-releasing-in-february-2026 ![Image](https:...",
+        "domain": "comicbasics.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "http://m.toutiao.com/group/7616756937903915555/?upstream_biz=VolcEngine",
+        "title": "15分钟搞定2D游戏开发!C++、OpenGL、tprPix开源教程，",
+        "summary": "Fetching: http://m.toutiao.com/group/7616756937903915555/?upstream_biz=VolcEngine... **URL**: http://m.toutiao.com/group/7616756937903915555 ![Image](https://aka.doubaocdn.com/s/TNs61w3c3O) 提到C++游戏开发，...",
+        "domain": "m.toutiao.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "http://m.toutiao.com/group/7342414922762043904/?upstream_biz=VolcEngine",
+        "title": "游戏开发入门,如何开发自己的游戏?",
+        "summary": "Fetching: http://m.toutiao.com/group/7342414922762043904/?upstream_biz=VolcEngine... **URL**: http://m.toutiao.com/group/7342414922762043904 游戏开发是一项充满挑战和创造力的工作，如果您想要入门并开发自己的游戏，以下是一些步骤和建议: 编程语言: 学习一种游戏...",
+        "domain": "m.toutiao.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://reportsworld.b2b.huangye88.com/m/sell-2bdfd72v7b1c1.html",
+        "title": "2024年运动用品拉链行业发展现状和趋势分析",
+        "summary": "Fetching: https://reportsworld.b2b.huangye88.com/m/sell-2bdfd72v7b1c1.html... **URL**: https://reportsworld.b2b.huangye88.com/m/sell-2bdfd72v7b1c1.html 来源：湖南摩澜数智信息技术咨询有限公司发布时间：2025-12-08 ![Image](http...",
+        "domain": "reportsworld.b2b.huangye88.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://m.sohu.com/a/977470540_122449124/",
+        "title": "2026年中国拉链行业重点企业竞争力与发展趋势分析报告",
+        "summary": "Fetching: https://m.sohu.com/a/977470540_122449124/... **URL**: https://m.sohu.com/a/977470540_122449124 ![Image](https://aka.doubaocdn.com/s/QWyR1w3c3b) ![Image](https://aka.doubaocdn.com/s/qrM01w3c3...",
+        "domain": "m.sohu.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://www.sgieurope.com/products/ykk-reinvents-the-zipper-for-performance-wear/118340.article",
+        "title": "YKK launches AiryString tapeless zipper, a first in 100 years",
+        "summary": "Fetching: https://www.sgieurope.com/products/ykk-reinvents-the-zipper-for-performance-wear/118340.article... **URL**: https://www.sgieurope.com/products/ykk-reinvents-the-zipper-for-performance-wear/1...",
+        "domain": "sgieurope.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://www.ithome.com/0/927/511.htm",
+        "title": "Unity 2026 游戏报告：78% 靠“每日任务与排行榜”留存玩家，休闲题材成新宠",
+        "summary": "Fetching: https://www.ithome.com/0/927/511.htm... **URL**: https://www.ithome.com/0/927/511.htm ，基于超 500 万开发者数据与 300 份涵盖 PC、移动端、主机及 XR 等多个平台的开发者问卷，**揭示了全球游戏市场在激烈竞争下的务实转型趋势。** 项目规模方面，全球游戏工作室面对激烈的市场竞争与复...",
+        "domain": "ithome.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://c.m.163.com/news/a/KLUO15BD0511BLFD.html",
+        "title": "Unity押注AI未来：用自然语言即可开发休闲游戏 将于GDC揭晓",
+        "summary": "Fetching: https://c.m.163.com/news/a/KLUO15BD0511BLFD.html... **URL**: https://c.m.163.com/news/a/KLUO15BD0511BLFD.html ![Image](https://aka.doubaocdn.com/s/unuu1w3c3l) ![Image](https://aka.doubaocdn....",
+        "domain": "c.m.163.com",
+        "date": "2026-03-13"
+      },
+      {
+        "url": "https://game.sohu.com/a/991856575_122001004",
+        "title": "Steam新游推荐：2026年3月2日至3月8日的精彩作品一览！",
+        "summary": "Fetching: https://game.sohu.com/a/991856575_122001004... **URL**: https://game.sohu.com/a/991856575_122001004 🎮 2026年3月2日至3月8日的Steam新游推荐如期而至，本周为玩家们带来了多款独立游戏，涵盖了角色扮演、策略、冒险等多种类型，无论你是喜欢解谜、战斗还是模拟经营，总能找到适合...",
+        "domain": "game.sohu.com",
+        "date": "2026-03-13"
+      }
+    ]
+  }
+}
