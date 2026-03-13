@@ -23,10 +23,11 @@
 - [ ] 飞书渠道连接状态
 - [ ] 磁盘空间使用情况
 
-### 4. AI 内容收集（每天早上 8 点）
-- [ ] 运行 AI 内容收集: `python skills/ai-content-collector/scripts/collect_daily.py`
-- [ ] 检查收集结果和质量
-- [ ] 重要内容整理到飞书文档
+### 4. AI 每周精选（每周五下午 6:00）
+- [ ] 运行周刊收集脚本: `python skills/ai-content-collector/scripts/collect_weekly.py`
+- [ ] 按「工具/资源 + 文章 + 工具」三段式整理内容
+- [ ] 添加链接引用（标题链接 + 来源标注）
+- [ ] 发布新一期周刊到飞书知识库
 
 ### 5. Skills 维护（每周日）
 - [ ] 检查各 skill 的更新情况（查看官方源、GitHub 等）
