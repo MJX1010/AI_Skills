@@ -15,7 +15,7 @@ from base import BaseCollector
 
 
 class AICollector(BaseCollector):
-    """AI内容收集器"""
+    """AI内容收集器 - 支持自定义来源"""
     
     kb_key = "ai-latest-news"
     kb_name = "AI最新资讯"
@@ -27,10 +27,6 @@ class AICollector(BaseCollector):
         "research": "📚 深度研究",
         "cases": "💡 案例分享"
     }
-    search_queries = [
-        "OpenAI Anthropic Google AI latest",
-        "AI人工智能 最新动态 GPT Claude"
-    ]
     
     def search_content(self, week_str, year, week_num):
         """搜索AI相关内容"""

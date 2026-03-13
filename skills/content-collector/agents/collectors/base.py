@@ -3,10 +3,15 @@
 Base Collector - 收集器基类
 """
 
+import sys
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 from pathlib import Path
 import json
+
+# 导入配置管理器
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from utils.config import get_config
 
 
 class BaseCollector(ABC):
@@ -17,11 +22,14 @@ class BaseCollector(ABC):
     kb_name = None
     kb_icon = None
     modules = []
-    search_queries = []
     
     def __init__(self):
         self.base_path = Path("/workspace/projects/workspace")
         self.results = []
+        self.config = get_config()
+        
+        # 从配置加载搜索关键词
+        self.search_queries = self.config.get_search_queries(self.kb_key)
     
     def get_week_info(self, week_arg):
         """获取周信息"""

@@ -382,6 +382,136 @@ crontab -e
 
 ---
 
+---
+
+## 自定义内容来源
+
+你可以完全自定义每个知识库的内容来源，包括搜索关键词、权威来源列表等。
+
+### 配置文件位置
+
+```
+skills/content-collector/config/sources.yaml
+```
+
+### 可自定义项
+
+| 配置项 | 说明 | 示例 |
+|--------|------|------|
+| `search_queries` | 搜索关键词列表 | `["AI latest", "OpenAI news"]` |
+| `authoritative_sources` | 权威来源列表（质量加分） | `["openai.com", "github.com"]` |
+| `rss_feeds` | RSS订阅源 | 名称+URL |
+| `settings` | 通用设置 | 阈值、数量等 |
+
+### 配置示例
+
+```yaml
+# ============================================
+# 🤖 AI最新资讯 - 自定义来源
+# ============================================
+ai-latest-news:
+  # 自定义搜索关键词
+  search_queries:
+    - "OpenAI Anthropic Google AI latest"
+    - "AI人工智能 最新动态 GPT Claude"
+    - "你的自定义关键词 1"
+    - "你的自定义关键词 2"
+  
+  # 自定义权威来源（这些来源的内容会获得质量加分）
+  authoritative_sources:
+    # 国际官方
+    - openai.com
+    - anthropic.com
+    - deepmind.google
+    # 你可以添加自己的权威来源
+    - your-favorite-blog.com
+    - specific-news-site.com
+  
+  # RSS订阅源（用于自动监控更新）
+  rss_feeds:
+    - name: "OpenAI Blog"
+      url: "https://openai.com/blog/rss.xml"
+    - name: "你的RSS源"
+      url: "https://your-site.com/feed.xml"
+
+# ============================================
+# 🎮 游戏开发 - 自定义来源
+# ============================================
+game-development:
+  search_queries:
+    - "Unity Unreal game development"
+    - "游戏开发 独立游戏"
+    - "你的游戏相关关键词"
+  
+  authoritative_sources:
+    - unity.com
+    - unrealengine.com
+    - godotengine.org
+    - your-game-dev-resource.com
+
+# ============================================
+# 🌱 健康生活 - 自定义来源
+# ============================================
+healthy-living:
+  search_queries:
+    - "健康 运动 饮食"
+    - "fitness nutrition"
+    - "你的健康相关关键词"
+  
+  authoritative_sources:
+    - 丁香医生
+    - who.int
+    - your-health-resource.com
+```
+
+### 实时生效
+
+修改配置文件后，下次运行收集器时自动生效：
+
+```bash
+# 重新加载配置并收集
+python skills/content-collector/agents/collectors/ai_collector.py --week current
+```
+
+### 添加自定义来源的步骤
+
+1. **编辑配置文件**
+   ```bash
+   nano skills/content-collector/config/sources.yaml
+   ```
+
+2. **添加你的搜索关键词**
+   ```yaml
+   ai-latest-news:
+     search_queries:
+       - "原有关键词"
+       - "你的自定义关键词"  # 添加这一行
+   ```
+
+3. **添加你的权威来源**
+   ```yaml
+   authoritative_sources:
+     - openai.com
+     - your-custom-source.com  # 添加这一行
+   ```
+
+4. **运行收集器**
+   ```bash
+   python skills/content-collector/agents/coordinator.py --task weekly_collection
+   ```
+
+### 高级：通过环境变量覆盖
+
+你也可以通过环境变量临时覆盖配置：
+
+```bash
+# 临时添加额外搜索词
+export EXTRA_SEARCH_QUERIES="你的关键词1,你的关键词2"
+python skills/content-collector/agents/collectors/ai_collector.py
+```
+
+---
+
 *统一内容收集器 - 支持多知识库自动化管理*
 
 ---
