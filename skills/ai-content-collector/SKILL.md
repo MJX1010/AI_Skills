@@ -320,6 +320,117 @@ results = batch_classify([
 - [ ] 更新周刊历史索引
 ```
 
+## 完整工作流：收集 → 分类 → 归档 → 同步
+
+### 步骤1：内容收集
+
+运行周刊收集脚本，获取本周AI相关内容：
+```bash
+python /workspace/projects/workspace/skills/ai-content-collector/scripts/collect_weekly.py --week current
+```
+
+收集结果保存在：
+- `memory/ai-content/weekly/weekly-YYYY-WXX.md`
+
+### 步骤2：内容分类
+
+自动按四模块分类：
+- **📰 AI行业资讯** - 新闻、产品发布、融资
+- **🛠️ AI工具与技巧** - 工具推荐、教程
+- **📚 主题深度研究** - 技术原理、论文
+- **💡 经验与案例分享** - 实战经验、案例
+
+分类逻辑：
+```python
+if "发布" in title or "融资" in title or "OpenAI" in title:
+    module = "📰 AI行业资讯"
+elif "工具" in title or "教程" in title or "技巧" in title:
+    module = "🛠️ AI工具与技巧"
+elif "论文" in title or "原理" in title or "分析" in title:
+    module = "📚 主题深度研究"
+elif "案例" in title or "实践" in title or "经验" in title:
+    module = "💡 经验与案例分享"
+```
+
+### 步骤3：生成本地周刊
+
+按以下格式生成本地 Markdown：
+```markdown
+# AI每周精选：第X期（YYYY年MM月DD日）
+
+## 📌 本周话题
+（人工编辑补充）
+
+## 📖 文章
+### 1. [标题](URL)
+内容摘要...
+> 来源：[网站名](URL)
+
+## 🔗 链接引用
+| 序号 | 标题 | 来源 |
+|------|------|------|
+| 1 | [标题](URL) | 网站名 |
+```
+
+### 步骤4：同步到飞书知识库
+
+#### 4.1 获取知识库信息
+```bash
+# 列出所有知识库空间
+feishu_wiki --action spaces
+
+# 获取 AI最新资讯 知识库节点
+feishu_wiki --action nodes --space_id 7616519632920251572
+```
+
+#### 4.2 创建周刊文档
+在「AI最新资讯」知识库下创建新文档：
+```bash
+feishu_wiki --action create \
+  --space_id 7616519632920251572 \
+  --parent_node_token <首页节点Token> \
+  --title "第X期 - YYYY年MM月DD日" \
+  --obj_type docx
+```
+
+#### 4.3 写入周刊内容
+使用生成的 `obj_token` 写入 Markdown 内容：
+```bash
+feishu_doc --action write \
+  --doc_token <obj_token> \
+  --content "# AI每周精选..."
+```
+
+### 步骤5：更新操作日志
+
+在 `memory/YYYY-MM-DD.md` 记录同步操作：
+```markdown
+## 飞书知识库同步
+时间：YYYY-MM-DD HH:MM
+
+将第X期（YYYY年MM月DD日）的周刊内容同步到飞书知识库：
+
+### 🤖 AI最新资讯
+- 文档标题：第X期 - YYYY年MM月DD日
+- Wiki节点：[查看文档](https://xxx.feishu.cn/wiki/xxx)
+- 内容：XX条AI相关文章
+
+### 本地备份文件
+- `memory/ai-content/weekly/weekly-YYYY-WXX.md`
+```
+
+### 完整命令示例
+
+```bash
+# 1. 收集内容
+python skills/ai-content-collector/scripts/collect_weekly.py --week current
+
+# 2. 同步到飞书（使用 obj_token）
+feishu_doc --action write \
+  --doc_token CXx8dGQDSoKL3ixkKv5cUaNEn2b \
+  --content "$(cat memory/ai-content/weekly/weekly-2026-W11.md)"
+```
+
 ### 使用 Cron
 
 ```bash

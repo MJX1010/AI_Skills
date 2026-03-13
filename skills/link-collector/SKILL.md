@@ -142,6 +142,97 @@ python3 scripts/archive_manager.py --action archive
 ---
 ```
 
+## 🔄 完整工作流：分类 → 存储 → 同步
+
+### 步骤1：内容分类
+
+使用 `classify_kb.py` 自动判断内容应归入哪个知识库：
+
+```bash
+# 单条分类
+python3 skills/link-collector/scripts/classify_kb.py --url "<URL>" --title "<标题>"
+
+# 返回格式：知识库: AI最新资讯; 模块: 行业资讯; 置信度: 0.95
+```
+
+分类规则：
+| 内容类型 | 知识库 | 关键词 |
+|----------|--------|--------|
+| AI/技术文章 | 🤖 AI最新资讯 | AI、LLM、GPT、机器学习 |
+| 游戏/开发 | 🎮 游戏开发 | Unity、Unreal、游戏设计、独立游戏 |
+| 健康/生活 | 🌱 健康生活 | 健康、运动、饮食、心理、生活窍门 |
+| 其他技术 | 🔗 本地链接收藏 | 前端、后端、工具、通用编程 |
+
+### 步骤2：按分类存储
+
+根据分类结果存储到对应位置：
+
+**AI/游戏/健康类 → 飞书知识库**：
+- 使用对应 content-collector 脚本收集
+- 或手动创建文档同步
+
+**其他技术类 → 本地文件系统**：
+```bash
+# 添加用户发送的链接（其他技术类）
+python3 scripts/archive_manager.py \
+  --action add \
+  --category user-links \
+  --url "https://example.com/article" \
+  --title "文章标题" \
+  --summary "文章摘要" \
+  --source "网站名"
+```
+
+### 步骤3：生成本地文档
+
+按周归档到本地：
+```
+link-collection/
+├── user-links/
+│   └── 2026/03/week-11/2026-03-13.md
+├── self-collected/
+└── wechat-articles/
+```
+
+### 步骤4：同步到飞书（AI/游戏/健康类）
+
+对于可分类到 AI/游戏/健康的内容：
+
+```bash
+# 1. 获取目标知识库信息
+feishu_wiki --action spaces
+feishu_wiki --action nodes --space_id <space_id>
+
+# 2. 创建文档
+feishu_wiki --action create \
+  --space_id <space_id> \
+  --parent_node_token <parent_token> \
+  --title "文章标题" \
+  --obj_type docx
+
+# 3. 写入内容
+feishu_doc --action write \
+  --doc_token <obj_token> \
+  --content "$(cat <本地文件>)"
+```
+
+### 步骤5：更新操作日志
+
+在 `memory/YYYY-MM-DD.md` 记录：
+```markdown
+## 链接归档
+时间：YYYY-MM-DD HH:MM
+
+### 分类结果
+- [链接1](URL) → 🤖 AI最新资讯 / 📰 行业资讯（置信度：0.92）
+- [链接2](URL) → 🎮 游戏开发 / 🎮 游戏引擎（置信度：0.88）
+- [链接3](URL) → 🔗 本地链接收藏（其他技术类）
+
+### 存储位置
+- 飞书知识库：AI最新资讯、游戏开发
+- 本地文件：link-collection/user-links/2026/03/week-11/
+```
+
 ---
 
 ## 📋 分类示例

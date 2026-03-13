@@ -158,6 +158,126 @@ python /workspace/projects/workspace/skills/game-content-collector/scripts/colle
 - [ ] 发布新一期周刊到飞书知识库
 ```
 
+## 完整工作流：收集 → 分类 → 归档 → 同步
+
+### 步骤1：内容收集
+
+运行周刊收集脚本，获取本周游戏开发相关内容：
+```bash
+python /workspace/projects/workspace/skills/game-content-collector/scripts/collect_weekly.py --week current
+```
+
+收集结果保存在：
+- `memory/game-content/weekly/game-weekly-YYYY-WXX.md`
+
+### 步骤2：内容分类
+
+自动按六模块分类：
+- **🎮 游戏引擎** - Unity、Unreal、Godot更新
+- **🎯 游戏设计** - 设计理念、机制分析
+- **💻 开发技术** - 编程、图形、AI
+- **🎨 美术资源** - 美术工具、素材资源
+- **🎵 音频音效** - 音频工具、音乐资源
+- **🏆 独立游戏** - 独立游戏发布、成功案例
+
+分类逻辑：
+```python
+if "Unity" in title or "Unreal" in title or "引擎" in title:
+    module = "🎮 游戏引擎"
+elif "设计" in title or "机制" in title or "玩法" in title:
+    module = "🎯 游戏设计"
+elif "代码" in title or "技术" in title or "开发" in title:
+    module = "💻 开发技术"
+elif "美术" in title or "模型" in title or "动画" in title:
+    module = "🎨 美术资源"
+elif "音效" in title or "音乐" in title or "音频" in title:
+    module = "🎵 音频音效"
+elif "独立" in title or "indie" in title.lower():
+    module = "🏆 独立游戏"
+```
+
+### 步骤3：生成本地周刊
+
+按以下格式生成本地 Markdown：
+```markdown
+# 游戏开发周刊：第X期（YYYY年MM月DD日）
+
+## 📌 本周话题
+（人工编辑补充）
+
+## 🎮 游戏引擎
+### 1. [标题](URL)
+内容摘要...
+> 来源：[网站名](URL)
+
+## 💻 开发技术
+...
+
+## 🔗 链接引用
+| 序号 | 标题 | 来源 |
+|------|------|------|
+| 1 | [标题](URL) | 网站名 |
+```
+
+### 步骤4：同步到飞书知识库
+
+#### 4.1 获取知识库信息
+```bash
+# 列出所有知识库空间
+feishu_wiki --action spaces
+
+# 获取 游戏开发 知识库节点
+feishu_wiki --action nodes --space_id 7616735513310924004
+```
+
+#### 4.2 创建周刊文档
+在「游戏开发」知识库下创建新文档：
+```bash
+feishu_wiki --action create \
+  --space_id 7616735513310924004 \
+  --parent_node_token <首页节点Token> \
+  --title "第X期 - YYYY年MM月DD日" \
+  --obj_type docx
+```
+
+#### 4.3 写入周刊内容
+使用生成的 `obj_token` 写入 Markdown 内容：
+```bash
+feishu_doc --action write \
+  --doc_token <obj_token> \
+  --content "# 游戏开发周刊..."
+```
+
+### 步骤5：更新操作日志
+
+在 `memory/YYYY-MM-DD.md` 记录同步操作：
+```markdown
+## 飞书知识库同步
+时间：YYYY-MM-DD HH:MM
+
+将第X期（YYYY年MM月DD日）的游戏开发周刊同步到飞书知识库：
+
+### 🎮 游戏开发
+- 文档标题：第X期 - YYYY年MM月DD日
+- Wiki节点：[查看文档](https://xxx.feishu.cn/wiki/xxx)
+- 内容：XX条游戏开发相关内容
+
+### 本地备份文件
+- `memory/game-content/weekly/game-weekly-YYYY-WXX.md`
+```
+
+### 完整命令示例
+
+```bash
+# 1. 收集内容
+python skills/game-content-collector/scripts/collect_weekly.py --week current
+
+# 2. 同步到飞书（使用 obj_token）
+feishu_doc --action write \
+  --doc_token PyIsdsxZkoEiRhxbBMQcUtUDnFT \
+  --content "$(cat memory/game-content/weekly/game-weekly-2026-W11.md)"
+```
+
 ## 注意事项
 
 1. **内容质量** - 精选高质量内容，宁缺毋滥

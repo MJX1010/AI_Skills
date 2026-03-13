@@ -23,74 +23,137 @@
 - [ ] 飞书渠道连接状态
 - [ ] 磁盘空间使用情况
 
-### 4. AI 资讯自动归档（每周五下午 6:00 - 完整流程）
-**步骤1: 自动收集**
-- [ ] 运行AI内容收集: `python skills/ai-content-collector/scripts/collect_weekly.py`
-- [ ] 生成周刊Markdown和JSON数据
+### 4. 周刊自动归档（每周五下午 6:00 - 统一收集流程）
 
-**步骤2: 质量筛选（自动+人工）**
-- [ ] 自动过滤：去除低质量来源（置信度<40%的内容）
-- [ ] 标记推荐：高置信度(>80%)且内容完整的文章
-- [ ] 人工审核：生成待审核列表，等待人工确认
+**使用统一内容收集器：** `skills/content-collector/`
 
-**步骤3: 模块细分**
-- [ ] 自动分类到四个模块（资讯/工具技巧/深度研究/案例分享）
-- [ ] 按「年/月/周/日」层级归档到本地
-- [ ] 生成模块索引文件
+#### 步骤1: 内容收集（全知识库）
+- [ ] 运行统一收集脚本:
+  ```bash
+  python skills/content-collector/scripts/collect_all.py --week current
+  ```
+- [ ] 分别收集三个知识库内容：
+  - 🤖 AI最新资讯 → `memory/ai-content/weekly/weekly-YYYY-WXX.md`
+  - 🎮 游戏开发 → `memory/game-content/weekly/game-weekly-YYYY-WXX.md`
+  - 🌱 健康生活 → `memory/health-content/weekly/health-weekly-YYYY-WXX.md`
 
-**步骤4: 同步飞书**
-- [ ] 将筛选后的内容同步到飞书知识库
-- [ ] 更新年度/月度/周度/日度页面
-- [ ] 生成飞书卡片格式
+#### 步骤2: 内容分类
+- [ ] **AI最新资讯** - 分类到四模块：
+  - 📰 行业资讯（新闻、产品发布、融资）
+  - 🛠️ 工具技巧（工具推荐、教程）
+  - 📚 深度研究（论文、原理分析）
+  - 💡 案例分享（实战经验、案例）
+- [ ] **游戏开发** - 分类到六模块：
+  - 🎮 游戏引擎（Unity、Unreal、Godot）
+  - 🎯 游戏设计（设计理念、机制）
+  - 💻 开发技术（编程、图形、AI）
+  - 🎨 美术资源（美术工具、素材）
+  - 🎵 音频音效（音频工具、音乐）
+  - 🏆 独立游戏（独立游戏发布、案例）
+- [ ] **健康生活** - 分类到六模块：
+  - 🏃 运动健身（锻炼方法、健身计划）
+  - 🥗 饮食营养（健康饮食、食谱）
+  - 😊 心理健康（压力管理、情绪调节）
+  - 💤 睡眠健康（睡眠质量、作息）
+  - 🏥 医疗资讯（疾病预防、健康检查）
+  - ✨ 生活妙招（生活技巧、小窍门）
 
-**步骤5: 生成周报**
-- [ ] 汇总本周所有模块的精选内容
-- [ ] 生成周报摘要（Top 5内容）
-- [ ] 保存到本地并准备推送
+#### 步骤3: 本地归档
+- [ ] 按「年/月/周/日」四级层级归档到本地
+  ```
+  memory/
+  ├── ai-content/weekly/weekly-YYYY-WXX.md
+  ├── game-content/weekly/game-weekly-YYYY-WXX.md
+  └── health-content/weekly/health-weekly-YYYY-WXX.md
+  ```
+- [ ] 生成周刊格式：封面/本周话题/各模块/链接引用
 
-### 5. 游戏开发自动归档（每周五下午 6:00 - 完整流程）
-**步骤1: 自动收集**
-- [ ] 运行游戏内容收集: `python skills/game-content-collector/scripts/collect_weekly.py`
+#### 步骤4: 同步飞书知识库（分层级嵌套）
 
-**步骤2: 质量筛选**
-- [ ] 自动过滤低质量内容
-- [ ] 标记高价值内容（引擎更新/重大发布/实用教程）
+**知识库空间ID对照表：**
+| 知识库 | space_id | 首页节点 |
+|--------|----------|----------|
+| 🤖 AI最新资讯 | 7616519632920251572 | PhL6wlstzissQ1kKPwMc18xbngg |
+| 🎮 游戏开发 | 7616735513310924004 | U9EWwwL8ui16IEkrN8vcIRISnFg |
+| 🌱 健康生活 | 7616737910330510558 | XD2PwwJukiD8a8koNAAc4Fedn5t |
 
-**步骤3: 模块细分**
-- [ ] 分类到六个模块（引擎/设计/技术/美术/音频/独游）
-- [ ] 按「年/月/周/日」层级归档
+**同步流程（每个知识库）：**
+```bash
+# 4.1 获取知识库节点
+feishu_wiki --action nodes --space_id <space_id>
 
-**步骤4: 同步飞书**
-- [ ] 更新飞书知识库游戏开发模块
-- [ ] 同步各子模块内容
+# 4.2 创建年度节点（如不存在）
+feishu_wiki --action create \
+  --space_id <space_id> \
+  --parent_node_token <首页_token> \
+  --title "2026年" \
+  --obj_type docx
 
-### 6. 健康生活自动归档（每周五下午 6:00 - 完整流程）
-**步骤1: 自动收集**
-- [ ] 运行健康内容收集: `python skills/health-content-collector/scripts/collect_weekly.py`
+# 4.3 创建月度节点
+feishu_wiki --action create \
+  --space_id <space_id> \
+  --parent_node_token <年度_token> \
+  --title "3月" \
+  --obj_type docx
 
-**步骤2: 质量筛选（更严格）**
-- [ ] 优先权威来源（丁香医生、三甲医院等）
-- [ ] 标记需要专业审核的医疗内容
-- [ ] 过滤未经证实的健康偏方
+# 4.4 创建周刊文档
+feishu_wiki --action create \
+  --space_id <space_id> \
+  --parent_node_token <月度_token> \
+  --title "第X期 - MM月DD日" \
+  --obj_type docx
 
-**步骤3: 模块细分**
-- [ ] 分类到六个模块（运动/饮食/心理/睡眠/医疗/妙招）
-- [ ] 按「年/月/周/日」层级归档
+# 4.5 写入周刊内容
+feishu_doc --action write \
+  --doc_token <obj_token> \
+  --content "$(cat memory/xxx-content/weekly/xxx-weekly-YYYY-WXX.md)"
+```
 
-**步骤4: 同步飞书**
-- [ ] 更新飞书知识库健康生活模块
-- [ ] 医疗相关内容添加免责声明
+**飞书知识库层级结构：**
+```
+知识库首页
+├── 📅 2026年
+│   ├── 📅 3月
+│   │   ├── 📄 第11期 - 3月13日  ✅ 本期周刊
+│   │   └── 📄 ...
+│   └── 📅 4月
+└── 📅 2025年
+```
 
-### 7. 通用归档任务（按需执行）
-- [ ] 自动分类链接: `python skills/link-collector/scripts/universal_archive.py --url "..."`
-- [ ] 支持所有知识库：AI/游戏/健康/链接收藏
-- [ ] 自动判断知识库+模块，带置信度反馈
+#### 步骤5: 质量筛选（各知识库特殊规则）
+- [ ] **AI最新资讯** - 过滤低质量来源（置信度<40%），标记高价值内容（>80%）
+- [ ] **游戏开发** - 标记高价值内容（引擎更新/重大发布/实用教程）
+- [ ] **健康生活** - 优先权威来源（丁香医生、三甲医院），医疗内容添加免责声明
 
-### 8. 知识库日报推送（每天早上 8:00 - 完整流程）
+#### 步骤6: 生成周报摘要
+- [ ] 汇总三个知识库的本周精选内容
+- [ ] AI资讯 Top 5 + 游戏开发 Top 3 + 健康生活 Top 3
+- [ ] 生成综合周报并准备推送
+
+#### 步骤7: 更新操作日志
+- [ ] 在 `memory/YYYY-MM-DD.md` 记录完整操作：
+  ```markdown
+  ## 内容收集与同步
+  时间：YYYY-MM-DD HH:MM
+  
+  ### 收集统计
+  | 知识库 | 数量 | 分类分布 |
+  |--------|------|----------|
+  | 🤖 AI | 15条 | 资讯:8 / 工具:3 / 研究:2 / 案例:2 |
+  | 🎮 游戏 | 12条 | 引擎:3 / 技术:4 / 设计:2 / 美术:2 / 独游:1 |
+  | 🌱 健康 | 10条 | 运动:3 / 妙招:3 / 饮食:2 / 心理:2 |
+  
+  ### 同步状态
+  | 知识库 | 周刊期数 | Wiki节点 | 状态 |
+  |--------|----------|----------|------|
+  | 🤖 AI | 第11期 | `xxx...` | ✅ 已同步 |
+  | 🎮 游戏 | 第11期 | `xxx...` | ✅ 已同步 |
+  | 🌱 健康 | 第11期 | `xxx...` | ✅ 已同步 |
+  ```
+
+### 5. 知识库日报推送（每天早上 8:00）
 **步骤1: 检查更新**
-- [ ] 检查AI最新资讯是否有新内容
-- [ ] 检查游戏开发是否有新内容
-- [ ] 检查健康生活是否有新内容
+- [ ] 检查三个知识库是否有新内容
 - [ ] 统计各知识库新增文章数
 
 **步骤2: 生成推送内容**
@@ -103,35 +166,38 @@
 - [ ] 附带各知识库跳转链接
 - [ ] 记录推送日志
 
-**静默规则**: 23:00-08:00不推送，除非有紧急重要内容
+**静默规则**: 23:00-08:00不推送，除非紧急重要内容
 
-### 9. 周刊精选推送（每周六早上 9:00）
-- [ ] 汇总AI资讯本周Top 5精选
-- [ ] 汇总游戏开发本周Top 3精选
-- [ ] 汇总健康生活本周Top 3精选
+### 6. 周刊精选推送（每周六早上 9:00）
+- [ ] 汇总三个知识库本周Top精选：
+  - 🤖 AI资讯 Top 5
+  - 🎮 游戏开发 Top 3
+  - 🌱 健康生活 Top 3
 - [ ] 生成综合周报并推送
 - [ ] 附带完整周刊链接
 
-### 10. 内容质量复盘（每周日晚上）
+### 7. 内容质量复盘（每周日晚上）
 - [ ] 回顾本周自动分类准确率
 - [ ] 统计各知识库内容数量和质量
 - [ ] 记录需要人工干预的案例
 - [ ] 优化分类关键词和规则
 
-### 5. Skills 维护（每周日）
+### 8. 通用链接归档（按需执行）
+- [ ] 自动分类链接: `python skills/link-collector/scripts/universal_archive.py --url "..."`
+- [ ] 支持自动判断知识库+模块
+- [ ] 分类规则：
+  - AI/ML → 🤖 AI最新资讯
+  - 游戏开发 → 🎮 游戏开发
+  - 健康/生活 → 🌱 健康生活
+  - 其他技术 → 🔗 本地链接收藏
+
+### 9. Skills 维护（每周日）
 - [ ] 检查各 skill 的更新情况（查看官方源、GitHub 等）
 - [ ] 如有更新，更新 skill 版本和功能
 - [ ] 更新 skill 文档和来源配置
 - [ ] 测试更新后的功能是否正常
 
-### 6. OpenClaw 更新检查（每周日）
-- [ ] 运行 `openclaw-updater` skill 检查更新
-- [ ] 查看最新 GitHub releases
-- [ ] 检查当前版本 vs 最新版本
-- [ ] 如有更新，评估并执行更新
-- [ ] 记录更新日志到 `memory/openclaw-updates.json`
-
-### 6. OpenClaw 更新检查（每周日）
+### 10. OpenClaw 更新检查（每周日）
 - [ ] 运行 `python skills/openclaw-updater/scripts/check_updates.py`
 - [ ] 查看最新 GitHub releases
 - [ ] 检查官方文档变更
@@ -167,11 +233,113 @@
     "memory": "2026-03-11T23:00:00Z",
     "git": "2026-03-11T20:00:00Z",
     "system": "2026-03-11T23:00:00Z",
-    "token": "2026-03-11T23:00:00Z"
+    "token": "2026-03-11T23:00:00Z",
+    "content_collection": "2026-03-14T10:00:00Z"
   }
 }
 ```
 
 ---
 
-*最后更新：2026-03-13*
+## 🔄 内容收集器快速参考
+
+### 统一内容收集器
+
+**Skill 位置**: `skills/content-collector/`
+
+**核心脚本**:
+```bash
+# 收集全部知识库
+python skills/content-collector/scripts/collect_all.py --week current
+
+# 收集指定知识库
+python skills/content-collector/scripts/collect.py --kb ai-latest-news --week current
+python skills/content-collector/scripts/collect.py --kb game-development --week current
+python skills/content-collector/scripts/collect.py --kb healthy-living --week current
+
+# 同步到飞书
+python skills/content-collector/scripts/sync_feishu.py --all --week current
+
+# 完整流程：收集+分类+归档+同步
+python skills/content-collector/scripts/full_pipeline.py --week current
+```
+
+### 知识库分类规则
+
+| 知识库 | 模块数 | 核心关键词 |
+|--------|--------|------------|
+| 🤖 AI最新资讯 | 4 | AI、GPT、Claude、LLM、机器学习、OpenAI |
+| 🎮 游戏开发 | 6 | Unity、Unreal、游戏、game、indie、引擎 |
+| 🌱 健康生活 | 6 | 健康、运动、饮食、心理、生活、健身 |
+
+### 本地存储结构
+
+```
+memory/
+├── ai-content/
+│   ├── weekly/weekly-YYYY-WXX.md
+│   ├── daily/ai-content-YYYY-MM-DD.md
+│   └── modules/{news,tools,research,cases}/
+├── game-content/
+│   ├── weekly/game-weekly-YYYY-WXX.md
+│   ├── daily/game-content-YYYY-MM-DD.md
+│   └── modules/{engine,design,tech,art,audio,indie}/
+└── health-content/
+    ├── weekly/health-weekly-YYYY-WXX.md
+    ├── daily/health-content-YYYY-MM-DD.md
+    └── modules/{fitness,diet,mental,sleep,medical,tips}/
+```
+
+### 飞书同步命令
+
+```bash
+# 查看知识库
+feishu_wiki --action spaces
+
+# 查看节点
+feishu_wiki --action nodes --space_id 7616519632920251572
+
+# 创建文档
+feishu_wiki --action create \
+  --space_id <space_id> \
+  --parent_node_token <parent> \
+  --title "第X期 - MM月DD日"
+
+# 写入内容
+feishu_doc --action write \
+  --doc_token <obj_token> \
+  --content "# 标题..."
+```
+
+### 同步记录模板
+
+在 `memory/YYYY-MM-DD.md` 中记录：
+
+```markdown
+## 内容收集与同步
+时间：YYYY-MM-DD HH:MM
+
+### 收集统计
+| 知识库 | 数量 | 分类分布 |
+|--------|------|----------|
+| 🤖 AI | XX条 | 资讯:X / 工具:X / 研究:X / 案例:X |
+| 🎮 游戏 | XX条 | 引擎:X / 设计:X / 技术:X / 美术:X / 音频:X / 独游:X |
+| 🌱 健康 | XX条 | 运动:X / 饮食:X / 心理:X / 睡眠:X / 医疗:X / 妙招:X |
+
+### 同步状态
+| 知识库 | 周刊期数 | Wiki节点 | 状态 |
+|--------|----------|----------|------|
+| 🤖 AI | 第X期 | `node_token` | ✅ 已同步 |
+| 🎮 游戏 | 第X期 | `node_token` | ✅ 已同步 |
+| 🌱 健康 | 第X期 | `node_token` | ✅ 已同步 |
+
+### 本地备份
+- `memory/ai-content/weekly/weekly-YYYY-WXX.md`
+- `memory/game-content/weekly/game-weekly-YYYY-WXX.md`
+- `memory/health-content/weekly/health-weekly-YYYY-WXX.md`
+```
+
+---
+
+*最后更新：2026-03-14*
+*统一内容收集器版本：v1.0*
