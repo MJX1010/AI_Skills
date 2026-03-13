@@ -1,0 +1,30 @@
+{
+  "total": {
+    "inputTokens": 34853,
+    "outputTokens": 4211,
+    "totalTokens": 290200,
+    "estimatedCost": 0.025848500000000003,
+    "sessionCount": 1
+  },
+  "daily": {
+    "2026-03-11": {
+      "inputTokens": 34853,
+      "outputTokens": 4211,
+      "totalTokens": 290200,
+      "sessionCount": 1,
+      "cost": 0.025848500000000003
+    }
+  },
+  "sessions": [
+    {
+      "file": "ba74aea2-70b9-42bd-a7d4-b17060836a8a.jsonl",
+      "date": "2026-03-11",
+      "inputTokens": 34853,
+      "outputTokens": 4211,
+      "totalTokens": 290200,
+      "messageCount": 15,
+      "cost": 0.025848500000000003
+    }
+  ],
+  "lastUpdated": "2026-03-12T14:50:39.484Z"
+}

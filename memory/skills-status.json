@@ -1,0 +1,63 @@
+{
+  "skillChecks": {
+    "lastCheckDate": null,
+    "nextCheckDate": null,
+    "checks": []
+  },
+  "skillsStatus": {
+    "ai-content-collector": {
+      "lastUpdated": "2026-03-13",
+      "version": "1.0",
+      "status": "active",
+      "notes": "已添加国内外50+来源"
+    },
+    "coze-web-search": {
+      "lastUpdated": null,
+      "version": "1.0",
+      "status": "active",
+      "notes": ""
+    },
+    "coze-web-fetch": {
+      "lastUpdated": null,
+      "version": "1.0",
+      "status": "active",
+      "notes": ""
+    },
+    "coze-image-gen": {
+      "lastUpdated": null,
+      "version": "1.0",
+      "status": "active",
+      "notes": ""
+    },
+    "coze-voice-gen": {
+      "lastUpdated": null,
+      "version": "1.0",
+      "status": "active",
+      "notes": ""
+    },
+    "link-collector": {
+      "lastUpdated": null,
+      "version": "1.0",
+      "status": "active",
+      "notes": ""
+    },
+    "skill-creator": {
+      "lastUpdated": "2026-03-13",
+      "version": "1.0",
+      "status": "active",
+      "notes": "已添加维护指南"
+    },
+    "openclaw-updater": {
+      "lastUpdated": "2026-03-13",
+      "version": "1.0",
+      "status": "active",
+      "notes": "新增 skill，用于监控 OpenClaw 更新"
+    },
+    "skill-hub": {
+      "lastUpdated": "2026-03-13",
+      "version": "1.0.0",
+      "status": "active",
+      "notes": "从 ClawHub 安装，用于 skill 发现、安全检查和安装管理"
+    }
+  }
+}

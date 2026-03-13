@@ -1,0 +1,37 @@
+---
+name: openclaw-updater
+description: |
+  Track and monitor OpenClaw updates, including version changes, new features, 
+  documentation updates, and configuration changes. Use when user asks about 
+  OpenClaw updates, version checks, changelog review, or when performing 
+  periodic OpenClaw maintenance. Triggers on phrases like "check OpenClaw updates", 
+  "OpenClaw版本更新", "检查OpenClaw更新", "更新OpenClaw".
+---
+
+# OpenClaw Updater Skill Package
+
+This is a packaged skill for tracking OpenClaw updates.
+
+## Contents
+
+- `SKILL.md` - Main skill documentation
+- `references/sources.md` - OpenClaw resource links
+- `scripts/check_updates.py` - Update checking script
+
+## Usage
+
+1. Check updates manually:
+   ```bash
+   python /workspace/projects/workspace/skills/openclaw-updater/scripts/check_updates.py
+   ```
+
+2. Via skill trigger:
+   - "检查 OpenClaw 更新"
+   - "查看 OpenClaw 版本"
+   - "更新 OpenClaw"
+
+## Monitoring
+
+- Check weekly (recommended: Sunday)
+- Records updates to `memory/openclaw-updates.json`
+- Notifies when updates are available
