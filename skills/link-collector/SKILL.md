@@ -5,7 +5,7 @@ description: Collect and organize multiple URLs into structured documents. Use w
 
 # Link Collector
 
-批量抓取网页链接并整理成结构化文档，**智能识别链接适合放入哪个知识库**。
+批量抓取网页链接并整理成结构化文档，**智能识别链接适合放入哪个知识库**，并按**层级结构归档**。
 
 ## 支持的四个知识库
 
@@ -15,6 +15,48 @@ description: Collect and organize multiple URLs into structured documents. Use w
 | **游戏开发** | 🎮 | 游戏引擎、开发技术 | Unity、Unreal、游戏开发、独立游戏 |
 | **健康生活** | 🌱 | 生活妙招、健康知识 | 健康、运动、饮食、营养、心理健康 |
 | **链接收藏** | 🔗 | 通用技术文章、工具 | 其他技术内容 |
+
+---
+
+## 📁 链接归档层级结构
+
+所有收集的链接按以下**四层结构**归档：
+
+```
+link-collection/
+├── user-links/              # 用户发送的链接
+│   ├── 2026/
+│   │   ├── 03/             # 月
+│   │   │   ├── week-10/    # 周
+│   │   │   │   ├── 2026-03-13.md   # 日文档
+│   │   │   │   ├── 2026-03-14.md
+│   │   │   │   └── week-summary-week-10.md  # 周汇总
+│   │   │   └── month-index-03.md    # 月索引
+│   │   └── 04/
+│   └── archive/            # 历史归档（>1年）
+│       └── 2025/
+├── self-collected/          # 自动收集的链接
+│   └── ... (同上结构)
+└── wechat-articles/         # 微信文章
+    └── ... (同上结构)
+```
+
+### 层级说明
+
+| 层级 | 单位 | 说明 | 示例 |
+|------|------|------|------|
+| **Level 1** | 年 | 年份文件夹 | `2026/` |
+| **Level 2** | 月 | 月份文件夹 | `03/` |
+| **Level 3** | 周 | 周次文件夹 | `week-10/` |
+| **Level 4** | 日 | 每日文档 | `2026-03-13.md` |
+| **Archive** | 年 | 超过1年自动归档 | `archive/2025/` |
+
+### 文档类型
+
+- **日文档**: 每日收集的链接详情
+- **周汇总**: 本周所有链接的索引
+- **月索引**: 本月所有周汇总的索引
+- **年归档**: 超过1年的内容自动归档
 
 ## 智能分类
 
@@ -191,7 +233,98 @@ npx ts-node /workspace/projects/workspace/skills/coze-web-fetch/scripts/fetch.ts
 | 3 | [工具名](URL) | 网站名 | URL |
 ```
 
-### 链接引用格式说明
+### 归档管理器使用
+
+### 添加链接到层级结构
+
+```bash
+# 添加用户发送的链接
+python3 scripts/archive_manager.py \
+  --action add \
+  --category user-links \
+  --url "https://example.com/article" \
+  --title "文章标题" \
+  --summary "文章摘要" \
+  --source "网站名"
+
+# 添加自动收集的链接
+python3 scripts/archive_manager.py \
+  --action add \
+  --category self-collected \
+  --url "https://..." \
+  --title "..." \
+  --summary "..."
+
+# 添加微信文章
+python3 scripts/archive_manager.py \
+  --action add \
+  --category wechat-articles \
+  --url "https://mp.weixin.qq.com/s/xxx" \
+  --title "微信文章标题" \
+  --summary "摘要" \
+  --source "公众号名"
+```
+
+### 生成本周汇总
+
+```bash
+python3 scripts/archive_manager.py \
+  --action week-summary \
+  --category user-links
+```
+
+### 生成月索引
+
+```bash
+python3 scripts/archive_manager.py \
+  --action month-index \
+  --category user-links
+```
+
+### 归档旧内容（>1年）
+
+```bash
+python3 scripts/archive_manager.py --action archive
+```
+
+### 查看完整结构
+
+```bash
+python3 scripts/archive_manager.py --action structure
+```
+
+---
+
+## 微信文章抓取 + 自动归档
+
+### 一键抓取并归档微信文章
+
+```bash
+# 1. 抓取微信文章
+python3 scripts/fetch_wechat.py \
+  "https://mp.weixin.qq.com/s/xxx" \
+  --method playwright \
+  --format json \
+  --output /tmp/wechat_article.json
+
+# 2. 解析并归档
+python3 scripts/archive_wechat.py \
+  --file /tmp/wechat_article.json \
+  --auto-classify  # 自动分类到对应知识库
+```
+
+### 批量处理微信文章
+
+```bash
+# 从文件读取多个URL批量处理
+python3 scripts/batch_fetch_wechat.py \
+  --urls-file urls.txt \
+  --output-dir ./wechat_articles/
+```
+
+---
+
+## 链接引用格式说明
 
 **每条内容必须包含**：
 1. **标题链接**: `[标题](URL)` - 标题直接链接到原文
