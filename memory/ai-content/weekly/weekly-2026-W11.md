@@ -1,7 +1,5 @@
 # AI每周精选：第11期（2026年03月13日）
 
-![第11期封面](封面图URL)
-
 ---
 
 **本期编辑** | OpenClaw AI  
@@ -12,87 +10,54 @@
 
 ## 📌 本周话题
 
-本周最值得关注的 AI 行业动态或技术趋势...
-
-（人工编辑补充）
+本周AI领域热点：OpenAI与谷歌员工联合支持Anthropic起诉美国政府，Claude日注册量突破百万大关，在应用商店排名反超ChatGPT。AI安全与竞争格局正在发生深刻变化。
 
 ---
 
-## 📖 文章
+## 📰 行业资讯
 
-### 1. [中国科研团队研发DeepRare系统破解罕见病确诊难题](http://www.sh.chinanews.com/kjjy/2026-02-19/144794.shtml)
+### 1. [大家来帮忙:30多名OpenAI、谷歌员工力挺Anthropic起诉美政府](https://m.sohu.com/a/994458281_114984/)
 
-Fetching: http://www.sh.chinanews.com/kjjy/2026-02-19/144794.shtml... **URL**: http://www.sh.chinanews.com/kjjy/2026-02-19/144794.shtml 中新网上海新闻2月19日电（记者 许婧）北京时间2月19日凌晨，国际顶级学术期刊《自然》(Nature)在线发表上海交通大学人工...
+北京时间3月10日，据《连线》杂志报道，30多名OpenAI、谷歌员工在周一提交的公开信中表示支持Anthropic就五角大楼AI合同提起的诉讼。这显示出AI行业内部在安全与军事应用问题上的分歧正在加深。
 
-> 来源：[sh.chinanews.com](http://www.sh.chinanews.com/kjjy/2026-02-19/144794.shtml)
+> 来源：[手机搜狐网](https://m.sohu.com/a/994458281_114984/) · 2026-03-10
 
-### 2. [2025年国际十大科技新闻揭晓](https://sast.gov.cn/content.html?cid=36&id=kjb242112)
+### 2. [2026年3月AI观察:OpenAI推GPT-5.4，Google强化Gemini轻量化，Anthropic继续押注企业级AI](https://blog.csdn.net/cucibala/article/details/158836932)
 
-Fetching: https://sast.gov.cn/content.html?cid=36&id=kjb242112... **URL**: https://sast.gov.cn/content.html?cid=36&id=kjb242112 2025年12月24日，由科技日报社主办、部分两院院士和媒体负责人共同评选的2025年国际十大科技新闻揭晓。 入选的2025年国际十大科技新闻分...
+2026年3月AI行业观察：OpenAI推出GPT-5.4版本，Google持续强化Gemini轻量化部署，Anthropic则继续专注于企业级AI市场。三大巨头各自布局，竞争日趋激烈。
 
-> 来源：[sast.gov.cn](https://sast.gov.cn/content.html?cid=36&id=kjb242112)
+> 来源：[CSDN博客](https://blog.csdn.net/cucibala/article/details/158836932) · 2026-03-09
 
-### 3. [10 万亿 tokens！英伟达贡献全球最大规模开源数据集，并推四大开源 AI 模型](https://ai5g.china.com/ai/13004828/20260106/49137528.html)
+### 3. [Claude日注册量破百万，应用商店反超ChatGPT](https://cj.sina.com.cn/article/norm_detail?finpagefr=w_110&url=https%3A%2F%2Ffinance.sina.com.cn%2Fstock%2Ft%2F2026-03-07%2Fdoc-inhqcpvv1939906.shtml)
 
-Fetching: https://ai5g.china.com/ai/13004828/20260106/49137528.html... **URL**: https://ai5g.china.com/ai/13004828/20260106/49137528.html 在CES 2026主题演讲中，英伟达首席执行官黄仁勋宣布大规模扩展其开源模型库，发布涵盖语言、机器人、自动驾驶及医疗四大领域...
+3月7日消息，据外媒9to5google报道，Claude日注册量突破百万大关，在应用商店排名实现反超ChatGPT。Anthropic的Claude正以惊人速度获得市场认可。
 
-> 来源：[ai5g.china.com](https://ai5g.china.com/ai/13004828/20260106/49137528.html)
+> 来源：[新浪财经](https://cj.sina.com.cn/article/norm_detail?finpagefr=w_110&url=https%3A%2F%2Ffinance.sina.com.cn%2Fstock%2Ft%2F2026-03-07%2Fdoc-inhqcpvv1939906.shtml) · 2026-03-07
 
-### 4. [2026年全球AI公司及其产品洞察](https://blog.csdn.net/a321123b/article/details/157870139)
+### 4. [3月3日AI全球眼:坚守 AI 安全红线 Anthropic 逆势崛起 Claude 登顶](https://k.sina.com.cn/article_1786788815_6a803bcf0010a4w90.html)
 
-Fetching: https://blog.csdn.net/a321123b/article/details/157870139... **URL**: https://blog.csdn.net/a321123b/article/details/157870139 原创已于 2026-02-09 21:36:25 修改·734 阅读 ![Image](https://aka.doubaocd...
+坚守AI安全红线的Anthropic正在逆势崛起，Claude在多个维度上登顶。AI安全与性能的平衡正在成为行业关注焦点。
 
-> 来源：[blog.csdn.net](https://blog.csdn.net/a321123b/article/details/157870139)
+> 来源：[手机新浪网](https://k.sina.com.cn/article_1786788815_6a803bcf0010a4w90.html) · 2026-03-03
 
-### 5. [Anthropic推出谷歌浏览器AI助理，正接近完成百亿美元融资](https://m.thepaper.cn/newsDetail_forward_31486407)
+### 5. [Employees at Google and OpenAI support Anthropic's Pentagon stand in open letter](https://toptech.news/employees-at-google-and-openai-support-anthropic82/)
 
-Fetching: https://m.thepaper.cn/newsDetail_forward_31486407... **URL**: https://m.thepaper.cn/newsDetail_forward_31486407 AI（人工智能）初创公司Anthropic加入浏览器战场，推出AI上网助手。 当地时间8月26日，AI初创公司Anthropic宣布将推出一款基于谷歌浏览器...
+Google和OpenAI的员工在公开信中支持Anthropic就五角大楼合同采取的立场，显示出AI行业从业者对军事应用AI的伦理关切。
 
-> 来源：[m.thepaper.cn](https://m.thepaper.cn/newsDetail_forward_31486407)
-
-### 6. [#AI企业参访#](https://weitoutiao.zjurl.cn/rogue/topic_share/?concern_id=1832632827564083&prevent_activate=1)
-
-Fetching: https://weitoutiao.zjurl.cn/rogue/topic_share/?concern_id=1832632827564083&prevent_activate=1... **URL**: https://weitoutiao.zjurl.cn/rogue/topic_share?concern_id=1832632827564083&prevent_ac...
-
-> 来源：[weitoutiao.zjurl.cn](https://weitoutiao.zjurl.cn/rogue/topic_share/?concern_id=1832632827564083&prevent_activate=1)
-
----
-
-## 💬 本周金句
-
-> （人工编辑补充最有价值的一句话）
+> 来源：[Top Tech News](https://toptech.news/employees-at-google-and-openai-support-anthropic82/) · 2026-03-02
 
 ---
 
 ## 🔗 链接引用
 
-本期周刊涉及的所有链接：
-
-| 序号 | 标题 | 来源 |
-|------|------|------|
-| 1 | [中国科研团队研发DeepRare系统破解罕见病确诊难题](http://www.sh.chinanews.com/kjjy/2026-02-19/144794.shtml) | sh.chinanews.com |
-| 2 | [2025年国际十大科技新闻揭晓](https://sast.gov.cn/content.html?cid=36&id=kjb242112) | sast.gov.cn |
-| 3 | [10 万亿 tokens！英伟达贡献全球最大规模开源数据集，...](https://ai5g.china.com/ai/13004828/20260106/49137528.html) | ai5g.china.com |
-| 4 | [2026年全球AI公司及其产品洞察](https://blog.csdn.net/a321123b/article/details/157870139) | blog.csdn.net |
-| 5 | [Anthropic推出谷歌浏览器AI助理，正接近完成百亿美元...](https://m.thepaper.cn/newsDetail_forward_31486407) | m.thepaper.cn |
-| 6 | [#AI企业参访#](https://weitoutiao.zjurl.cn/rogue/topic_share/?concern_id=1832632827564083&prevent_activate=1) | weitoutiao.zjurl.cn |
-| 7 | [2026年最值得学习的 AI 工具榜单（程序员 & 技术人必...](https://blog.csdn.net/wmuj_/article/details/155749839) | blog.csdn.net |
-| 8 | [AI学习](https://soft.china.com/soft/2519925.html) | soft.china.com |
-| 9 | [Content](https://help.openai.com/ja-jp/articles/9855712-chatgpt-openai-o3-and-o4mini-models-faq-enterprise-edu-version) | help.openai.com |
-| 10 | [“AI 教父”杨立昆初创公司AMI获10.3亿美元种子轮融资...](https://c.m.163.com/news/a/KNLR0ASE0519QIKK.html) | c.m.163.com |
-| 11 | [杨立昆AI初创公司获10.3亿美元融资，英伟达三星参投](https://t.cj.sina.cn/articles/view/1642634100/61e89b7404001lkpq) | t.cj.sina.cn |
-| 12 | [French AI startup AMI raises $...](https://www.france24.com/en/france/20260310-french-ai-startup-ami-raises-1b-to-develop-universal-intelligent-systems) | france24.com |
-| 13 | [智源发布2026十大 AI技术趋势：认知、形态、基建三重变革...](http://www.ce.cn/cysc/tech/gd2012/202601/t20260108_2690189.shtml) | ce.cn |
-| 14 | [全球人工智能领域2月发展盘点](https://szzg.gov.cn/2025/szzg/xyzx/202603/t20260302_5290295.htm) | szzg.gov.cn |
-| 15 | [AWE 2026| 卡位亿万级下一代人工智能计算赛道 追觅芯...](https://stock.eastmoney.com/news/1699,202603113669145639.html) | stock.eastmoney.com |
+| 序号 | 标题 | 来源 | 日期 |
+|------|------|------|------|
+| 1 | [大家来帮忙:30多名OpenAI、谷歌员工力挺Anthropic起诉美政府](https://m.sohu.com/a/994458281_114984/) | 手机搜狐网 | 03-10 |
+| 2 | [2026年3月AI观察:OpenAI推GPT-5.4，Google强化Gemini轻量化](https://blog.csdn.net/cucibala/article/details/158836932) | CSDN博客 | 03-09 |
+| 3 | [Claude日注册量破百万，应用商店反超ChatGPT](https://cj.sina.com.cn/article/norm_detail?finpagefr=w_110&url=https%3A%2F%2Ffinance.sina.com.cn%2Fstock%2Ft%2F2026-03-07%2Fdoc-inhqcpvv1939906.shtml) | 新浪财经 | 03-07 |
+| 4 | [3月3日AI全球眼:坚守 AI 安全红线 Anthropic 逆势崛起](https://k.sina.com.cn/article_1786788815_6a803bcf0010a4w90.html) | 手机新浪网 | 03-03 |
+| 5 | [Employees at Google and OpenAI support Anthropic's Pentagon stand](https://toptech.news/employees-at-google-and-openai-support-anthropic82/) | Top Tech News | 03-02 |
 
 ---
 
-## 📮 订阅
-
-- 飞书知识库：[AI每周精选](https://xxx.feishu.cn/wiki/xxx)
-- GitHub：[MJX1010/AI_Skills](https://github.com/MJX1010/AI_Skills)
-
----
-
-*本期周刊由 OpenClaw AI 自动生成，部分内容由人工编辑审核*
+*本期周刊由 OpenClaw AI 自动生成*

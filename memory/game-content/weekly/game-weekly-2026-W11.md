@@ -1,7 +1,5 @@
 # 游戏开发周刊：第11期（2026年03月13日）
 
-![第11期封面](封面图URL)
-
 ---
 
 **本期编辑** | OpenClaw AI  
@@ -12,95 +10,54 @@
 
 ## 📌 本周话题
 
-本周最值得关注的游戏开发动态或行业趋势...
-
-（人工编辑补充）
+本周游戏开发热点：Godot引擎作为免费开源方案在Unity定价风波后迅速崛起，成为独立开发者的首选工具。2D和3D游戏开发的免费开源解决方案正在改变行业格局。
 
 ---
 
 ## 🎮 游戏引擎
 
-### 1. [Unreal Fest Stockholm 開幕セッションのハイライト](https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0)
+### 1. [Godot:独立开发者的开源超能力](https://blog.csdn.net/lpfasd123/article/details/156910832)
 
-Fetching: https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0... **URL**: https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0 ストック...
+"我试过Unity，玩过Unreal，最后在Godot里找到了归属感。" Godot作为完全免费开源的游戏引擎，正在成为独立开发者的首选工具。它不仅免费，而且功能强大，支持2D和3D游戏开发。
 
-> 来源：[unrealengine.com](https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0)
+> 来源：[CSDN博客](https://blog.csdn.net/lpfasd123/article/details/156910832) · 2026-01-13
 
----
+### 2. [常见游戏引擎介绍与对比](https://blog.csdn.net/oTianLe1234/article/details/147521735)
 
-## 💻 开发技术
+详细对比Unity、Unreal、Godot等主流游戏引擎的特性和适用场景。Unity使用C#作为脚本语言，拥有庞大的生态和社区支持，是手游开发的首选。
 
-### 1. [Perforce《2025游戏技术现状报告》Part 3：不同行业挑战以及Unreal、Godot、自研游戏引擎的应用趋势 原创](https://blog.csdn.net/weixin_49715102/article/details/155612491)
+> 来源：[CSDN博客](https://blog.csdn.net/oTianLe1234/article/details/147521735) · 2025-04-25
 
-Fetching: https://blog.csdn.net/weixin_49715102/article/details/155612491... **URL**: https://blog.csdn.net/weixin_49715102/article/details/155612491 ![Image](https://aka.doubaocdn.com/s/tJF21w3c2z) !...
+### 3. [Godot Engine中文版](https://soft.3dmgame.com/down/369297.html)
 
-> 来源：[blog.csdn.net](https://blog.csdn.net/weixin_49715102/article/details/155612491)
+Godot Engine 4.5.1中文版发布，免费开源的跨平台游戏引擎，适配2D、3D游戏开发及非游戏应用。文件大小仅73.13MB，轻量高效。
 
-### 2. [探索游戏开发的宝藏：Awesome Gamedev 原创](https://blog.csdn.net/gitblog_00061/article/details/139850138)
+> 来源：[3DM软件](https://soft.3dmgame.com/down/369297.html) · 2026-01-20
 
-Fetching: https://blog.csdn.net/gitblog_00061/article/details/139850138... **URL**: https://blog.csdn.net/gitblog_00061/article/details/139850138 ![Image](https://aka.doubaocdn.com/s/MrqA1w3c3S) ![Ima...
+### 4. [Godot 引擎深度解析:免费开源的游戏利器](https://post.m.smzdm.com/p/aeoedowm/)
 
-> 来源：[blog.csdn.net](https://blog.csdn.net/gitblog_00061/article/details/139850138)
+在Unity定价风波后，Godot作为完全免费开源的游戏引擎迅速崛起。它不仅在2D领域表现卓越，新版本在3D渲染能力上也有显著提升，是独立开发者的理想选择。
 
----
+> 来源：[什么值得买](https://post.m.smzdm.com/p/aeoedowm/) · 2026-01-14
 
-## 📊 行业资讯
+### 5. [开源游戏开发引擎Godot全面入门与实战指南](https://blog.csdn.net/weixin_32445049/article/details/155203023)
 
-### 1. [Unity 2026 游戏报告：78% 靠“每日任务与排行榜”留存玩家](http://news.qq.com/rain/a/20260310A03RU100)
+Godot引擎全面入门教程，从基础概念到实战项目，帮助开发者快速上手这款开源游戏引擎。
 
-Fetching: http://news.qq.com/rain/a/20260310A03RU100... **URL**: https://news.qq.com/rain/a/20260310A03RU100 ![Image](https://aka.doubaocdn.com/s/dOUK1w3c3B) ![Image](https://aka.doubaocdn.com/s/icp31...
-
-> 来源：[news.qq.com](http://news.qq.com/rain/a/20260310A03RU100)
-
-### 2. [2026年2月份新游情报：买断制单机为主，春节档新作寥寥！](https://news.17173.com/content/02012026/132039597.shtml)
-
-Fetching: https://news.17173.com/content/02012026/132039597.shtml... **URL**: https://news.17173.com/content/02012026/132039597.shtml 2026-02-01 13:20:39来源：公众号作者：游戏萝卜 2026年2月新游情报：买断制单机为主，春节档新作寥寥！《沙石镇时...
-
-> 来源：[news.17173.com](https://news.17173.com/content/02012026/132039597.shtml)
-
-### 3. [This week's game Launches on PC, PS5, Xbox: February 2026 (Week 9)](https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026-week-9)
-
-Fetching: https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026-week-9... **URL**: https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026...
-
-> 来源：[dlcompare.co.uk](https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026-week-9)
-
----
-
-## 💬 本周金句
-
-> （人工编辑补充最有价值的一句话）
+> 来源：[CSDN博客](https://blog.csdn.net/weixin_32445049/article/details/155203023) · 2025-11-24
 
 ---
 
 ## 🔗 链接引用
 
-本期周刊涉及的所有链接：
-
-| 序号 | 标题 | 来源 |
-|------|------|------|
-| 1 | [Unreal Fest Stockholm 開幕セッションの...](https://www.unrealengine.com/ja/feed/all/tarsier%20studios+%E3%82%B2%E3%83%BC%E3%83%A0) | unrealengine.com |
-| 2 | [Perforce《2025游戏技术现状报告》Part 3：不...](https://blog.csdn.net/weixin_49715102/article/details/155612491) | blog.csdn.net |
-| 3 | [探索游戏开发的宝藏：Awesome Gamedev 原创](https://blog.csdn.net/gitblog_00061/article/details/139850138) | blog.csdn.net |
-| 4 | [Unity 2026 游戏报告：78% 靠“每日任务与排行榜...](http://news.qq.com/rain/a/20260310A03RU100) | news.qq.com |
-| 5 | [2026年2月份新游情报：买断制单机为主，春节档新作寥寥！](https://news.17173.com/content/02012026/132039597.shtml) | news.17173.com |
-| 6 | [This week's game Launches on P...](https://www.dlcompare.co.uk/gaming-news/this-week-s-video-game-releases-february-2026-week-9) | dlcompare.co.uk |
-| 7 | [All the PlayStation Games Rele...](https://www.comicbasics.com/all-the-playstation-games-releasing-in-february-2026/) | comicbasics.com |
-| 8 | [15分钟搞定2D游戏开发!C++、OpenGL、tprPix...](http://m.toutiao.com/group/7616756937903915555/?upstream_biz=VolcEngine) | m.toutiao.com |
-| 9 | [游戏开发入门,如何开发自己的游戏?](http://m.toutiao.com/group/7342414922762043904/?upstream_biz=VolcEngine) | m.toutiao.com |
-| 10 | [2024年运动用品拉链行业发展现状和趋势分析](https://reportsworld.b2b.huangye88.com/m/sell-2bdfd72v7b1c1.html) | reportsworld.b2b.huangye88.com |
-| 11 | [2026年中国拉链行业重点企业竞争力与发展趋势分析报告](https://m.sohu.com/a/977470540_122449124/) | m.sohu.com |
-| 12 | [YKK launches AiryString tapele...](https://www.sgieurope.com/products/ykk-reinvents-the-zipper-for-performance-wear/118340.article) | sgieurope.com |
-| 13 | [Unity 2026 游戏报告：78% 靠“每日任务与排行榜...](https://www.ithome.com/0/927/511.htm) | ithome.com |
-| 14 | [Unity押注AI未来：用自然语言即可开发休闲游戏 将于GD...](https://c.m.163.com/news/a/KLUO15BD0511BLFD.html) | c.m.163.com |
-| 15 | [Steam新游推荐：2026年3月2日至3月8日的精彩作品一...](https://game.sohu.com/a/991856575_122001004) | game.sohu.com |
+| 序号 | 标题 | 来源 | 日期 |
+|------|------|------|------|
+| 1 | [Godot:独立开发者的开源超能力](https://blog.csdn.net/lpfasd123/article/details/156910832) | CSDN博客 | 01-13 |
+| 2 | [常见游戏引擎介绍与对比](https://blog.csdn.net/oTianLe1234/article/details/147521735) | CSDN博客 | 04-25 |
+| 3 | [Godot Engine中文版](https://soft.3dmgame.com/down/369297.html) | 3DM软件 | 01-20 |
+| 4 | [Godot 引擎深度解析:免费开源的游戏利器](https://post.m.smzdm.com/p/aeoedowm/) | 什么值得买 | 01-14 |
+| 5 | [开源游戏开发引擎Godot全面入门与实战指南](https://blog.csdn.net/weixin_32445049/article/details/155203023) | CSDN博客 | 11-24 |
 
 ---
 
-## 📮 订阅
-
-- 飞书知识库：[游戏开发](https://xxx.feishu.cn/wiki/xxx)
-- GitHub：[MJX1010/AI_Skills](https://github.com/MJX1010/AI_Skills)
-
----
-
-*本期周刊由 OpenClaw AI 自动生成，部分内容由人工编辑审核*
+*本期周刊由 OpenClaw AI 自动生成*
