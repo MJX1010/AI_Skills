@@ -5,7 +5,71 @@ description: Collect and organize multiple URLs into structured documents. Use w
 
 # Link Collector
 
-批量抓取网页链接并整理成结构化文档。
+批量抓取网页链接并整理成结构化文档，**智能识别链接适合放入哪个知识库**。
+
+## 支持的三个知识库
+
+| 知识库 | 说明 | 关键词 |
+|--------|------|--------|
+| 🤖 **AI最新资讯** | AI行业动态、技术突破 | AI、机器学习、大模型、OpenAI、Claude |
+| 🎮 **游戏开发** | 游戏引擎、开发技术 | Unity、Unreal、游戏开发、独立游戏 |
+| 🔗 **链接收藏** | 通用技术文章、工具 | 其他技术内容 |
+
+## 智能分类
+
+### 自动识别规则
+
+根据以下特征自动判断链接归属：
+
+1. **域名匹配**（权重最高）
+   - `openai.com` → AI最新资讯
+   - `unity.com` → 游戏开发
+   - `github.com` → 根据内容判断
+
+2. **关键词匹配**
+   - AI相关：人工智能、机器学习、LLM、GPT → AI最新资讯
+   - 游戏相关：游戏开发、Unity、Unreal → 游戏开发
+   - 其他 → 链接收藏
+
+3. **内容分析**
+   - 抓取链接内容，分析主题
+   - 综合评分，选择最匹配的知识库
+
+### 使用分类脚本
+
+```bash
+python3 scripts/classify_links.py
+```
+
+**输入**：链接列表（URL + 标题 + 内容）
+**输出**：按知识库分类的结果
+
+### 分类示例
+
+```python
+# 测试链接
+test_links = [
+    {"url": "https://openai.com/blog/gpt-5", "title": "GPT-5 Released"},
+    {"url": "https://unity.com/blog/unity-6", "title": "Unity 6新特性"},
+    {"url": "https://example.com/random-article", "title": "随机文章"}
+]
+
+# 自动分类
+results = batch_classify(test_links)
+
+# 输出结果
+{
+  "ai-latest-news": [
+    {"url": "https://openai.com/blog/gpt-5", ...}
+  ],
+  "game-dev": [
+    {"url": "https://unity.com/blog/unity-6", ...}
+  ],
+  "link-collection": [
+    {"url": "https://example.com/random-article", ...}
+  ]
+}
+```
 
 ## 工作流程
 
