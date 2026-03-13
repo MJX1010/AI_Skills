@@ -383,3 +383,163 @@ crontab -e
 ---
 
 *统一内容收集器 - 支持多知识库自动化管理*
+
+---
+
+## 多 Agent 协作架构 (Beta)
+
+除了传统的脚本方式，我们还提供了 **多 Agent 协作架构**，实现更高效的内容收集和处理。
+
+### 架构设计
+
+```
+Coordinator (协调器)
+    │
+    ├── Collectors (收集器) - 3个并行
+    │   ├── AI Collector 🤖
+    │   ├── Game Collector 🎮
+    │   └── Health Collector 🌱
+    │
+    ├── Processors (整理器) - N个并行
+    │   ├── Classifier 📂
+    │   ├── Quality Filter 🔍
+    │   └── Summarizer 📝
+    │
+    ├── Publisher (推送器) - 1个
+    │   └── 生成周刊 + 推送到飞书
+    │
+    ├── Syncer (同步器) - 1个
+    │   └── 同步到 Git
+    │
+    └── Maintainer (维护器) - 1个
+        └── 系统健康检查
+```
+
+### Agent 列表
+
+| Agent | 类型 | 职责 | 命令 |
+|-------|------|------|------|
+| **Coordinator** | 协调器 | 任务分发、工作流编排 | `coordinator.py` |
+| **AI Collector** | 收集器 | AI 内容收集 | `collectors/ai_collector.py` |
+| **Game Collector** | 收集器 | 游戏内容收集 | `collectors/game_collector.py` |
+| **Health Collector** | 收集器 | 健康内容收集 | `collectors/health_collector.py` |
+| **Classifier** | 处理器 | 内容分类 | `processors/classifier.py` |
+| **Quality Filter** | 处理器 | 质量筛选 | `processors/quality_filter.py` |
+| **Publisher** | 推送器 | 生成周刊、推送飞书 | `publisher.py` |
+| **Syncer** | 同步器 | Git 同步 | `syncer.py` |
+| **Maintainer** | 维护器 | 系统维护 | `maintainer.py` |
+
+### 使用方式
+
+#### 1. 启动完整流程（Coordinator 自动分发）
+
+```bash
+# 启动 Coordinator，自动分发任务到各 Agent
+python skills/content-collector/agents/coordinator.py \
+  --task weekly_collection \
+  --week current
+```
+
+执行流程：
+1. Coordinator 启动 3 个 Collector Agents 并行收集
+2. 等待收集完成后，启动 Processors 整理内容
+3. 启动 Publisher 生成周刊
+4. 启动 Syncer 同步到 Git
+
+#### 2. 单独运行某个 Agent
+
+```bash
+# 单独收集 AI 内容
+python skills/content-collector/agents/collectors/ai_collector.py --week current
+
+# 单独分类内容
+python skills/content-collector/agents/processors/classifier.py --week current
+
+# 单独筛选质量
+python skills/content-collector/agents/processors/quality_filter.py --week current
+
+# 单独生成周刊
+python skills/content-collector/agents/publisher.py --week current
+
+# 单独同步到 Git
+python skills/content-collector/agents/syncer.py
+
+# 系统维护检查
+python skills/content-collector/agents/maintainer.py --check all
+```
+
+#### 3. 用户添加内容（在原有基础上增加）
+
+```bash
+# 用户提供搜索内容文件，Coordinator 负责合并
+python skills/content-collector/agents/coordinator.py \
+  --task add_content \
+  --kb ai-latest-news \
+  --file user_search_results.md \
+  --merge
+```
+
+### 用户搜索内容格式
+
+当用户提供搜索内容时，请按以下格式提供：
+
+```markdown
+# 用户搜索内容 - AI最新资讯
+
+## 📰 行业资讯
+
+### 1. [文章标题](URL)
+文章摘要/关键内容摘录...
+> 来源：[网站名](URL) · 发布日期
+
+### 2. [另一篇文章](URL)
+...
+
+## 🛠️ 工具技巧
+
+### 1. [工具/教程标题](URL)
+...
+```
+
+**支持的操作**:
+- ✅ 在原有周刊基础上增加内容
+- ✅ 补充遗漏的分类模块
+- ✅ 更新已有文章的摘要
+
+### 配置文件
+
+Agent 配置位于 `agents/config.yaml`：
+
+```yaml
+agents:
+  collectors:
+    - id: collector-ai
+      kb: ai-latest-news
+      schedule: "0 18 * * 5"  # 每周五 18:00
+    - id: collector-game
+      kb: game-development
+      schedule: "0 18 * * 5"
+    - id: collector-health
+      kb: healthy-living
+      schedule: "0 18 * * 5"
+  
+  processors:
+    - id: classifier
+      parallel: true
+    - id: quality
+      parallel: true
+  
+  publisher:
+    single_instance: true
+  
+  syncer:
+    single_instance: true
+  
+  maintainer:
+    schedule: "0 */4 * * *"  # 每4小时检查
+```
+
+### 架构文档
+
+详细架构设计请参考：
+- `agents/ARCHITECTURE.md` - 完整架构文档
