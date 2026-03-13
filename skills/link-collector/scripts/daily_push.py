@@ -26,6 +26,14 @@ KNOWLEDGE_BASES = {
         "update_time": "每周五下午6点",
         "weekly_format": True
     },
+    "healthy-living": {
+        "name": "健康生活",
+        "space_id": "7616737910330510558",
+        "icon": "🌱",
+        "description": "生活妙招、健康知识、运动健身、饮食营养",
+        "update_time": "每周更新",
+        "weekly_format": True
+    },
     "link-collection": {
         "name": "链接收藏",
         "space_id": None,  # 飞书文档
@@ -84,6 +92,25 @@ def get_today_updates():
                     "latest_update": latest_datetime.strftime("%Y-%m-%d"),
                     "content": f"第{latest_datetime.isocalendar()[1]}期游戏周刊已发布",
                     "url": f"https://xxx.feishu.cn/wiki/game-weekly-{latest_datetime.strftime('%Y-W%U')}"
+                })
+    
+    # 检查健康生活目录
+    health_weekly_dir = Path("/workspace/projects/workspace/memory/health-content/weekly")
+    if health_weekly_dir.exists():
+        files = sorted(health_weekly_dir.glob("health-weekly-*.md"), reverse=True)
+        if files:
+            latest = files[0]
+            latest_date = latest.stat().st_mtime
+            latest_datetime = datetime.fromtimestamp(latest_date)
+            
+            if (today - latest_datetime).days <= 7:
+                updates["kbs"].append({
+                    "key": "healthy-living",
+                    "name": "健康生活",
+                    "icon": "🌱",
+                    "latest_update": latest_datetime.strftime("%Y-%m-%d"),
+                    "content": f"第{latest_datetime.isocalendar()[1]}期健康生活周刊已发布",
+                    "url": f"https://xxx.feishu.cn/wiki/health-weekly-{latest_datetime.strftime('%Y-W%U')}"
                 })
     
     # 链接收藏（检查最近添加的链接）

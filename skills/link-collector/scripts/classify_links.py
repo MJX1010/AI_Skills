@@ -13,6 +13,7 @@ KNOWLEDGE_BASES = {
     "ai-latest-news": {
         "name": "AI最新资讯",
         "space_id": "7616519632920251572",
+        "icon": "🤖",
         "keywords": ["ai", "artificial intelligence", "machine learning", "llm", "大模型", "人工智能", "机器学习", "deep learning", "神经网络", "openai", "anthropic", "gpt", "claude"],
         "domains": ["openai.com", "anthropic.com", "deepmind.google", "ai.google", "arxiv.org", "paperswithcode.com", "jiqizhixin.com", "qbitai.com", "xinhuanet.com", "people.com.cn"],
         "categories": ["AI新闻", "技术突破", "产品发布", "研究论文"]
@@ -20,13 +21,23 @@ KNOWLEDGE_BASES = {
     "game-dev": {
         "name": "游戏开发",
         "space_id": "7616735513310924004",
+        "icon": "🎮",
         "keywords": ["game", "gaming", "unity", "unreal", "godot", "游戏", "游戏开发", "unity3d", "ue5", "game design", "gamedev", "indie game"],
         "domains": ["unity.com", "unrealengine.com", "godotengine.org", "gamasutra.com", "gamedeveloper.com", "indiegames.com", "steamcommunity.com", "itch.io"],
         "categories": ["游戏引擎", "游戏设计", "开发教程", "行业资讯"]
     },
+    "healthy-living": {
+        "name": "健康生活",
+        "space_id": "7616737910330510558",
+        "icon": "🌱",
+        "keywords": ["健康", "生活", "运动", "健身", "饮食", "营养", "睡眠", "心理健康", "养生", "医疗", "健康知识", "生活小妙招", "health", "fitness", "nutrition", "wellness", "exercise", "diet"],
+        "domains": ["zhihu.com/health", "丁香医生", "keep.com", "薄荷健康", "好大夫在线", "健康界", "39健康网", "health.com", "webmd.com", "mayoclinic.org"],
+        "categories": ["运动健身", "饮食营养", "心理健康", "医疗资讯", "生活妙招"]
+    },
     "link-collection": {
         "name": "链接收藏",
         "space_id": None,  # 飞书文档
+        "icon": "🔗",
         "keywords": [],  # 通用收藏
         "domains": [],
         "categories": ["技术文章", "工具资源", "教程", "其他"]
@@ -111,6 +122,7 @@ def batch_classify(links):
     results = {
         "ai-latest-news": [],
         "game-dev": [],
+        "healthy-living": [],
         "link-collection": []
     }
     
@@ -136,6 +148,7 @@ if __name__ == "__main__":
     test_links = [
         {"url": "https://openai.com/blog/gpt-5", "title": "GPT-5 Released"},
         {"url": "https://unity.com/blog/unity-6", "title": "Unity 6新特性"},
+        {"url": "https://example.com/health-tips", "title": "健康生活小贴士：如何保持良好的作息"},
         {"url": "https://example.com/random-article", "title": "随机文章"}
     ]
     
