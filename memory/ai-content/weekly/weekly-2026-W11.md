@@ -69,6 +69,20 @@ OpenClaw 之父给程序员的建议：**保持玩乐心去构建梦寐以求的
 
 > 来源：[哔哩哔哩](https://b23.tv/705kx27) · 2026-02-27
 
+### 8. [9 块 9 交个朋友，字节的 ArkClaw 可能更适合普通人](https://mp.weixin.qq.com/s/SEYl5elsE7yaytQT_ZbSGw)
+
+字节火山引擎 ArkClaw 上线，9.9元/月的云端 OpenClaw 实例，更适合普通人使用。
+
+**核心亮点**:
+- **5分钟跑通** - 火山方舟控制台开通后，约两分钟即可创建云端实例
+- **深度调研** - 内置调研 Skill，可进行系统性分析
+- **PPT制作** - 接入 Anygen，10 分钟完成专业 PPT
+- **字节生态** - 原生集成飞书、Anygen，配置流程丝滑
+
+**产品优势**: 相比原生 OpenClaw 的"玩具"体验，ArkClaw 做了产品化包装，内嵌各种 Skill，9.9元/月的低门槛更适合普通用户。
+
+> 来源：[极客公园](https://mp.weixin.qq.com/s/SEYl5elsE7yaytQT_ZbSGw) · 2026-03-14
+
 ---
 
 ## 🔗 链接引用
@@ -82,6 +96,7 @@ OpenClaw 之父给程序员的建议：**保持玩乐心去构建梦寐以求的
 | 5 | [Employees at Google and OpenAI support Anthropic's Pentagon stand](https://toptech.news/employees-at-google-and-openai-support-anthropic82/) | Top Tech News | 03-02 |
 | 6 | [Mac 本地安装原生 OpenClaw 补充说明](https://mp.weixin.qq.com/s/yqNRNerMFJefadcl7oe-lA) | 微信公众号 | 03-14 |
 | 7 | [OpenClaw之父给程序员的建议](https://b23.tv/705kx27) | 哔哩哔哩 | 02-27 |
+| 8 | [字节的 ArkClaw 可能更适合普通人](https://mp.weixin.qq.com/s/SEYl5elsE7yaytQT_ZbSGw) | 极客公园 | 03-14 |
 
 ---
 
