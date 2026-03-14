@@ -83,6 +83,20 @@ OpenClaw 之父给程序员的建议：**保持玩乐心去构建梦寐以求的
 
 > 来源：[极客公园](https://mp.weixin.qq.com/s/SEYl5elsE7yaytQT_ZbSGw) · 2026-03-14
 
+### 9. [给"龙虾"AI Agent装上记忆功能！字节开源了AI 上下文数据库：OpenViking](https://mp.weixin.qq.com/s/72aAqZR_0SmvFexjbG2x9g)
+
+火山引擎Viking团队开源专为AI Agent打造的上下文数据库 OpenViking，GitHub已飙到8.3k星。
+
+**核心创新**:
+- **文件系统范式** - 用"电脑文件夹"方式管理AI大脑，记忆/资源/技能统一塞进虚拟文件系统
+- **三层加载** - L0总结/L1概览/L2详情，按需加载，token消耗降低91%
+- **记忆进化** - 自动压缩无关闲聊，提取长期记忆归档
+- **可视化检索** - 调试时直接看路径图，一目了然
+
+**实测效果**: OpenClaw Memory插件任务完成率暴涨43%~49%，输入token砍掉91%！
+
+> 来源：[AI变革指南](https://mp.weixin.qq.com/s/72aAqZR_0SmvFexjbG2x9g) · 2026-03-14
+
 ---
 
 ## 🔗 链接引用
@@ -97,6 +111,7 @@ OpenClaw 之父给程序员的建议：**保持玩乐心去构建梦寐以求的
 | 6 | [Mac 本地安装原生 OpenClaw 补充说明](https://mp.weixin.qq.com/s/yqNRNerMFJefadcl7oe-lA) | 微信公众号 | 03-14 |
 | 7 | [OpenClaw之父给程序员的建议](https://b23.tv/705kx27) | 哔哩哔哩 | 02-27 |
 | 8 | [字节的 ArkClaw 可能更适合普通人](https://mp.weixin.qq.com/s/SEYl5elsE7yaytQT_ZbSGw) | 极客公园 | 03-14 |
+| 9 | [字节开源AI上下文数据库 OpenViking](https://mp.weixin.qq.com/s/72aAqZR_0SmvFexjbG2x9g) | AI变革指南 | 03-14 |
 
 ---
 
