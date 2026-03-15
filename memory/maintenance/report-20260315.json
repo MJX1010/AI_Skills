@@ -1,0 +1,239 @@
+{
+  "check_time": "2026-03-15 17:45:00",
+  "summary": {
+    "total_skills": 12,
+    "ok_skills": 6,
+    "warning_skills": 6,
+    "error_skills": 0
+  },
+  "system_health": {
+    "disk": {
+      "usage": "53%",
+      "available": "1.6T",
+      "status": "ok"
+    },
+    "memory": "checked",
+    "cron_running": true
+  },
+  "git_status": {
+    "has_uncommitted": true,
+    "uncommitted_files": [
+      "?? memory/weekly-digest/",
+      "?? scripts/skills_maintenance.py",
+      "?? skills/content-collector/scripts/weekly_digest_push.py"
+    ],
+    "status": "warning"
+  },
+  "openclaw": {
+    "status": "ok",
+    "version": "OpenClaw 2026.3.12 (6472949)"
+  },
+  "skills": [
+    {
+      "name": "ai-content-collector",
+      "path": "/workspace/projects/workspace/skills/ai-content-collector",
+      "script_count": 3,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": false
+      },
+      "non_executable_scripts": [
+        "ai-content-collector/scripts/classify_module.py",
+        "ai-content-collector/scripts/collect_weekly.py"
+      ],
+      "status": "warning",
+      "warning": "2个脚本无执行权限"
+    },
+    {
+      "name": "content-collector",
+      "path": "/workspace/projects/workspace/skills/content-collector",
+      "script_count": 16,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": true
+      },
+      "non_executable_scripts": [
+        "content-collector/agents/utils/config.py"
+      ],
+      "status": "warning",
+      "warning": "1个脚本无执行权限"
+    },
+    {
+      "name": "coze-web-search",
+      "path": "/workspace/projects/workspace/skills/coze-web-search",
+      "script_count": 0,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": false,
+        "has_config": false
+      },
+      "non_executable_scripts": [],
+      "status": "ok"
+    },
+    {
+      "name": "openclaw-updater",
+      "path": "/workspace/projects/workspace/skills/openclaw-updater",
+      "script_count": 1,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": false
+      },
+      "non_executable_scripts": [],
+      "status": "ok"
+    },
+    {
+      "name": "skill-hub",
+      "path": "/workspace/projects/workspace/skills/skill-hub",
+      "script_count": 7,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": true
+      },
+      "non_executable_scripts": [
+        "skill-hub/scripts/skill-hub-status.py",
+        "skill-hub/scripts/skill-hub-vet.py",
+        "skill-hub/scripts/skill-hub-quick-check.py",
+        "skill-hub/scripts/skill-hub-search.py",
+        "skill-hub/scripts/skill-hub-sync.py",
+        "skill-hub/scripts/skill-hub-security-patterns.py",
+        "skill-hub/scripts/skill-hub-table-export.py"
+      ],
+      "status": "warning",
+      "warning": "7个脚本无执行权限"
+    },
+    {
+      "name": "skill-creator",
+      "path": "/workspace/projects/workspace/skills/skill-creator",
+      "script_count": 2,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": false
+      },
+      "non_executable_scripts": [],
+      "status": "ok"
+    },
+    {
+      "name": "link-collector",
+      "path": "/workspace/projects/workspace/skills/link-collector",
+      "script_count": 12,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": false
+      },
+      "non_executable_scripts": [
+        "link-collector/scripts/classify_links.py",
+        "link-collector/scripts/daily_push.py",
+        "link-collector/scripts/archive_wechat.py",
+        "link-collector/scripts/fetch_wechat.py",
+        "link-collector/scripts/archive_manager.py",
+        "link-collector/scripts/classify_kb.py",
+        "link-collector/scripts/universal_archive.py",
+        "link-collector/scripts/daily_push_enhanced.py"
+      ],
+      "status": "warning",
+      "warning": "8个脚本无执行权限"
+    },
+    {
+      "name": "health-content-collector",
+      "path": "/workspace/projects/workspace/skills/health-content-collector",
+      "script_count": 1,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": false
+      },
+      "non_executable_scripts": [
+        "health-content-collector/scripts/collect_weekly.py"
+      ],
+      "status": "warning",
+      "warning": "1个脚本无执行权限"
+    },
+    {
+      "name": "coze-image-gen",
+      "path": "/workspace/projects/workspace/skills/coze-image-gen",
+      "script_count": 0,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": false,
+        "has_config": false
+      },
+      "non_executable_scripts": [],
+      "status": "ok"
+    },
+    {
+      "name": "coze-web-fetch",
+      "path": "/workspace/projects/workspace/skills/coze-web-fetch",
+      "script_count": 0,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": false,
+        "has_config": false
+      },
+      "non_executable_scripts": [],
+      "status": "ok"
+    },
+    {
+      "name": "game-content-collector",
+      "path": "/workspace/projects/workspace/skills/game-content-collector",
+      "script_count": 1,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": true,
+        "has_config": false
+      },
+      "non_executable_scripts": [
+        "game-content-collector/scripts/collect_weekly.py"
+      ],
+      "status": "warning",
+      "warning": "1个脚本无执行权限"
+    },
+    {
+      "name": "coze-voice-gen",
+      "path": "/workspace/projects/workspace/skills/coze-voice-gen",
+      "script_count": 0,
+      "structure": {
+        "has_skill_md": true,
+        "has_scripts": false,
+        "has_config": false
+      },
+      "non_executable_scripts": [],
+      "status": "ok"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "high",
+      "message": "有 3 个文件未提交，建议执行: git add -A && git commit"
+    },
+    {
+      "priority": "medium",
+      "message": "[ai-content-collector] 2 个脚本缺少执行权限"
+    },
+    {
+      "priority": "medium",
+      "message": "[content-collector] 1 个脚本缺少执行权限"
+    },
+    {
+      "priority": "medium",
+      "message": "[skill-hub] 7 个脚本缺少执行权限"
+    },
+    {
+      "priority": "medium",
+      "message": "[link-collector] 8 个脚本缺少执行权限"
+    },
+    {
+      "priority": "medium",
+      "message": "[health-content-collector] 1 个脚本缺少执行权限"
+    },
+    {
+      "priority": "medium",
+      "message": "[game-content-collector] 1 个脚本缺少执行权限"
+    }
+  ]
+}

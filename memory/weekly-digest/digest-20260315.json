@@ -1,0 +1,42 @@
+{
+  "date": "2026年03月15日",
+  "week_number": 11,
+  "year": 2026,
+  "knowledge_bases": [
+    {
+      "key": "ai-latest-news",
+      "name": "AI最新资讯",
+      "icon": "🤖",
+      "space_id": "7616519632920251572",
+      "total_count": 0,
+      "top_count": 5,
+      "top_articles": [],
+      "hot_count": 0,
+      "recommended_count": 0
+    },
+    {
+      "key": "game-dev",
+      "name": "游戏开发",
+      "icon": "🎮",
+      "space_id": "7616735513310924004",
+      "total_count": 0,
+      "top_count": 3,
+      "top_articles": [],
+      "hot_count": 0,
+      "recommended_count": 0
+    },
+    {
+      "key": "healthy-living",
+      "name": "健康生活",
+      "icon": "🌱",
+      "space_id": "7616737910330510558",
+      "total_count": 0,
+      "top_count": 3,
+      "top_articles": [],
+      "hot_count": 0,
+      "recommended_count": 0
+    }
+  ],
+  "total_articles": 0,
+  "total_top": 0
+}

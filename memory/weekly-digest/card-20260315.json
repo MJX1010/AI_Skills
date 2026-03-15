@@ -1,0 +1,120 @@
+{
+  "config": {
+    "wide_screen_mode": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "📚 周刊精选 | 第11期"
+    },
+    "sub_title": {
+      "tag": "plain_text",
+      "content": "2026年03月15日 | 共0篇文章"
+    },
+    "template": "blue"
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🤖 **AI最新资讯** · Top 5"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "📝 本周暂无内容"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "查看AI最新资讯"
+          },
+          "type": "primary",
+          "url": "https://xxx.feishu.cn/wiki/7616519632920251572"
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🎮 **游戏开发** · Top 3"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "📝 本周暂无内容"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "查看游戏开发"
+          },
+          "type": "primary",
+          "url": "https://xxx.feishu.cn/wiki/7616735513310924004"
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🌱 **健康生活** · Top 3"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "📝 本周暂无内容"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "查看健康生活"
+          },
+          "type": "primary",
+          "url": "https://xxx.feishu.cn/wiki/7616737910330510558"
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "note",
+      "elements": [
+        {
+          "tag": "plain_text",
+          "content": "💡 每周六早上9点自动推送 | 每日18点自动收集更新"
+        }
+      ]
+    }
+  ]
+}
