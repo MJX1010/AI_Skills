@@ -1,0 +1,116 @@
+{
+  "timestamp": "2026-03-16 22:49:22",
+  "checks": {
+    "disk_space": {
+      "status": "ok",
+      "usage_percent": 53
+    },
+    "cron": {
+      "status": "ok",
+      "running": true
+    },
+    "git": {
+      "status": "warning",
+      "uncommitted_files": [
+        "?? skills/content-collector/scripts/skills_maintenance.py"
+      ],
+      "uncommitted_count": 1
+    },
+    "openclaw": {
+      "status": "ok",
+      "version": "[plugins] feishu_doc: Registered feishu_doc, feishu_app_scopes\n[plugins] feishu_chat: Registered feishu_chat tool\n[plugins] feishu_wiki: Registered feishu_wiki tool\n[plugins] feishu_drive: Registered feishu_drive tool\n[plugins] feishu_bitable: Registered bitable tools\nOpenClaw 2026.3.12 (6472949)"
+    },
+    "skills": {
+      "status": "ok",
+      "count": 12,
+      "list": [
+        {
+          "name": "skill-creator",
+          "path": "/workspace/projects/workspace/skills/skill-creator",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "skill-hub",
+          "path": "/workspace/projects/workspace/skills/skill-hub",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "coze-voice-gen",
+          "path": "/workspace/projects/workspace/skills/coze-voice-gen",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "content-collector",
+          "path": "/workspace/projects/workspace/skills/content-collector",
+          "last_modified": "2026-03-14"
+        },
+        {
+          "name": "coze-web-fetch",
+          "path": "/workspace/projects/workspace/skills/coze-web-fetch",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "link-collector",
+          "path": "/workspace/projects/workspace/skills/link-collector",
+          "last_modified": "2026-03-14"
+        },
+        {
+          "name": "coze-web-search",
+          "path": "/workspace/projects/workspace/skills/coze-web-search",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "coze-image-gen",
+          "path": "/workspace/projects/workspace/skills/coze-image-gen",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "health-content-collector",
+          "path": "/workspace/projects/workspace/skills/health-content-collector",
+          "last_modified": "2026-03-14"
+        },
+        {
+          "name": "openclaw-updater",
+          "path": "/workspace/projects/workspace/skills/openclaw-updater",
+          "last_modified": "2026-03-13"
+        },
+        {
+          "name": "ai-content-collector",
+          "path": "/workspace/projects/workspace/skills/ai-content-collector",
+          "last_modified": "2026-03-14"
+        },
+        {
+          "name": "game-content-collector",
+          "path": "/workspace/projects/workspace/skills/game-content-collector",
+          "last_modified": "2026-03-14"
+        }
+      ]
+    },
+    "permissions": {
+      "status": "ok",
+      "fixed_scripts": [
+        "skills/skill-hub/scripts/skill-hub-table-export.py",
+        "skills/skill-hub/scripts/skill-hub-status.py",
+        "skills/skill-hub/scripts/skill-hub-sync.py",
+        "skills/skill-hub/scripts/skill-hub-search.py",
+        "skills/skill-hub/scripts/skill-hub-security-patterns.py",
+        "skills/skill-hub/scripts/skill-hub-vet.py",
+        "skills/skill-hub/scripts/skill-hub-quick-check.py",
+        "skills/content-collector/agents/utils/config.py",
+        "skills/link-collector/scripts/fetch_wechat.py",
+        "skills/link-collector/scripts/universal_archive.py",
+        "skills/link-collector/scripts/archive_wechat.py",
+        "skills/link-collector/scripts/daily_push.py",
+        "skills/link-collector/scripts/classify_kb.py",
+        "skills/link-collector/scripts/archive_manager.py",
+        "skills/link-collector/scripts/classify_links.py",
+        "skills/link-collector/scripts/daily_push_enhanced.py",
+        "skills/health-content-collector/scripts/collect_weekly.py",
+        "skills/ai-content-collector/scripts/classify_module.py",
+        "skills/ai-content-collector/scripts/collect_weekly.py",
+        "skills/game-content-collector/scripts/collect_weekly.py"
+      ],
+      "fixed_count": 20
+    }
+  }
+}
