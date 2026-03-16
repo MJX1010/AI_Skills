@@ -1,0 +1,96 @@
+{
+  "config": {
+    "wide_screen_mode": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "📚 知识库日报 | 2026年03月16日"
+    },
+    "template": "blue"
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "**📊 今日统计**\n知识库: 3个 | 文章: 0篇 | 推荐: 0篇"
+      }
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🤖 **AI最新资讯**\n第11期 · 0篇文章"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "查看全部"
+          },
+          "type": "default",
+          "url": "https://xxx.feishu.cn/wiki/7616519632920251572"
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🎮 **游戏开发**\n第11期 · 0篇文章"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "查看全部"
+          },
+          "type": "default",
+          "url": "https://xxx.feishu.cn/wiki/7616735513310924004"
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🌱 **健康生活**\n第11期 · 0篇文章"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "查看全部"
+          },
+          "type": "default",
+          "url": "https://xxx.feishu.cn/wiki/7616737910330510558"
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    }
+  ]
+}
