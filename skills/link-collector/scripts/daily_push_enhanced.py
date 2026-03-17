@@ -43,8 +43,8 @@ def parse_weekly_content(file_path: Path) -> List[Dict]:
     content = file_path.read_text(encoding='utf-8')
     articles = []
     
-    # 简单解析：提取 ### 标题行
-    pattern = r'### \[(.+?)\]\((.+?)\)\n\n(.+?)(?=###|\Z)'
+    # 简单解析：提取 ### 标题行（支持带序号格式如 ### 1. [标题](URL)）
+    pattern = r'###\s*(?:\d+\.\s*)?\[(.+?)\]\((.+?)\)\n\n(.+?)(?=###|\Z)'
     matches = re.findall(pattern, content, re.DOTALL)
     
     for match in matches:

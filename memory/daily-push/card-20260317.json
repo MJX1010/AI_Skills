@@ -14,7 +14,7 @@
       "tag": "div",
       "text": {
         "tag": "lark_md",
-        "content": "**📊 今日统计**\n知识库: 3个 | 文章: 0篇 | 推荐: 0篇"
+        "content": "**📊 今日统计**\n知识库: 3个 | 文章: 9篇 | 推荐: 0篇"
       }
     },
     {
@@ -24,7 +24,21 @@
       "tag": "div",
       "text": {
         "tag": "lark_md",
-        "content": "🤖 **AI最新资讯**\n第11期 · 0篇文章"
+        "content": "🤖 **AI最新资讯**\n第12期 · 3篇文章 · 🔥3篇热点"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🔥 [大家来帮忙:30多名OpenAI、谷歌员工力挺Anthrop...](https://m.sohu.com/a/994458281_114984/)"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "🔥 [2026年3月AI观察:OpenAI推GPT-5.4，Goo...](https://blog.csdn.net/cucibala/article/details/158836932)"
       }
     },
     {
@@ -48,7 +62,21 @@
       "tag": "div",
       "text": {
         "tag": "lark_md",
-        "content": "🎮 **游戏开发**\n第11期 · 0篇文章"
+        "content": "🎮 **游戏开发**\n第12期 · 3篇文章"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "• [Godot:独立开发者的开源超能力...](https://blog.csdn.net/lpfasd123/article/details/156910832)"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "• [常见游戏引擎介绍与对比...](https://blog.csdn.net/oTianLe1234/article/details/147521735)"
       }
     },
     {
@@ -72,7 +100,21 @@
       "tag": "div",
       "text": {
         "tag": "lark_md",
-        "content": "🌱 **健康生活**\n第11期 · 0篇文章"
+        "content": "🌱 **健康生活**\n第12期 · 3篇文章"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "• [春节健康指南:拒做'贴膘人'，运动、饮食两相宜...](http://m.cnbzol.com/m/jiao/2026/0215/2057105.html)"
+      }
+    },
+    {
+      "tag": "div",
+      "text": {
+        "tag": "lark_md",
+        "content": "• [健康生活:科学饮食与运动...](https://post.m.smzdm.com/p/116898921/)"
       }
     },
     {

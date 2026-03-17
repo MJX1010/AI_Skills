@@ -2,7 +2,7 @@
   "date": "2026年03月17日",
   "weekday": "周二",
   "total_kbs": 3,
-  "total_articles": 0,
+  "total_articles": 9,
   "total_recommended": 0,
   "updates": [
     {
@@ -10,36 +10,129 @@
       "name": "AI最新资讯",
       "icon": "🤖",
       "space_id": "7616519632920251572",
-      "update_date": "2026-03-15",
-      "total_count": 0,
+      "update_date": "2026-03-17",
+      "total_count": 3,
       "recommended_count": 0,
-      "hot_count": 0,
-      "top_articles": [],
-      "week_number": 11
+      "hot_count": 3,
+      "top_articles": [
+        {
+          "title": "大家来帮忙:30多名OpenAI、谷歌员工力挺Anthropic起诉美政府",
+          "url": "https://m.sohu.com/a/994458281_114984/",
+          "summary": "",
+          "source": "手机搜狐网",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": true
+        },
+        {
+          "title": "2026年3月AI观察:OpenAI推GPT-5.4，Google强化Gemini轻量化",
+          "url": "https://blog.csdn.net/cucibala/article/details/158836932",
+          "summary": "",
+          "source": "CSDN博客",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": true
+        },
+        {
+          "title": "Claude日注册量破百万，应用商店反超ChatGPT",
+          "url": "https://cj.sina.com.cn/article/norm_detail",
+          "summary": "",
+          "source": "新浪财经",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": true
+        }
+      ],
+      "week_number": 12
     },
     {
       "kb_key": "game-dev",
       "name": "游戏开发",
       "icon": "🎮",
       "space_id": "7616735513310924004",
-      "update_date": "2026-03-15",
-      "total_count": 0,
+      "update_date": "2026-03-17",
+      "total_count": 3,
       "recommended_count": 0,
       "hot_count": 0,
-      "top_articles": [],
-      "week_number": 11
+      "top_articles": [
+        {
+          "title": "Godot:独立开发者的开源超能力",
+          "url": "https://blog.csdn.net/lpfasd123/article/details/156910832",
+          "summary": "",
+          "source": "CSDN博客",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": false
+        },
+        {
+          "title": "常见游戏引擎介绍与对比",
+          "url": "https://blog.csdn.net/oTianLe1234/article/details/147521735",
+          "summary": "",
+          "source": "CSDN博客",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": false
+        },
+        {
+          "title": "Godot 引擎深度解析:免费开源的游戏利器",
+          "url": "https://post.m.smzdm.com/p/aeoedowm/",
+          "summary": "",
+          "source": "什么值得买",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": false
+        }
+      ],
+      "week_number": 12
     },
     {
       "kb_key": "healthy-living",
       "name": "健康生活",
       "icon": "🌱",
       "space_id": "7616737910330510558",
-      "update_date": "2026-03-15",
-      "total_count": 0,
+      "update_date": "2026-03-17",
+      "total_count": 3,
       "recommended_count": 0,
       "hot_count": 0,
-      "top_articles": [],
-      "week_number": 11
+      "top_articles": [
+        {
+          "title": "春节健康指南:拒做'贴膘人'，运动、饮食两相宜",
+          "url": "http://m.cnbzol.com/m/jiao/2026/0215/2057105.html",
+          "summary": "",
+          "source": "巴中在线",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": false
+        },
+        {
+          "title": "健康生活:科学饮食与运动",
+          "url": "https://post.m.smzdm.com/p/116898921/",
+          "summary": "",
+          "source": "什么值得买",
+          "tags": [],
+          "quality_score": 60,
+          "is_recommended": false,
+          "is_hot": false
+        },
+        {
+          "title": "健康小妙法",
+          "url": "https://www.trfsz.com/newsview1903117.html",
+          "summary": "",
+          "source": "泰然健康网",
+          "tags": [],
+          "quality_score": 50,
+          "is_recommended": false,
+          "is_hot": false
+        }
+      ],
+      "week_number": 12
     }
   ]
 }
