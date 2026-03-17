@@ -73,6 +73,12 @@ else
     echo "⚠️ 飞书同步可能有问题，请检查日志"
 fi
 
+# 清理旧文件（保留最近7天日报，30天周刊）
+echo ""
+echo "🧹 清理旧文件..."
+python3 scripts/cleanup_content.py >> /tmp/daily_collect.log 2>&1
+echo "✅ 清理完成"
+
 # 生成推送消息
 MESSAGE="📅 $(date -d $YESTERDAY +%Y年%m月%d日) 资讯早报
 
@@ -84,7 +90,8 @@ MESSAGE="📅 $(date -d $YESTERDAY +%Y年%m月%d日) 资讯早报
 
 ⏰ 每天早上8点自动收集前一天资讯
 💡 来源: 量子位/36氪/虎嗅/爱范儿/少数派/知乎等
-✅ 已同步至飞书知识库"
+✅ 已同步至飞书知识库
+🧹 自动清理7天前旧文件"
 
 # 发送到飞书
 echo ""
