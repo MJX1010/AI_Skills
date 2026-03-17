@@ -55,7 +55,7 @@ class HealthCollector(BaseCollector):
             print("  ⚠️ 搜索未返回结果，使用示例数据")
             content_items = [
                 {
-                    "title": "春节健康指南:拒做"贴膘人"，运动、饮食两相宜",
+                    "title": "春节健康指南:拒做'贴膘人'，运动、饮食两相宜",
                     "url": "http://m.cnbzol.com/m/jiao/2026/0215/2057105.html",
                     "source": "巴中在线",
                     "date": "2026-02-15",

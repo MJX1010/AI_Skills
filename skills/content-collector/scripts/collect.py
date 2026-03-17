@@ -250,16 +250,45 @@ def save_weekly(kb_key, week_str, year, week_num, content_items):
 
 
 def collect_content(kb_key, week_str, year, week_num):
-    """收集内容（示例实现，实际应调用搜索和抓取工具）"""
+    """收集内容 - 调用实际的收集器 Agent"""
     config = KB_CONFIG[kb_key]
     
-    # TODO: 实际实现应调用搜索和抓取工具
-    # 这里返回示例数据
     print(f"正在收集 {config['name']} 第{week_num}期内容...")
     print(f"搜索关键词: {', '.join(config['search_queries'])}")
     
-    # 示例返回空列表，实际应返回收集到的内容
-    return []
+    # 导入并调用实际的收集器
+    import sys
+    sys.path.insert(0, "/workspace/projects/workspace/skills/content-collector/agents/collectors")
+    
+    try:
+        if kb_key == "ai-latest-news":
+            from ai_collector import AICollector
+            collector = AICollector()
+        elif kb_key == "game-development":
+            from game_collector import GameCollector
+            collector = GameCollector()
+        elif kb_key == "healthy-living":
+            from health_collector import HealthCollector
+            collector = HealthCollector()
+        else:
+            print(f"⚠️ 未知的知识库: {kb_key}")
+            return []
+        
+        # 调用收集器
+        content_items = collector.search_content(week_str, year, week_num)
+        
+        # 分类内容
+        for item in content_items:
+            item["module"] = collector.classify_content(item)
+        
+        print(f"✅ 收集到 {len(content_items)} 条内容")
+        return content_items
+        
+    except Exception as e:
+        print(f"⚠️ 收集器调用失败: {e}")
+        import traceback
+        traceback.print_exc()
+        return []
 
 
 def main():
