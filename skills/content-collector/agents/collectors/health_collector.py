@@ -7,6 +7,8 @@ Health Collector Agent - 健康内容收集器
 import argparse
 import subprocess
 import sys
+import json
+import re
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -34,38 +36,112 @@ class HealthCollector(BaseCollector):
         content_items = []
         seen_urls = set()
         
-        print(f"  使用搜索关键词: {self.search_queries}")
+        # 获取权威来源
+        auth_sources = self.config.get_authoritative_sources(self.kb_key)
+        # 筛选国内健康/生活媒体
+        china_health_sites = [
+            "dxy.com",           # 丁香医生
+            "healthtimes.cn",    # 健康时报
+            "guokr.com",         # 果壳
+            "lifetimes.cn",      # 生命时报
+            "sspai.com",         # 少数派
+            "zhihu.com",         # 知乎
+            "linux.do",          # Linux.do
+        ]
+        sites_to_search = [s for s in auth_sources if any(cs in s for cs in china_health_sites)]
         
-        for query in self.search_queries:
-            print(f"  搜索: {query}")
-            try:
-                result = subprocess.run(
-                    ["npx", "ts-node", "skills/coze-web-search/scripts/search.ts",
-                     "-q", query, "--time-range", "1w", "--count", "10"],
-                    capture_output=True,
-                    text=True,
-                    timeout=60,
-                    cwd="/workspace/projects/workspace"
-                )
+        print(f"  目标来源: {', '.join(sites_to_search[:5])}...")
+        
+        # 从指定网站搜索
+        for site in sites_to_search[:4]:
+            for query in self.search_queries[:3]:
+                print(f"  搜索 [{site}]: {query[:30]}...")
                 
-                lines = result.stdout.split('\n')
-                for line in lines:
-                    line = line.strip()
-                    if line.startswith('http') and line not in seen_urls:
-                        seen_urls.add(line)
-                        content_items.append({
-                            "title": f"健康生活相关内容",
-                            "url": line,
-                            "source": self._extract_domain(line),
-                            "date": "",
-                            "summary": ""
-                        })
-            except Exception as e:
-                print(f"  ⚠️ 搜索失败: {e}")
+                try:
+                    result = subprocess.run(
+                        ["npx", "ts-node", "skills/coze-web-search/scripts/search.ts",
+                         "-q", query, 
+                         "--time-range", "1w", 
+                         "--count", "5",
+                         "--sites", site,
+                         "--format", "json"],
+                        capture_output=True,
+                        text=True,
+                        timeout=60,
+                        cwd="/workspace/projects/workspace"
+                    )
+                    
+                    if result.returncode == 0:
+                        try:
+                            json_match = re.search(r'\{.*\}', result.stdout, re.DOTALL)
+                            if json_match:
+                                data = json.loads(json_match.group())
+                                web_items = data.get('web_items', [])
+                                
+                                for item in web_items:
+                                    url = item.get('url', '')
+                                    if url and url not in seen_urls:
+                                        seen_urls.add(url)
+                                        content_items.append({
+                                            "title": item.get('title', '无标题'),
+                                            "url": url,
+                                            "source": item.get('site_name') or self._extract_domain(url),
+                                            "date": item.get('publish_time', '')[:10] if item.get('publish_time') else '',
+                                            "summary": item.get('snippet', '')[:200]
+                                        })
+                        except json.JSONDecodeError:
+                            pass
+                
+                except Exception as e:
+                    print(f"  ⚠️ 搜索失败: {e}")
+        
+        # 通用搜索补充
+        if len(content_items) < 3:
+            print(f"  从指定来源获取内容较少，进行通用搜索...")
+            for query in self.search_queries[:2]:
+                try:
+                    result = subprocess.run(
+                        ["npx", "ts-node", "skills/coze-web-search/scripts/search.ts",
+                         "-q", query, 
+                         "--time-range", "1w", 
+                         "--count", "10",
+                         "--format", "json"],
+                        capture_output=True,
+                        text=True,
+                        timeout=60,
+                        cwd="/workspace/projects/workspace"
+                    )
+                    
+                    if result.returncode == 0:
+                        try:
+                            json_match = re.search(r'\{.*\}', result.stdout, re.DOTALL)
+                            if json_match:
+                                data = json.loads(json_match.group())
+                                web_items = data.get('web_items', [])
+                                
+                                for item in web_items:
+                                    url = item.get('url', '')
+                                    if url and url not in seen_urls:
+                                        seen_urls.add(url)
+                                        content_items.append({
+                                            "title": item.get('title', '无标题'),
+                                            "url": url,
+                                            "source": item.get('site_name') or self._extract_domain(url),
+                                            "date": item.get('publish_time', '')[:10] if item.get('publish_time') else '',
+                                            "summary": item.get('snippet', '')[:200]
+                                        })
+                        except json.JSONDecodeError:
+                            pass
+                        
+                        if len(content_items) >= 10:
+                            break
+                            
+                except Exception as e:
+                    print(f"  ⚠️ 搜索失败: {e}")
         
         if content_items:
             print(f"  ✅ 搜索到 {len(content_items)} 条内容")
-            return content_items
+            return content_items[:15]
         
         print("  ⚠️ 未搜索到任何内容")
         print("  💡 提示: 可以手动添加文章或检查搜索配置")

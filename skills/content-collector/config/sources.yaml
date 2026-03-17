@@ -7,50 +7,111 @@
 # 🤖 AI最新资讯
 ai-latest-news:
   search_queries:
-    - "OpenAI GPT-5 Claude Anthropic 最新"
-    - "Google Gemini AI 2026 发布"
-    - "人工智能大模型 LLM 突破"
-    - "ChatGPT 新功能 更新"
+    # AI 大公司动态
+    - "OpenAI GPT-5 GPT-4 Claude Anthropic 最新发布"
+    - "Google Gemini AI 2026 更新 新功能"
+    - "Microsoft Copilot Azure AI 微软"
+    - "Meta Llama AI 模型发布"
+    
+    # 国内AI动态
+    - "百度文心一言 阿里通义千问 字节豆包"
+    - "国产大模型 阿里 腾讯 华为 AI"
+    
+    # 行业资讯
+    - "人工智能 AI 融资 投资 独角兽"
+    - "生成式AI AIGC 应用落地"
+    - "AI大模型 技术突破 论文"
   
+  # 权威来源域名（用于质量评分）
   authoritative_sources:
+    # 国际
     - "openai.com"
     - "anthropic.com"
     - "deepmind.google"
     - "arxiv.org"
     - "ai.google"
+    - "microsoft.com"
+    - "meta.ai"
+    # 国内科技媒体
+    - "qbitai.com"        # 量子位
+    - "36kr.com"          # 36氪
+    - "huxiu.com"         # 虎嗅网
+    - "ifanr.com"         # 爱范儿
+    - "sspai.com"         # 少数派
+    - "zhihu.com"         # 知乎
+    - "jiqizhixin.com"    # 机器之心
+    - "csdn.net"          # CSDN
   
+  # RSS订阅源
   rss_feeds:
-    - name: "OpenAI Blog"
-      url: "https://openai.com/blog/rss.xml"
-    - name: "Anthropic News"
-      url: "https://www.anthropic.com/news/rss.xml"
+    - name: "量子位"
+      url: "https://www.qbitai.com/feed"
+    - name: "机器之心"
+      url: "https://www.jiqizhixin.com/rss"
 
 # 🎮 游戏开发
 game-development:
   search_queries:
-    - "Unity 2026 新功能 更新"
-    - "Unreal Engine 5 游戏开发"
-    - "Godot 引擎 独立游戏"
-    - "GameDev 游戏设计"
+    # 游戏引擎
+    - "Unity 2026 新功能 更新 教程"
+    - "Unreal Engine 5 UE5 虚幻引擎"
+    - "Godot 引擎 独立游戏 开发"
+    - "Cocos 游戏引擎 2D 3D"
+    
+    # 游戏开发技术
+    - "游戏开发 编程 技术 图形渲染"
+    - "游戏设计 关卡设计 玩法机制"
+    - "游戏美术 建模 动画 特效"
+    
+    # 行业动态
+    - "独立游戏 Steam 发布 上线"
+    - "游戏行业 投融资 收购 并购"
+    - "手游 网游 单机游戏 新游"
   
   authoritative_sources:
     - "unity.com"
     - "unrealengine.com"
     - "godotengine.org"
     - "gamasutra.com"
+    - "gdcvault.com"
+    # 国内游戏媒体
+    - "youxiputao.com"    # 游戏葡萄
+    - "sspai.com"         # 少数派
+    - "zhihu.com"         # 知乎
+    - "gcores.com"        # 机核网
+    - "indienova.com"     # indienova
+    - "taptap.com"        # TapTap
 
 # 🌱 健康生活
 healthy-living:
   search_queries:
-    - "健康生活 科学饮食 2026"
-    - "运动健身 锻炼方法"
-    - "心理健康 压力管理"
-    - "生活妙招 小窍门"
+    # 运动健身
+    - "运动健身 锻炼方法 增肌减脂"
+    - "跑步 瑜伽 游泳 健身计划"
+    - "HIIT 有氧运动 力量训练"
+    
+    # 饮食营养
+    - "健康饮食 营养搭配 食谱"
+    - "减肥饮食 减脂餐 轻食"
+    - "蛋白质 碳水 维生素 补充"
+    
+    # 心理健康
+    - "心理健康 压力管理 情绪调节"
+    - "冥想 正念 焦虑 抑郁"
+    - "睡眠质量 失眠 改善睡眠"
+    
+    # 生活技巧
+    - "生活妙招 小窍门 实用技巧"
+    - "健康养生 中医 保健"
   
   authoritative_sources:
-    - "dxy.com"
-    - "丁香医生"
-    - "健康中国"
+    - "dxy.com"           # 丁香医生
+    - "healthtimes.cn"    # 健康时报
+    - "guokr.com"         # 果壳
+    - "lifetimes.cn"      # 生命时报
+    - "sspai.com"         # 少数派
+    - "zhihu.com"         # 知乎
+    - "linux.do"          # Linux.do 生活方式板块
 
 # 通用设置
 settings:
