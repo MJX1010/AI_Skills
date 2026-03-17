@@ -1,6 +1,6 @@
 {
-  "lastCheck": "2026-03-15T11:02:00Z",
-  "currentVersion": "OpenClaw 2026.3.13 (61d171a)",
+  "lastCheck": "2026-03-18T07:21:00Z",
+  "currentVersion": "OpenClaw 2026.3.12 (6472949)",
   "latestVersion": "2026.3.13",
   "updates": [
     {
@@ -16,6 +16,13 @@
       "type": "update_completed",
       "description": "更新完成: OpenClaw 2026.3.13 (61d171a)",
       "actionRequired": false
+    },
+    {
+      "date": "2026-03-18T07:21:00Z",
+      "version": "2026.3.13",
+      "type": "version_check",
+      "description": "检查发现新版本 2026.3.13 可用，当前运行版本 2026.3.12 (6472949)",
+      "actionRequired": true
     }
   ]
 }

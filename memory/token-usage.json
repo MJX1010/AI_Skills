@@ -1,10 +1,10 @@
 {
   "total": {
-    "inputTokens": 180190,
-    "outputTokens": 14791,
-    "totalTokens": 2159781,
-    "estimatedCost": 0.11967699999999999,
-    "sessionCount": 2
+    "inputTokens": 195852,
+    "outputTokens": 15827,
+    "totalTokens": 2267615,
+    "estimatedCost": 0.12958,
+    "sessionCount": 3
   },
   "daily": {
     "2026-03-11": {
@@ -20,6 +20,13 @@
       "totalTokens": 1869581,
       "sessionCount": 1,
       "cost": 0.0938285
+    },
+    "2026-03-17": {
+      "inputTokens": 15662,
+      "outputTokens": 1036,
+      "totalTokens": 107834,
+      "sessionCount": 1,
+      "cost": 0.009902999999999999
     }
   },
   "sessions": [
@@ -40,7 +47,16 @@
       "totalTokens": 1869581,
       "messageCount": 46,
       "cost": 0.0938285
+    },
+    {
+      "file": "28f0605f-74ed-4bc1-a949-3875684389d0.jsonl",
+      "date": "2026-03-17",
+      "inputTokens": 15662,
+      "outputTokens": 1036,
+      "totalTokens": 107834,
+      "messageCount": 5,
+      "cost": 0.009902999999999999
     }
   ],
-  "lastUpdated": "2026-03-16T10:09:20.513Z"
+  "lastUpdated": "2026-03-17T21:57:52.992Z"
 }
