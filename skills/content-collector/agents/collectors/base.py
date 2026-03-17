@@ -28,8 +28,9 @@ class BaseCollector(ABC):
         self.results = []
         self.config = get_config()
         
-        # 从配置加载搜索关键词
+        # 从配置加载搜索关键词和时间范围
         self.search_queries = self.config.get_search_queries(self.kb_key)
+        self.time_range = self.config.get_setting("search.time_range", "1d")
     
     def get_week_info(self, week_arg):
         """获取周信息"""

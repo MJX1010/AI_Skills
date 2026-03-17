@@ -59,8 +59,8 @@ class GameCollector(BaseCollector):
                 try:
                     result = subprocess.run(
                         ["npx", "ts-node", "skills/coze-web-search/scripts/search.ts",
-                         "-q", query, 
-                         "--time-range", "1w", 
+                         "-q", query,
+                         "--time-range", self.time_range,
                          "--count", "5",
                          "--sites", site,
                          "--format", "json"],
@@ -101,8 +101,8 @@ class GameCollector(BaseCollector):
                 try:
                     result = subprocess.run(
                         ["npx", "ts-node", "skills/coze-web-search/scripts/search.ts",
-                         "-q", query, 
-                         "--time-range", "1w", 
+                         "-q", query,
+                         "--time-range", self.time_range,
                          "--count", "10",
                          "--format", "json"],
                         capture_output=True,

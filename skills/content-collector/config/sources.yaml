@@ -141,6 +141,6 @@ settings:
   
   # 搜索设置
   search:
-    time_range: "1w"  # 1w=一周, 1d=一天, 1m=一月
+    time_range: "1d"  # 1d=前一天, 1w=一周, 1m=一月
     count_per_query: 10
     timeout: 60

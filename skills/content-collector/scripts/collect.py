@@ -249,6 +249,77 @@ def save_weekly(kb_key, week_str, year, week_num, content_items):
     return filepath
 
 
+def save_daily(kb_key, date_str, content_items):
+    """保存每日资讯到本地文件"""
+    config = KB_CONFIG[kb_key]
+    
+    # 确保目录存在
+    daily_dir = Path(f"/workspace/projects/workspace/{config['output_dir']}/daily")
+    daily_dir.mkdir(parents=True, exist_ok=True)
+    
+    # 生成文件名
+    filename = f"{date_str}.md"
+    filepath = daily_dir / filename
+    
+    # 生成日报内容（简化版周刊格式）
+    date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+    weekday = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][date_obj.weekday()]
+    
+    md_lines = [
+        f"# {config['name']}日报：{date_str} {weekday}",
+        "",
+        "---",
+        "",
+        f"**出版日期** | {date_str} {weekday}",
+        "",
+        "---",
+        "",
+        f"## 📌 今日资讯 ({len(content_items)}篇)",
+        ""
+    ]
+    
+    # 按模块分组
+    modules_content = {m: [] for m in config["modules"]}
+    for item in content_items:
+        module = item.get("module", config["modules"][0])
+        if module in modules_content:
+            modules_content[module].append(item)
+    
+    # 生成各模块内容
+    for module in config["modules"]:
+        if modules_content[module]:
+            module_name = config["module_names"].get(module, module)
+            md_lines.extend([
+                f"## {module_name}",
+                ""
+            ])
+            
+            for i, item in enumerate(modules_content[module], 1):
+                md_lines.extend([
+                    f"### {i}. [{item['title']}]({item['url']})",
+                    "",
+                    item.get('summary', ''),
+                    "",
+                    f"> 来源：[{item.get('source', '未知')}]({item['url']}) · {item.get('date', '')}",
+                    ""
+                ])
+    
+    md_lines.extend([
+        "---",
+        "",
+        "*本期日报由 OpenClaw AI 自动生成*",
+        ""
+    ])
+    
+    md_content = "\n".join(md_lines)
+    
+    # 写入文件
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(md_content)
+    
+    return filepath
+
+
 def collect_content(kb_key, week_str, year, week_num):
     """收集内容 - 调用实际的收集器 Agent"""
     config = KB_CONFIG[kb_key]
@@ -293,49 +364,85 @@ def collect_content(kb_key, week_str, year, week_num):
 
 def main():
     parser = argparse.ArgumentParser(description="统一内容收集器")
-    parser.add_argument("--kb", required=True, 
+    parser.add_argument("--kb", required=True,
                        choices=["ai-latest-news", "game-development", "healthy-living"],
                        help="目标知识库")
     parser.add_argument("--week", default="current",
                        help="周次 (current 或 YYYY-WXX)")
-    
+    parser.add_argument("--daily", action="store_true",
+                       help="日报模式（保存到daily目录）")
+    parser.add_argument("--date", default=None,
+                       help="日报日期 (YYYY-MM-DD，默认昨天)")
+
     args = parser.parse_args()
-    
-    # 获取周信息
-    week_str, year, week_num = get_week_info(args.week)
-    print(f"📅 目标周次: {week_str} (第{week_num}周)")
-    
+
     # 获取知识库配置
     config = KB_CONFIG[args.kb]
     print(f"📚 知识库: {config['icon']} {config['name']}")
-    
-    # 收集内容
-    content_items = collect_content(args.kb, week_str, year, week_num)
-    
-    if not content_items:
-        print("⚠️ 未收集到内容，请检查搜索配置或手动添加内容")
-        # 创建空模板
-        content_items = []
-    
-    # 分类内容
-    for item in content_items:
-        item["module"] = classify_content(item.get("title", ""), item.get("summary", ""), config)
-    
-    # 保存周刊
-    filepath = save_weekly(args.kb, week_str, year, week_num, content_items)
-    print(f"✅ 周刊已保存: {filepath}")
-    
-    # 输出统计
-    module_counts = {}
-    for item in content_items:
-        m = item.get("module", "unknown")
-        module_counts[m] = module_counts.get(m, 0) + 1
-    
-    print(f"\n📊 内容统计:")
-    for module, count in module_counts.items():
-        module_name = config["module_names"].get(module, module)
-        print(f"  - {module_name}: {count}条")
-    
+
+    if args.daily:
+        # 日报模式
+        from datetime import datetime, timedelta
+        if args.date:
+            date_str = args.date
+        else:
+            date_str = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+        print(f"📅 日报日期: {date_str}（前一天资讯）")
+        print(f"⏰ 时间范围: 1d (前一天)")
+
+        # 获取周信息（用于收集器）
+        week_str, year, week_num = get_week_info("current")
+
+        # 收集内容
+        content_items = collect_content(args.kb, week_str, year, week_num)
+
+        if not content_items:
+            print("⚠️ 未收集到内容")
+            content_items = []
+
+        # 分类内容
+        for item in content_items:
+            item["module"] = classify_content(item.get("title", ""), item.get("summary", ""), config)
+
+        # 保存日报
+        filepath = save_daily(args.kb, date_str, content_items)
+        print(f"✅ 日报已保存: {filepath}")
+
+        # 输出统计
+        print(f"\n📊 内容统计: {len(content_items)}篇")
+
+    else:
+        # 周刊模式
+        week_str, year, week_num = get_week_info(args.week)
+        print(f"📅 目标周次: {week_str} (第{week_num}周)")
+
+        # 收集内容
+        content_items = collect_content(args.kb, week_str, year, week_num)
+
+        if not content_items:
+            print("⚠️ 未收集到内容，请检查搜索配置或手动添加内容")
+            content_items = []
+
+        # 分类内容
+        for item in content_items:
+            item["module"] = classify_content(item.get("title", ""), item.get("summary", ""), config)
+
+        # 保存周刊
+        filepath = save_weekly(args.kb, week_str, year, week_num, content_items)
+        print(f"✅ 周刊已保存: {filepath}")
+
+        # 输出统计
+        module_counts = {}
+        for item in content_items:
+            m = item.get("module", "unknown")
+            module_counts[m] = module_counts.get(m, 0) + 1
+
+        print(f"\n📊 内容统计:")
+        for module, count in module_counts.items():
+            module_name = config["module_names"].get(module, module)
+            print(f"  - {module_name}: {count}条")
+
     return 0
 
 
