@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Health Collector Agent - 健康内容收集器
+支持自定义搜索来源和关键词
 """
 
 import argparse
@@ -27,14 +28,13 @@ class HealthCollector(BaseCollector):
         "medical": "🏥 医疗资讯",
         "tips": "✨ 生活妙招"
     }
-    search_queries = [
-        "健康 运动 饮食 生活妙招",
-        "fitness nutrition mental health"
-    ]
     
     def search_content(self, week_str, year, week_num):
         """搜索健康相关内容"""
         content_items = []
+        seen_urls = set()
+        
+        print(f"  使用搜索关键词: {self.search_queries}")
         
         for query in self.search_queries:
             print(f"  搜索: {query}")
@@ -47,53 +47,59 @@ class HealthCollector(BaseCollector):
                     timeout=60,
                     cwd="/workspace/projects/workspace"
                 )
-            except:
-                pass
+                
+                lines = result.stdout.split('\n')
+                for line in lines:
+                    line = line.strip()
+                    if line.startswith('http') and line not in seen_urls:
+                        seen_urls.add(line)
+                        content_items.append({
+                            "title": f"健康生活相关内容",
+                            "url": line,
+                            "source": self._extract_domain(line),
+                            "date": "",
+                            "summary": ""
+                        })
+            except Exception as e:
+                print(f"  ⚠️ 搜索失败: {e}")
         
-        # 示例数据
-        if not content_items:
-            print("  ⚠️ 搜索未返回结果，使用示例数据")
-            content_items = [
-                {
-                    "title": "春节健康指南:拒做'贴膘人'，运动、饮食两相宜",
-                    "url": "http://m.cnbzol.com/m/jiao/2026/0215/2057105.html",
-                    "source": "巴中在线",
-                    "date": "2026-02-15",
-                    "summary": "春节后如何通过合理饮食和运动保持健康"
-                },
-                {
-                    "title": "健康生活:科学饮食与运动",
-                    "url": "https://post.m.smzdm.com/p/116898921/",
-                    "source": "什么值得买",
-                    "date": "2025-12-10",
-                    "summary": "健康生活的双翼：饮食为基，运动为魂"
-                },
-                {
-                    "title": "健康小妙法",
-                    "url": "https://www.trfsz.com/newsview1903117.html",
-                    "source": "泰然健康网",
-                    "date": "2026-02-25",
-                    "summary": "长期坚持简单易行的生活习惯，轻松守护身心健康"
-                }
-            ]
+        if content_items:
+            print(f"  ✅ 搜索到 {len(content_items)} 条内容")
+            return content_items
         
-        return content_items
+        print("  ⚠️ 未搜索到任何内容")
+        print("  💡 提示: 可以手动添加文章或检查搜索配置")
+        return []
+    
+    def _extract_domain(self, url: str) -> str:
+        """从URL提取域名"""
+        try:
+            from urllib.parse import urlparse
+            parsed = urlparse(url)
+            domain = parsed.netloc
+            if domain.startswith('www.'):
+                domain = domain[4:]
+            return domain
+        except:
+            return "未知来源"
     
     def classify_content(self, item):
         """健康内容分类"""
         title = item.get("title", "").lower()
+        summary = item.get("summary", "").lower()
+        text = title + " " + summary
         
-        if any(kw in title for kw in ["运动", "健身", "跑步"]):
+        if any(kw in text for kw in ["运动", "健身", "跑步", "瑜伽", "exercise", "fitness", "锻炼"]):
             return "fitness"
-        elif any(kw in title for kw in ["饮食", "营养", "食谱"]):
+        elif any(kw in text for kw in ["饮食", "营养", "食谱", "减肥", "diet", "nutrition", "健康餐"]):
             return "diet"
-        elif any(kw in title for kw in ["心理", "压力", "情绪"]):
+        elif any(kw in text for kw in ["心理", "压力", "情绪", "冥想", "mental", "psychology", "焦虑"]):
             return "mental"
-        elif any(kw in title for kw in ["睡眠", "失眠"]):
+        elif any(kw in text for kw in ["睡眠", "失眠", "作息", "sleep", "insomnia", "早睡"]):
             return "sleep"
-        elif any(kw in title for kw in ["疾病", "医疗", "预防"]):
+        elif any(kw in text for kw in ["疾病", "医疗", "预防", "medical", "disease", "健康检查", "体检"]):
             return "medical"
-        elif any(kw in title for kw in ["生活", "窍门", "技巧", "妙招"]):
+        elif any(kw in text for kw in ["生活", "窍门", "技巧", "妙招", "tips", "trick", "小窍门"]):
             return "tips"
         
         return "tips"
@@ -105,8 +111,9 @@ def main():
     args = parser.parse_args()
     
     collector = HealthCollector()
-    collector.collect(args.week)
-    return 0
+    items = collector.collect(args.week)
+    
+    return 0 if items else 1
 
 
 if __name__ == "__main__":

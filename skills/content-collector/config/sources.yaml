@@ -1,161 +1,66 @@
-# 内容来源配置
-# 用户可以自定义每个知识库的内容来源
+# 知识库内容收集配置
+# 位置: skills/content-collector/config/sources.yaml
+# 可自定义搜索关键词和来源
 
-# ============================================
-# 🤖 AI最新资讯 - 内容来源
-# ============================================
+---
+
+# 🤖 AI最新资讯
 ai-latest-news:
-  # 搜索关键词
   search_queries:
-    - "OpenAI Anthropic Google AI latest"
-    - "AI人工智能 最新动态 GPT Claude"
-    - "LLM 大模型 机器学习 2026"
-    - "Claude GPT-5 Gemini 新功能"
+    - "OpenAI GPT-5 Claude Anthropic 最新"
+    - "Google Gemini AI 2026 发布"
+    - "人工智能大模型 LLM 突破"
+    - "ChatGPT 新功能 更新"
   
-  # 权威来源列表（用于质量评分加分）
   authoritative_sources:
-    # 国际官方
-    - openai.com
-    - anthropic.com
-    - deepmind.google
-    - ai.google
-    - research.openai.com
-    # 国际媒体
-    - techcrunch.com
-    - theverge.com
-    - wired.com
-    - mit.edu
-    - nature.com
-    - arxiv.org
-    # 中文官方
-    - 机器之心
-    - 量子位
-    - 极客公园
-    - CSDN
-    - 知乎
-    # 其他可信来源
-    - github.com
-    - medium.com
-    - dev.to
-
-  # RSS订阅源（可选）
+    - "openai.com"
+    - "anthropic.com"
+    - "deepmind.google"
+    - "arxiv.org"
+    - "ai.google"
+  
   rss_feeds:
     - name: "OpenAI Blog"
       url: "https://openai.com/blog/rss.xml"
     - name: "Anthropic News"
       url: "https://www.anthropic.com/news/rss.xml"
-    - name: "Google AI Blog"
-      url: "https://ai.googleblog.com/feeds/posts/default"
 
-# ============================================
-# 🎮 游戏开发 - 内容来源
-# ============================================
+# 🎮 游戏开发
 game-development:
   search_queries:
-    - "Unity Unreal game development news"
-    - "游戏开发 Unity 独立游戏 最新动态"
-    - "Godot 游戏引擎 2026"
+    - "Unity 2026 新功能 更新"
+    - "Unreal Engine 5 游戏开发"
+    - "Godot 引擎 独立游戏"
     - "GameDev 游戏设计"
   
   authoritative_sources:
-    # 引擎官方
-    - unity.com
-    - unrealengine.com
-    - godotengine.org
-    # 游戏媒体
-    - gamasutra.com
-    - gamedeveloper.com
-    - 80.lv
-    # 中文社区
-    - indienova.com
-    - gcores.com
-    - taptap.com
-    - CSDN
-    # 资源平台
-    - github.com
-    - itch.io
-    - steamcommunity.com
+    - "unity.com"
+    - "unrealengine.com"
+    - "godotengine.org"
+    - "gamasutra.com"
 
-  rss_feeds:
-    - name: "Unity Blog"
-      url: "https://blog.unity.com/feed"
-    - name: "Unreal Engine"
-      url: "https://www.unrealengine.com/en-US/blog/rss"
-    - name: "Godot News"
-      url: "https://godotengine.org/rss.xml"
-
-# ============================================
-# 🌱 健康生活 - 内容来源
-# ============================================
+# 🌱 健康生活
 healthy-living:
   search_queries:
-    - "健康 运动 饮食 生活妙招"
-    - "fitness nutrition mental health tips"
-    - "科学健身 营养食谱 2026"
-    - "心理健康 压力管理 睡眠"
+    - "健康生活 科学饮食 2026"
+    - "运动健身 锻炼方法"
+    - "心理健康 压力管理"
+    - "生活妙招 小窍门"
   
   authoritative_sources:
-    # 医疗健康
-    - 丁香医生
-    - 健康中国
-    - who.int
-    - mayoclinic.org
-    # 运动健身
-    - Keep
-    - 薄荷健康
-    - 咕咚
-    # 政府/机构
-    - gov.cn
-    - cdc.gov
-    - nih.gov
-    # 媒体
-    - 什么值得买
-    - 知乎
-    - 新浪健康
-    - 腾讯健康
+    - "dxy.com"
+    - "丁香医生"
+    - "健康中国"
 
-  rss_feeds:
-    - name: "丁香医生"
-      url: "https://dxy.com/rss"
-    - name: "健康中国"
-      url: "https://www.nhc.gov.cn/rss"
-
-# ============================================
-# 通用配置
-# ============================================
+# 通用设置
 settings:
-  # 默认搜索数量
-  default_count: 10
-  
-  # 默认时间范围
-  default_time_range: "1w"  # 1周
-  
-  # 质量评分阈值
   quality_thresholds:
-    min_confidence: 0.4      # 最低接受质量
-    high_quality: 0.8        # 高质量标记
-    authoritative_bonus: 0.2 # 权威来源加分
+    min_confidence: 0.4
+    authoritative_bonus: 0.2
+    hot_topic_threshold: 0.8
   
-  # 内容提取配置
-  extraction:
-    max_summary_length: 200  # 摘要最大长度
-    key_points_count: 3      # 关键要点数量
-
-# ============================================
-# 用户自定义来源示例
-# ============================================
-# 用户可以在这里添加自己的来源
-# 
-# 示例：添加自定义 AI 来源
-# custom-ai-sources:
-#   - name: "我的AI博客"
-#     url: "https://my-aiblog.com"
-#     type: "rss"  # 或 "search"
-#     keywords: ["AI", "机器学习"]
-#     weight: 1.0  # 质量权重
-# 
-# 示例：添加自定义搜索词
-# custom-search-queries:
-#   ai-latest-news:
-#     - "我的公司 AI产品 2026"
-#     - "特定技术 最新进展"
+  # 搜索设置
+  search:
+    time_range: "1w"  # 1w=一周, 1d=一天, 1m=一月
+    count_per_query: 10
+    timeout: 60
