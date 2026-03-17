@@ -1,6 +1,6 @@
 #!/bin/bash
 # 每日资讯收集定时任务脚本
-# 每天早上8点执行，收集前一天发布的资讯
+# 每天早上8点执行，收集前一天发布的资讯并同步到飞书
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 export HOME="/root"
@@ -62,6 +62,17 @@ echo "🌱 健康生活: $HEALTH_COUNT 篇"
 echo "📈 总计: $TOTAL_COUNT 篇"
 echo "========================================"
 
+# 同步到飞书知识库
+echo ""
+echo "🔄 正在同步到飞书知识库..."
+python3 scripts/sync_daily_to_feishu.py --date "$YESTERDAY" >> /tmp/daily_collect.log 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "✅ 飞书同步成功"
+else
+    echo "⚠️ 飞书同步可能有问题，请检查日志"
+fi
+
 # 生成推送消息
 MESSAGE="📅 $(date -d $YESTERDAY +%Y年%m月%d日) 资讯早报
 
@@ -72,7 +83,8 @@ MESSAGE="📅 $(date -d $YESTERDAY +%Y年%m月%d日) 资讯早报
 🌱 健康生活: $HEALTH_COUNT 篇
 
 ⏰ 每天早上8点自动收集前一天资讯
-💡 来源: 量子位/36氪/虎嗅/爱范儿/少数派/知乎等"
+💡 来源: 量子位/36氪/虎嗅/爱范儿/少数派/知乎等
+✅ 已同步至飞书知识库"
 
 # 发送到飞书
 echo ""
