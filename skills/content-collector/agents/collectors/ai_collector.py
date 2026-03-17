@@ -35,6 +35,12 @@ class AICollector(BaseCollector):
         content_items = []
         seen_urls = set()  # 去重
         
+        # 计算目标日期（昨天）
+        from datetime import datetime, timedelta
+        target_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        target_date_2days = (datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d")
+        print(f"  📅 目标日期: {target_date} (前天或昨天发布的内容)")
+        
         # 获取权威来源
         auth_sources = self.config.get_authoritative_sources(self.kb_key)
         # 筛选国内科技媒体
@@ -82,12 +88,20 @@ class AICollector(BaseCollector):
                                 for item in web_items:
                                     url = item.get('url', '')
                                     if url and url not in seen_urls:
+                                        # 检查发布日期
+                                        pub_date = item.get('publish_time', '')[:10] if item.get('publish_time') else ''
+                                        
+                                        # 只保留昨天或前天发布的内容
+                                        if pub_date and pub_date not in [target_date, target_date_2days]:
+                                            # 日期不符合要求，跳过
+                                            continue
+                                        
                                         seen_urls.add(url)
                                         content_items.append({
                                             "title": item.get('title', '无标题'),
                                             "url": url,
                                             "source": item.get('site_name') or self._extract_domain(url),
-                                            "date": item.get('publish_time', '')[:10] if item.get('publish_time') else '',
+                                            "date": pub_date,
                                             "summary": item.get('snippet', '')[:200]
                                         })
                         except json.JSONDecodeError:
@@ -123,12 +137,20 @@ class AICollector(BaseCollector):
                                 for item in web_items:
                                     url = item.get('url', '')
                                     if url and url not in seen_urls:
+                                        # 检查发布日期
+                                        pub_date = item.get('publish_time', '')[:10] if item.get('publish_time') else ''
+                                        
+                                        # 只保留昨天或前天发布的内容
+                                        if pub_date and pub_date not in [target_date, target_date_2days]:
+                                            # 日期不符合要求，跳过
+                                            continue
+                                        
                                         seen_urls.add(url)
                                         content_items.append({
                                             "title": item.get('title', '无标题'),
                                             "url": url,
                                             "source": item.get('site_name') or self._extract_domain(url),
-                                            "date": item.get('publish_time', '')[:10] if item.get('publish_time') else '',
+                                            "date": pub_date,
                                             "summary": item.get('snippet', '')[:200]
                                         })
                         except json.JSONDecodeError:
