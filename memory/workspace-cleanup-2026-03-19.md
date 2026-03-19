@@ -160,25 +160,116 @@ python skills/knowledge-base/scripts/cleanup.py
 
 ---
 
-## Git 提交
+## Git 提交记录
 
+### 提交1：统一知识库管理
 ```bash
 git add -A
 git commit -m "refactor: 统一知识库管理，整合所有脚本和规则"
 ```
+提交哈希：`48f6760`
 
-提交哈希：48f6760
+### 提交2：添加整理记录
+```bash
+git commit -m "docs: 添加工作区整理记录"
+```
+提交哈希：`c05a4fc`
+
+### 提交3：删除旧脚本和废弃 skills
+```bash
+git add -A
+git commit -m "chore: 删除旧脚本和废弃 skills"
+```
+提交哈希：`3fbc7fa`
 
 ---
 
-## 后续任务
+## 删除的内容
 
-1. [ ] 测试日报收集（最近2天规则）
-2. [ ] 测试周报收集和推送
-3. [ ] 测试清理功能
-4. [ ] 配置 crontab 定时任务
-4. [ ] 删除或归档废弃的 skills 和脚本（确认无误后）
+### 已删除的旧脚本（scripts/）
+- ✅ `cleanup_content.py`
+- ✅ `daily_collect.py` (旧版)
+- ✅ `daily_content_collect.sh`
+- ✅ `daily_push_config.env`
+- ✅ `daily_push_cron.sh`
+- ✅ `skills_maintenance.py` (旧版)
+- ✅ `start_cron.sh`
+- ✅ `sync_daily_to_feishu.py`
+- ✅ `weekly_digest_cron.sh`
+
+**保留的脚本**：
+- `track-usage.js` - Token使用统计
+- `usage.js` - 使用统计
+- `update-usage.sh` - 更新统计
+
+### 已删除的废弃 skills
+- ✅ `skills/ai-content-collector/`
+- ✅ `skills/ai-content-collector.skill`
+- ✅ `skills/content-collector/`
+- ✅ `skills/game-content-collector/`
+- ✅ `skills/health-content-collector/`
+- ✅ `skills/task-automation/`
+
+**保留的 skills**：
+- `skills/knowledge-base/` - 统一知识库管理（新建）
+- `skills/coze-web-search/` - 网络搜索
+- `skills/coze-web-fetch/` - 网页提取
+- `skills/coze-image-gen/` - 图片生成
+- `skills/coze-voice-gen/` - 语音生成
+- `skills/link-collector/` - 链接收集
+- `skills/openclaw-updater/` - OpenClaw更新
+- `skills/skill-creator/` - 创建skills
+- `skills/skill-hub/` - Skill管理
 
 ---
 
-*整理完成时间：2026-03-19 08:35*
+## 当前工作区结构
+
+```
+workspace/
+├── RULES.md                          # 统一规则（权威）
+├── HEARTBEAT.md                      # 心跳任务
+├── scripts/                          # 保留的脚本
+│   ├── track-usage.js
+│   ├── usage.js
+│   └── update-usage.sh
+├── skills/                           # 有效的 skills
+│   ├── knowledge-base/               # 统一知识库管理
+│   ├── link-collector/
+│   ├── openclaw-updater/
+│   ├── skill-creator/
+│   ├── skill-hub/
+│   └── coze-*/
+├── config/
+└── memory/
+```
+
+---
+
+## 使用方法（最终版）
+
+### 执行日报（完整流程）
+```bash
+python skills/knowledge-base/scripts/daily_pipeline.py
+```
+
+### 执行周报
+```bash
+python skills/knowledge-base/scripts/weekly_collect.py
+python skills/knowledge-base/scripts/weekly_push.py
+```
+
+### 查看状态
+```bash
+python skills/knowledge-base/scripts/check_status.py
+```
+
+### 清理过期内容
+```bash
+python skills/knowledge-base/scripts/cleanup.py
+```
+
+---
+
+*整理完成时间：2026-03-19 08:50*
+*Git 状态：已推送至远程仓库*
