@@ -72,24 +72,7 @@ python skills/knowledge-base/scripts/weekly_collect.py
 python skills/knowledge-base/scripts/weekly_push.py
 ```
 
-### 3️⃣ 链接收集（用户发送的链接）
-```bash
-# 收集单个链接（自动分类到AI/游戏/健康）
-python skills/knowledge-base/scripts/collect_link.py --url "https://..."
-
-# 带标题
-python skills/knowledge-base/scripts/collect_link.py --url "https://..." --title "文章标题"
-```
-
-**分类规则**：
-| 内容类型 | 目标位置 |
-|----------|----------|
-| AI/技术文章 | 🤖 AI最新资讯 知识库 |
-| 游戏/开发 | 🎮 游戏开发 知识库 |
-| 健康/生活 | 🌱 健康生活 知识库 |
-| 其他技术 | 🔗 本地链接收藏 |
-
-### 4️⃣ 统一内容归档（推荐）⭐
+### 3️⃣ 统一内容归档（推荐）⭐
 ```bash
 # 统一归档（自动识别微信/B站/通用链接）
 python skills/knowledge-base/scripts/archive_content.py --url "..."
@@ -137,8 +120,7 @@ python skills/knowledge-base/scripts/check_status.py
 | `weekly_collect.py` | 收集本周内容 | 周五定时 |
 | `weekly_push.py` | 推送周报到飞书 | 周六定时 |
 | `weekly_pipeline.py` | 周报完整流程 | 周五定时 |
-| `collect_link.py` | 收集通用链接 | 用户发送链接 |
-| **⭐ `archive_content.py`** | **统一归档（微信/B站/通用）** | **收到任何链接时** |
+| **⭐ `archive_content.py`** | **统一归档（微信/B站/通用链接）** | **收到任何链接时** |
 | `archive_wechat.py` | 仅微信文章（备用） | 备用 |
 | `archive_bilibili.py` | 仅B站视频（备用） | 备用 |
 | `cleanup.py` | 清理过期内容 | 每天定时 |
