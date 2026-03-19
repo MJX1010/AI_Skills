@@ -2,12 +2,14 @@
 """
 日报收集脚本 - 只收集最近2天的内容
 遵循 RULES.md 规则1：日报只收集最近2天发布的内容
+使用 config/content_sources.yaml 配置文件
 """
 
 import argparse
 import json
 import subprocess
 import sys
+import yaml
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -16,34 +18,84 @@ WORKSPACE = Path("/workspace/projects/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
 STATE_DIR = MEMORY_DIR / "state"
 COLLECTED_URLS_FILE = STATE_DIR / "collected-urls.json"
+CONFIG_FILE = WORKSPACE / "config" / "content_sources.yaml"
 
-# 知识库配置
-KB_CONFIG = {
+# 基础配置（默认）
+KB_BASE_CONFIG = {
     "ai-latest-news": {
         "name": "🤖 AI最新资讯",
-        "space_id": "7616519632920251572",
-        "search_queries": [
-            "OpenAI GPT Claude Anthropic AI latest news",
-            "人工智能 大模型 LLM 2026 最新动态"
-        ]
+        "space_id": "7616519632920251572"
     },
     "game-development": {
         "name": "🎮 游戏开发",
-        "space_id": "7616735513310924004",
-        "search_queries": [
-            "Unity Unreal Godot game development",
-            "游戏开发 独立游戏 gamedev"
-        ]
+        "space_id": "7616735513310924004"
     },
     "healthy-living": {
         "name": "🌱 健康生活",
-        "space_id": "7616737910330510558",
-        "search_queries": [
-            "健康 运动 饮食 生活 2026",
-            "fitness nutrition health tips"
-        ]
+        "space_id": "7616737910330510558"
     }
 }
+
+
+def load_search_config():
+    """从配置文件加载搜索关键词"""
+    kb_config = {}
+    
+    # 先加载基础配置
+    for kb_key, base_info in KB_BASE_CONFIG.items():
+        kb_config[kb_key] = base_info.copy()
+        kb_config[kb_key]["search_queries"] = []
+    
+    # 尝试读取配置文件
+    if CONFIG_FILE.exists():
+        try:
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                config = yaml.safe_load(f)
+            
+            if config:
+                # 解析 AI 最新资讯搜索词
+                if "search_queries" in config.get("AI", {}):
+                    kb_config["ai-latest-news"]["search_queries"] = config["AI"]["search_queries"]
+                
+                # 解析游戏开发搜索词
+                if "search_queries" in config.get("game", {}):
+                    kb_config["game-development"]["search_queries"] = config["game"]["search_queries"]
+                
+                # 解析健康生活搜索词
+                if "search_queries" in config.get("health", {}):
+                    kb_config["healthy-living"]["search_queries"] = config["health"]["search_queries"]
+            
+            print(f"✅ 已加载配置文件: {CONFIG_FILE}")
+        except Exception as e:
+            print(f"⚠️ 读取配置文件失败: {e}")
+    else:
+        print(f"⚠️ 配置文件不存在: {CONFIG_FILE}")
+    
+    # 如果配置文件中未定义搜索词，使用默认值
+    for kb_key in kb_config:
+        if not kb_config[kb_key].get("search_queries"):
+            print(f"  使用默认搜索词: {kb_key}")
+            if kb_key == "ai-latest-news":
+                kb_config[kb_key]["search_queries"] = [
+                    "OpenAI GPT Claude Anthropic AI latest news",
+                    "人工智能 大模型 LLM 2026 最新动态"
+                ]
+            elif kb_key == "game-development":
+                kb_config[kb_key]["search_queries"] = [
+                    "Unity Unreal Godot game development",
+                    "游戏开发 独立游戏 gamedev"
+                ]
+            elif kb_key == "healthy-living":
+                kb_config[kb_key]["search_queries"] = [
+                    "健康 运动 饮食 生活 2026",
+                    "fitness nutrition health tips"
+                ]
+    
+    return kb_config
+
+
+# 全局配置，运行时加载
+KB_CONFIG = load_search_config()
 
 # 收集设置：只收集最近2天
 COLLECT_DAYS = 2

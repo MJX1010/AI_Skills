@@ -1,110 +1,69 @@
 # 知识库内容收集配置
 # 可自定义搜索关键词和内容来源
+# 修改后重启收集脚本生效
 
----
+# 🤖 AI最新资讯
+AI:
+  # 搜索关键词（用于 coze-web-search）
+  search_queries:
+    - "OpenAI GPT Claude Anthropic AI latest news"
+    - "人工智能 大模型 LLM 2026 最新动态"
+    - "ChatGPT Claude Gemini 新功能 发布"
+    - "AI人工智能 breakthrough 2026"
 
-## 🤖 AI最新资讯
+  # 推荐来源（ RSS/网站）
+  sources:
+    - name: "OpenAI Blog"
+      url: "https://openai.com/blog"
+      type: "rss"
+    - name: "Anthropic News"
+      url: "https://www.anthropic.com/news"
+      type: "rss"
+    - name: "机器之心"
+      url: "https://www.jiqizhixin.com"
+      type: "rss"
+    - name: "量子位"
+      url: "https://www.qbitai.com"
+      type: "rss"
 
-### 搜索关键词
-search_queries:
-  - "OpenAI GPT-5 Claude Anthropic 最新"
-  - "Google Gemini AI 2026 发布"
-  - "人工智能大模型 LLM 突破"
-  - "ChatGPT 新功能 更新"
+# 🎮 游戏开发
+game:
+  # 搜索关键词
+  search_queries:
+    - "Unity Unreal Godot game development"
+    - "游戏开发 独立游戏 gamedev"
+    - "Unity 2026 新功能 更新"
+    - "Unreal Engine 5 Godot 引擎"
 
-### 推荐来源（ RSS/网站）
-sources:
-  - name: "OpenAI Blog"
-    url: "https://openai.com/blog"
-    type: "rss"
-  - name: "Anthropic News"
-    url: "https://www.anthropic.com/news"
-    type: "rss"
-  - name: "Google AI Blog"
-    url: "https://ai.googleblog.com"
-    type: "rss"
-  - name: "机器之心"
-    url: "https://www.jiqizhixin.com"
-    type: "rss"
-  - name: "量子位"
-    url: "https://www.qbitai.com"
-    type: "rss"
-  - name: "CSDN AI"
-    url: "https://blog.csdn.net/nav/ai"
-    type: "web"
+  # 推荐来源
+  sources:
+    - name: "Unity Blog"
+      url: "https://blog.unity.com"
+      type: "rss"
+    - name: "Unreal Engine"
+      url: "https://www.unrealengine.com/en-US/blog"
+      type: "rss"
+    - name: "Godot News"
+      url: "https://godotengine.org/news"
+      type: "rss"
 
----
+# 🌱 健康生活
+health:
+  # 搜索关键词
+  search_queries:
+    - "健康 运动 饮食 生活 2026"
+    - "fitness nutrition health tips"
+    - "健康生活 科学饮食 锻炼方法"
+    - "心理健康 压力管理 生活妙招"
 
-## 🎮 游戏开发
-
-### 搜索关键词
-search_queries:
-  - "Unity 2026 新功能 更新"
-  - "Unreal Engine 5 游戏开发"
-  - "Godot 引擎 独立游戏"
-  - "GameDev 游戏设计"
-
-### 推荐来源
-sources:
-  - name: "Unity Blog"
-    url: "https://blog.unity.com"
-    type: "rss"
-  - name: "Unreal Engine"
-    url: "https://www.unrealengine.com/en-US/blog"
-    type: "rss"
-  - name: "Godot News"
-    url: "https://godotengine.org/news"
-    type: "rss"
-  - name: "Gamasutra"
-    url: "https://gamasutra.com"
-    type: "rss"
-  - name: "IndieDB"
-    url: "https://www.indiedb.com/news"
-    type: "rss"
-
----
-
-## 🌱 健康生活
-
-### 搜索关键词
-search_queries:
-  - "健康生活 科学饮食 2026"
-  - "运动健身 锻炼方法"
-  - "心理健康 压力管理"
-  - "生活妙招 小窍门"
-
-### 推荐来源
-sources:
-  - name: "丁香医生"
-    url: "https://dxy.com"
-    type: "rss"
-  - name: "健康时报"
-    url: "http://www.healthtimes.cn"
-    type: "rss"
-  - name: "果壳健康"
-    url: "https://www.guokr.com/scientific/"
-    type: "rss"
-  - name: "生命时报"
-    url: "http://www.lifetimes.cn"
-    type: "rss"
-
----
-
-## 使用说明
-
-### 方法一：修改本配置文件
-1. 编辑此文件添加/修改搜索关键词
-2. 添加推荐的 RSS/网站来源
-3. 运行收集脚本时会读取此配置
-
-### 方法二：直接添加链接
-使用链接收集器直接添加文章：
-```bash
-python skills/link-collector/scripts/collect_links.py --url "文章链接" --kb ai-latest-news
-```
-
-### 方法三：手动编辑周刊
-直接编辑 Markdown 文件：
-- `memory/ai-content/weekly/weekly-YYYY-WXX.md`
-- `memory/game-content/weekly/game-weekly-YYYY-WXX.md`
-- `memory/health-content/weekly/health-weekly-YYYY-WXX.md`
+  # 推荐来源
+  sources:
+    - name: "丁香医生"
+      url: "https://dxy.com"
+      type: "rss"
+    - name: "健康时报"
+      url: "http://www.healthtimes.cn"
+      type: "rss"
+    - name: "果壳健康"
+      url: "https://www.guokr.com/scientific/"
+      type: "rss"
