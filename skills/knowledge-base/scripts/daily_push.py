@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-日报推送脚本 - 推送日报到飞书知识库和对话窗口
+日报推送脚本 - 推送日报到飞书知识库
+使用 OpenClaw 命令行工具
 """
 
+import argparse
 import json
 import subprocess
 from datetime import datetime
@@ -14,20 +16,49 @@ MEMORY_DIR = WORKSPACE / "memory"
 KB_CONFIG = {
     "ai-latest-news": {
         "name": "🤖 AI最新资讯",
-        "space_id": "7616519632920251572",
-        "home_node": "PhL6wlstzissQ1kKPwMc18xbngg"
+        "space_id": "7616519632920251572"
     },
     "game-development": {
         "name": "🎮 游戏开发",
-        "space_id": "7616735513310924004",
-        "home_node": "U9EWwwL8ui16IEkrN8vcIRISnFg"
+        "space_id": "7616735513310924004"
     },
     "healthy-living": {
         "name": "🌱 健康生活",
-        "space_id": "7616737910330510558",
-        "home_node": "XD2PwwJukiD8a8koNAAc4Fedn5t"
+        "space_id": "7616737910330510558"
     }
 }
+
+
+def run_openclaw_tool(tool: str, **kwargs) -> dict:
+    """运行 OpenClaw 工具"""
+    cmd = ["openclaw", tool]
+    for key, value in kwargs.items():
+        cmd.extend([f"--{key}", str(value)])
+    
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            # 尝试解析 JSON 输出
+            try:
+                # 找到 JSON 部分（通常在输出末尾）
+                lines = result.stdout.strip().split("\n")
+                for line in reversed(lines):
+                    line = line.strip()
+                    if line and line.startswith("{"):
+                        return json.loads(line)
+                return {"success": True, "output": result.stdout}
+            except:
+                return {"success": True, "output": result.stdout}
+        else:
+            return {"success": False, "error": result.stderr}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 
 def read_daily_content(kb: str, date_str: str) -> str:
@@ -48,105 +79,107 @@ def count_articles(content: str) -> int:
     return content.count("### [")
 
 
+def get_or_create_node(space_id: str, parent_token: str, title: str) -> str:
+    """获取或创建节点"""
+    # 首先尝试列出节点查找已有节点
+    result = run_openclaw_tool("feishu_wiki", action="nodes", space_id=space_id)
+    
+    if result.get("success") and "nodes" in result:
+        for node in result["nodes"]:
+            if node.get("title") == title:
+                print(f"    📁 使用已有节点: {title}")
+                return node.get("node_token")
+    
+    # 创建新节点
+    result = run_openclaw_tool(
+        "feishu_wiki",
+        action="create",
+        space_id=space_id,
+        parent_node_token=parent_token,
+        title=title,
+        obj_type="docx"
+    )
+    
+    if result.get("success") and "node_token" in result:
+        print(f"    📁 创建新节点: {title}")
+        return result["node_token"]
+    
+    return None
+
+
 def sync_to_feishu(kb: str, content: str, date_str: str) -> bool:
     """同步到飞书知识库"""
     config = KB_CONFIG[kb]
     year = date_str[:4]
-    month = str(int(date_str[5:7]))  # 去掉前导零
+    month = str(int(date_str[5:7]))
     day = date_str[8:10]
     
     doc_title = f"{int(month)}月{int(day)}日 日报"
     
     print(f"\n  📤 同步 {config['name']} 到飞书...")
     
-    try:
-        # 1. 获取或创建年度节点
-        result = subprocess.run(
-            ["feishu_wiki", "--action", "nodes", "--space_id", config['space_id']],
-            capture_output=True, text=True
-        )
-        nodes = json.loads(result.stdout)
-        home_node = nodes["nodes"][0]["node_token"]
-        
-        # 2. 创建年度节点
-        year_result = subprocess.run(
-            ["feishu_wiki", "--action", "create",
-             "--space_id", config['space_id'],
-             "--parent_node_token", home_node,
-             "--title", f"{year}年",
-             "--obj_type", "docx"],
-            capture_output=True, text=True
-        )
-        try:
-            year_node = json.loads(year_result.stdout)["node_token"]
-        except:
-            # 查找已存在的年度节点
-            year_node = None
-            for node in json.loads(result.stdout).get("nodes", []):
-                if node["title"] == f"{year}年":
-                    year_node = node["node_token"]
+    # 1. 获取知识库首页
+    result = run_openclaw_tool("feishu_wiki", action="nodes", space_id=config['space_id'])
+    if not result.get("success") or "nodes" not in result or not result["nodes"]:
+        print(f"    ⚠️ 无法获取知识库节点: {result.get('error', '未知错误')}")
+        return False
+    
+    home_node = result["nodes"][0]["node_token"]
+    
+    # 2. 获取或创建年度节点
+    year_node = get_or_create_node(config['space_id'], home_node, f"{year}年")
+    if not year_node:
+        print(f"    ⚠️ 无法获取年度节点")
+        return False
+    
+    # 3. 获取或创建月度节点
+    month_node = get_or_create_node(config['space_id'], year_node, f"{month}月")
+    if not month_node:
+        print(f"    ⚠️ 无法获取月度节点")
+        return False
+    
+    # 4. 创建日报文档
+    result = run_openclaw_tool(
+        "feishu_wiki",
+        action="create",
+        space_id=config['space_id'],
+        parent_node_token=month_node,
+        title=doc_title,
+        obj_type="docx"
+    )
+    
+    if not result.get("success"):
+        # 可能是已存在，尝试查找
+        result = run_openclaw_tool("feishu_wiki", action="nodes", space_id=config['space_id'])
+        if result.get("success") and "nodes" in result:
+            for node in result["nodes"]:
+                if node.get("title") == doc_title:
+                    doc_token = node["obj_token"]
+                    print(f"    📄 更新已有文档: {doc_title}")
                     break
-        
-        if not year_node:
-            print(f"    ⚠️ 无法获取年度节点")
+            else:
+                print(f"    ⚠️ 无法创建文档: {result.get('error', '未知错误')}")
+                return False
+        else:
+            print(f"    ⚠️ 无法创建文档: {result.get('error', '未知错误')}")
             return False
-        
-        # 3. 创建月度节点
-        month_result = subprocess.run(
-            ["feishu_wiki", "--action", "create",
-             "--space_id", config['space_id'],
-             "--parent_node_token", year_node,
-             "--title", f"{month}月",
-             "--obj_type", "docx"],
-            capture_output=True, text=True
-        )
-        try:
-            month_node = json.loads(month_result.stdout)["node_token"]
-        except:
-            # 查找已存在的月度节点
-            month_node = None
-            result = subprocess.run(
-                ["feishu_wiki", "--action", "nodes", "--space_id", config['space_id']],
-                capture_output=True, text=True
-            )
-            # 简化处理，实际应该递归查找
-            month_node = None
-        
-        if not month_node:
-            print(f"    ℹ️ 使用已有月度节点或稍后重试")
-            return False
-        
-        # 4. 创建日报文档
-        doc_result = subprocess.run(
-            ["feishu_wiki", "--action", "create",
-             "--space_id", config['space_id'],
-             "--parent_node_token", month_node,
-             "--title", doc_title,
-             "--obj_type", "docx"],
-            capture_output=True, text=True
-        )
-        
-        try:
-            doc_data = json.loads(doc_result.stdout)
-            doc_token = doc_data["obj_token"]
-            
-            # 5. 写入内容
-            subprocess.run(
-                ["feishu_doc", "--action", "write",
-                 "--doc_token", doc_token,
-                 "--content", content],
-                capture_output=True, text=True
-            )
-            
-            print(f"    ✅ 已同步: {doc_title}")
-            return True
-            
-        except Exception as e:
-            print(f"    ⚠️ 同步失败: {e}")
-            return False
-            
-    except Exception as e:
-        print(f"    ⚠️ 异常: {e}")
+    else:
+        doc_token = result["obj_token"]
+        print(f"    📄 创建新文档: {doc_title}")
+    
+    # 5. 写入内容
+    result = run_openclaw_tool(
+        "feishu_doc",
+        action="write",
+        doc_token=doc_token,
+        content=content
+    )
+    
+    if result.get("success"):
+        print(f"    ✅ 内容已写入")
+        return True
+    else:
+        print(f"    ⚠️ 写入失败: {result.get('error', '未知错误')}")
         return False
 
 
@@ -223,5 +256,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import sys
-    sys.exit(main())
+    main()

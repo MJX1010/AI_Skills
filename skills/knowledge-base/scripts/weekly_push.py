@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 """
 周报推送脚本 - 推送周报到飞书知识库
+使用 OpenClaw 的 feishu 工具
 """
 
 import json
-import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
+
+# 导入 OpenClaw 的 feishu 工具
+try:
+    from feishu_wiki import feishu_wiki
+    from feishu_doc import feishu_doc
+    FEISHU_AVAILABLE = True
+except ImportError:
+    FEISHU_AVAILABLE = False
+    print("⚠️ 飞书工具不可用，请确保 OpenClaw 环境正常")
 
 WORKSPACE = Path("/workspace/projects/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
@@ -44,8 +53,45 @@ def read_weekly_content(kb: str, week_num: int, year: str) -> str:
     return ""
 
 
+def get_or_create_node(space_id: str, parent_token: str, title: str, obj_type: str = "docx") -> str:
+    """获取或创建节点"""
+    if not FEISHU_AVAILABLE:
+        return None
+    
+    try:
+        # 首先尝试获取已有节点
+        result = feishu_wiki(space_id=space_id, action="nodes")
+        if result and "nodes" in result:
+            for node in result["nodes"]:
+                if node.get("title") == title:
+                    print(f"    📁 使用已有节点: {title}")
+                    return node.get("node_token")
+        
+        # 创建新节点
+        result = feishu_wiki(
+            space_id=space_id,
+            action="create",
+            parent_node_token=parent_token,
+            title=title,
+            obj_type=obj_type
+        )
+        
+        if result and "node_token" in result:
+            print(f"    📁 创建新节点: {title}")
+            return result["node_token"]
+        
+        return None
+    except Exception as e:
+        print(f"    ⚠️ 节点操作失败: {e}")
+        return None
+
+
 def sync_to_feishu(kb: str, content: str, monday: datetime, sunday: datetime) -> bool:
     """同步到飞书知识库"""
+    if not FEISHU_AVAILABLE:
+        print(f"    ⚠️ 飞书工具不可用，跳过同步")
+        return False
+    
     config = KB_CONFIG[kb]
     year = monday.strftime("%Y")
     month = str(int(monday.strftime("%m")))
@@ -57,85 +103,63 @@ def sync_to_feishu(kb: str, content: str, monday: datetime, sunday: datetime) ->
     print(f"\n  📤 同步 {config['name']} 到飞书...")
     
     try:
-        # 获取知识库首页
-        result = subprocess.run(
-            ["feishu_wiki", "--action", "nodes", "--space_id", config['space_id']],
-            capture_output=True, text=True
-        )
-        nodes = json.loads(result.stdout)
-        home_node = nodes["nodes"][0]["node_token"]
+        # 1. 获取知识库首页
+        result = feishu_wiki(space_id=config['space_id'], action="nodes")
+        if not result or "nodes" not in result or not result["nodes"]:
+            print(f"    ⚠️ 无法获取知识库节点")
+            return False
         
-        # 创建年度节点
-        year_result = subprocess.run(
-            ["feishu_wiki", "--action", "create",
-             "--space_id", config['space_id'],
-             "--parent_node_token", home_node,
-             "--title", f"{year}年",
-             "--obj_type", "docx"],
-            capture_output=True, text=True
-        )
-        try:
-            year_node = json.loads(year_result.stdout)["node_token"]
-        except:
-            year_node = None
-            for node in json.loads(result.stdout).get("nodes", []):
-                if node["title"] == f"{year}年":
-                    year_node = node["node_token"]
-                    break
+        home_node = result["nodes"][0]["node_token"]
         
+        # 2. 获取或创建年度节点
+        year_node = get_or_create_node(config['space_id'], home_node, f"{year}年")
         if not year_node:
             print(f"    ⚠️ 无法获取年度节点")
             return False
         
-        # 创建月度节点
-        month_result = subprocess.run(
-            ["feishu_wiki", "--action", "create",
-             "--space_id", config['space_id'],
-             "--parent_node_token", year_node,
-             "--title", f"{month}月",
-             "--obj_type", "docx"],
-            capture_output=True, text=True
-        )
-        try:
-            month_node = json.loads(month_result.stdout)["node_token"]
-        except:
-            month_node = None
-        
+        # 3. 获取或创建月度节点
+        month_node = get_or_create_node(config['space_id'], year_node, f"{month}月")
         if not month_node:
-            print(f"    ℹ️ 使用已有月度节点")
+            print(f"    ⚠️ 无法获取月度节点")
             return False
         
-        # 创建周报文档
-        doc_result = subprocess.run(
-            ["feishu_wiki", "--action", "create",
-             "--space_id", config['space_id'],
-             "--parent_node_token", month_node,
-             "--title", doc_title,
-             "--obj_type", "docx"],
-            capture_output=True, text=True
-        )
+        # 4. 检查是否已有周报文档
+        existing_doc = None
+        month_nodes = feishu_wiki(space_id=config['space_id'], action="nodes")
+        if month_nodes and "nodes" in month_nodes:
+            for node in month_nodes["nodes"]:
+                if node.get("title") == doc_title:
+                    existing_doc = node
+                    break
         
-        try:
-            doc_data = json.loads(doc_result.stdout)
-            doc_token = doc_data["obj_token"]
-            
-            # 写入内容
-            subprocess.run(
-                ["feishu_doc", "--action", "write",
-                 "--doc_token", doc_token,
-                 "--content", content],
-                capture_output=True, text=True
+        if existing_doc:
+            doc_token = existing_doc["obj_token"]
+            print(f"    📄 更新已有文档: {doc_title}")
+        else:
+            # 创建新文档
+            doc_result = feishu_wiki(
+                space_id=config['space_id'],
+                action="create",
+                parent_node_token=month_node,
+                title=doc_title,
+                obj_type="docx"
             )
             
-            print(f"    ✅ 已同步: {doc_title}")
-            return True
+            if not doc_result or "obj_token" not in doc_result:
+                print(f"    ⚠️ 无法创建文档")
+                return False
             
-        except Exception as e:
-            print(f"    ⚠️ 同步失败: {e}")
-            return False
-            
+            doc_token = doc_result["obj_token"]
+            print(f"    📄 创建新文档: {doc_title}")
+        
+        # 5. 写入内容
+        feishu_doc(doc_token=doc_token, action="write", content=content)
+        print(f"    ✅ 内容已写入")
+        
+        return True
+        
     except Exception as e:
-        print(f"    ⚠️ 异常: {e}")
+        print(f"    ⚠️ 同步异常: {e}")
         return False
 
 
@@ -150,6 +174,9 @@ def main():
     print(f"📅 本周: {monday.strftime('%Y-%m-%d')} ~ {sunday.strftime('%Y-%m-%d')}")
     print(f"📊 第 {week_num} 周")
     print("="*60)
+    
+    if not FEISHU_AVAILABLE:
+        print("\n  ⚠️ 飞书工具不可用")
     
     for kb in KB_CONFIG.keys():
         content = read_weekly_content(kb, week_num, year)
