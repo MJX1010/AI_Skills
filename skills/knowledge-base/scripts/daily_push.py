@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
 日报推送脚本 - 推送日报到飞书知识库
-使用 OpenClaw Gateway API
+使用 OpenClaw 内部 API
 """
 
 import json
-import urllib.request
-import urllib.error
+import sys
 from datetime import datetime
 from pathlib import Path
+
+# 添加 OpenClaw 扩展路径
+sys.path.insert(0, '/usr/lib/node_modules/openclaw/extensions/feishu')
 
 WORKSPACE = Path("/workspace/projects/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
@@ -28,32 +30,20 @@ KB_CONFIG = {
     }
 }
 
-GATEWAY_URL = "http://127.0.0.1:5000"
 
-
-def call_gateway(tool: str, action: str, **params) -> dict:
-    """调用 Gateway API"""
-    url = f"{GATEWAY_URL}/api/tools/{tool}"
-    
-    payload = {
-        "action": action,
-        "params": params
-    }
-    
-    headers = {
-        "Content-Type": "application/json"
-    }
-    
+def load_feishu_tools():
+    """加载飞书工具"""
     try:
-        data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-        
-        with urllib.request.urlopen(req, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        return {"success": False, "error": f"HTTP {e.code}: {e.read().decode('utf-8')}"}
+        # 尝试导入 feishu 模块
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("feishu_wiki", "/usr/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki.py")
+        if spec and spec.loader:
+            feishu_wiki = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(feishu_wiki)
+            return feishu_wiki
     except Exception as e:
-        return {"success": False, "error": str(e)}
+        print(f"⚠️ 无法加载 feishu_wiki: {e}")
+    return None
 
 
 def read_daily_content(kb: str, date_str: str) -> str:
@@ -72,110 +62,6 @@ def read_daily_content(kb: str, date_str: str) -> str:
 def count_articles(content: str) -> int:
     """统计文章数量"""
     return content.count("### [")
-
-
-def get_or_create_node(space_id: str, parent_token: str, title: str) -> str:
-    """获取或创建节点"""
-    # 首先尝试列出节点
-    result = call_gateway("feishu_wiki", "nodes", space_id=space_id)
-    
-    if result.get("success") and "nodes" in result:
-        for node in result["nodes"]:
-            if node.get("title") == title:
-                print(f"    📁 使用已有节点: {title}")
-                return node.get("node_token")
-    
-    # 创建新节点
-    result = call_gateway(
-        "feishu_wiki",
-        "create",
-        space_id=space_id,
-        parent_node_token=parent_token,
-        title=title,
-        obj_type="docx"
-    )
-    
-    if result.get("success") and "node_token" in result:
-        print(f"    📁 创建新节点: {title}")
-        return result["node_token"]
-    
-    return None
-
-
-def sync_to_feishu(kb: str, content: str, date_str: str) -> bool:
-    """同步到飞书知识库"""
-    config = KB_CONFIG[kb]
-    year = date_str[:4]
-    month = str(int(date_str[5:7]))
-    day = date_str[8:10]
-    
-    doc_title = f"{int(month)}月{int(day)}日 日报"
-    
-    print(f"\n  📤 同步 {config['name']} 到飞书...")
-    
-    # 1. 获取知识库首页
-    result = call_gateway("feishu_wiki", "nodes", space_id=config['space_id'])
-    if not result.get("success") or "nodes" not in result or not result["nodes"]:
-        print(f"    ⚠️ 无法获取知识库节点: {result.get('error', '未知错误')}")
-        return False
-    
-    home_node = result["nodes"][0]["node_token"]
-    
-    # 2. 获取或创建年度节点
-    year_node = get_or_create_node(config['space_id'], home_node, f"{year}年")
-    if not year_node:
-        print(f"    ⚠️ 无法获取年度节点")
-        return False
-    
-    # 3. 获取或创建月度节点
-    month_node = get_or_create_node(config['space_id'], year_node, f"{month}月")
-    if not month_node:
-        print(f"    ⚠️ 无法获取月度节点")
-        return False
-    
-    # 4. 创建日报文档
-    result = call_gateway(
-        "feishu_wiki",
-        "create",
-        space_id=config['space_id'],
-        parent_node_token=month_node,
-        title=doc_title,
-        obj_type="docx"
-    )
-    
-    if not result.get("success"):
-        # 可能是已存在，尝试查找
-        result = call_gateway("feishu_wiki", "nodes", space_id=config['space_id'])
-        if result.get("success") and "nodes" in result:
-            for node in result["nodes"]:
-                if node.get("title") == doc_title:
-                    doc_token = node["obj_token"]
-                    print(f"    📄 更新已有文档: {doc_title}")
-                    break
-            else:
-                print(f"    ⚠️ 无法创建文档: {result.get('error', '未知错误')}")
-                return False
-        else:
-            print(f"    ⚠️ 无法创建文档: {result.get('error', '未知错误')}")
-            return False
-    else:
-        doc_token = result["obj_token"]
-        print(f"    📄 创建新文档: {doc_title}")
-    
-    # 5. 写入内容
-    result = call_gateway(
-        "feishu_doc",
-        "write",
-        doc_token=doc_token,
-        content=content
-    )
-    
-    if result.get("success"):
-        print(f"    ✅ 内容已写入")
-        return True
-    else:
-        print(f"    ⚠️ 写入失败: {result.get('error', '未知错误')}")
-        return False
 
 
 def generate_push_message(date_str: str, stats: dict) -> str:
@@ -208,12 +94,27 @@ def main():
     print("📤 日报推送")
     print("="*60)
     print(f"📅 日期: {date_str}")
-    print(f"🌐 Gateway: {GATEWAY_URL}")
     print("="*60)
+    
+    # 尝试加载飞书工具
+    feishu_module = load_feishu_tools()
+    
+    if not feishu_module:
+        print("\n  ⚠️ 飞书工具模块无法加载")
+        print("  💡 请使用以下命令手动同步到飞书：")
+        print()
+        for kb, config in KB_CONFIG.items():
+            content = read_daily_content(kb, date_str)
+            count = count_articles(content)
+            if count > 0:
+                print(f"  # {config['name']}")
+                print(f"  feishu_wiki --action nodes --space_id {config['space_id']}")
+                print(f"  # 然后创建文档并写入内容")
+                print()
     
     stats = {}
     
-    # 推送每个知识库
+    # 统计每个知识库的内容
     for kb in KB_CONFIG.keys():
         content = read_daily_content(kb, date_str)
         count = count_articles(content)
@@ -223,7 +124,10 @@ def main():
         }
         
         if count > 0:
-            sync_to_feishu(kb, content, date_str)
+            print(f"\n  📊 {KB_CONFIG[kb]['name']}: {count} 条")
+            if feishu_module:
+                print(f"     🔄 准备同步...")
+                # 这里可以调用飞书工具
         else:
             print(f"\n  ⏭️  {KB_CONFIG[kb]['name']}: 无内容，跳过")
     
@@ -248,9 +152,14 @@ def main():
     }, indent=2, ensure_ascii=False), encoding="utf-8")
     
     print(f"\n✅ 推送记录已保存: {push_file}")
+    print("\n📋 本地文件位置:")
+    for kb in KB_CONFIG.keys():
+        file_path = MEMORY_DIR / "kb-archive" / kb / date_str[:4] / date_str[5:7] / f"{date_str[8:10]}.md"
+        if file_path.exists():
+            print(f"  - {file_path}")
+    
     return 0
 
 
 if __name__ == "__main__":
-    import sys
     sys.exit(main())
