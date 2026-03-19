@@ -125,12 +125,27 @@ def parse_search_results(output: str) -> list:
     results = []
     lines = output.split("\n")
     
-    for line in lines:
-        if line.startswith("http"):
+    current_title = ""
+    current_url = ""
+    
+    for i, line in enumerate(lines):
+        line = line.strip()
+        
+        # 匹配标题行，如 "[1] Models" 或 "OpenAI发布GPT-5.3 Instant"
+        if line.startswith("[") and "]" in line:
+            current_title = line.split("]", 1)[1].strip()
+        elif line.startswith("URL:"):
+            current_url = line.replace("URL:", "").strip()
+            if current_url and current_title:
+                results.append({"url": current_url, "title": current_title})
+                current_title = ""
+                current_url = ""
+        # 备用：直接匹配 http 开头的行（其他格式）
+        elif line.startswith("http") and " - " in line:
             parts = line.split(" - ", 1)
             if len(parts) >= 2:
                 url = parts[0].strip()
-                title = parts[1].strip() if len(parts) > 1 else "无标题"
+                title = parts[1].strip()
                 results.append({"url": url, "title": title})
     
     return results
