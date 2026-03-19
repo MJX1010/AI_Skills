@@ -87,14 +87,18 @@ python skills/knowledge-base/scripts/archive_content.py --url "..." --title "标
 - ✅ 和日报同一层级存储（年/月/日）
 - ✅ 自动去重
 
-### 5️⃣ 单独归档（备用）
+### 4️⃣ 单独归档（备用）
 ```bash
-# 仅微信文章
-python skills/knowledge-base/scripts/archive_wechat.py --url "https://mp.weixin.qq.com/s/..."
+# 仅微信文章（自动分类）
+python skills/knowledge-base/scripts/archive_wechat.py --url "https://mp.weixin.qq.com/s/..." --auto-classify
 
-# 仅B站视频
-python skills/knowledge-base/scripts/archive_bilibili.py --url "https://b23.tv/..."
+# 仅B站视频（自动分类）
+python skills/knowledge-base/scripts/archive_bilibili.py --url "https://b23.tv/..." --auto-classify
 ```
+
+**注意**：`archive_wechat.py` 和 `archive_bilibili.py` 已修复，现在可以独立运行，无需外部依赖。
+
+### 5️⃣ 内容清理
 
 ### 6️⃣ 内容清理
 ```bash
@@ -112,20 +116,22 @@ python skills/knowledge-base/scripts/check_status.py
 
 ## 📁 脚本列表
 
-| 脚本 | 功能 | 使用场景 |
-|------|------|----------|
-| `daily_collect.py` | 收集最近2天内容 | 定时任务 |
-| `daily_push.py` | 推送日报到飞书 | 定时任务 |
-| `daily_pipeline.py` | 日报完整流程 | 定时任务 |
-| `weekly_collect.py` | 收集本周内容 | 周五定时 |
-| `weekly_push.py` | 推送周报到飞书 | 周六定时 |
-| `weekly_pipeline.py` | 周报完整流程 | 周五定时 |
-| **⭐ `archive_content.py`** | **统一归档（微信/B站/通用链接）** | **收到任何链接时** |
-| `archive_wechat.py` | 仅微信文章（备用） | 备用 |
-| `archive_bilibili.py` | 仅B站视频（备用） | 备用 |
-| `cleanup.py` | 清理过期内容 | 每天定时 |
-| `git_sync.py` | Git同步 | 每天定时 |
-| `check_status.py` | 查看任务状态 | 按需 |
+| 脚本 | 功能 | 使用场景 | 状态 |
+|------|------|----------|------|
+| `daily_collect.py` | 收集最近2天内容 | 定时任务 | ✅ 正常 |
+| `daily_push.py` | 推送日报到飞书 | 定时任务 | ✅ 正常 |
+| `daily_pipeline.py` | 日报完整流程 | 定时任务 | ✅ 正常 |
+| `weekly_collect.py` | 收集本周内容 | 周五定时 | ✅ 正常 |
+| `weekly_push.py` | 推送周报到飞书 | 周六定时 | ✅ 正常 |
+| `weekly_pipeline.py` | 周报完整流程 | 周五定时 | ✅ 正常 |
+| `archive_content.py` | 统一归档（微信/B站/通用链接） | 收到任何链接时 | ✅ 正常 |
+| `archive_wechat.py` | 微信文章归档 | 备用 | ✅ 已修复，独立运行 |
+| `archive_bilibili.py` | B站视频归档 | 备用 | ✅ 已修复，独立运行 |
+| `cleanup.py` | 清理过期内容 | 每天定时 | ✅ 正常 |
+| `git_sync.py` | Git同步 | 每天定时 | ✅ 正常 |
+| `check_status.py` | 查看任务状态 | 按需 | ✅ 正常 |
+| `fetch_wechat.py` | 微信内容获取 | 内部调用 | ✅ 正常 |
+| `fetch_bilibili.py` | B站内容获取 | 内部调用 | ✅ 正常 |
 
 ---
 
@@ -261,6 +267,35 @@ python skills/knowledge-base/scripts/collect_link.py \
 
 - **统一规则**：`WORKSPACE/RULES.md`
 - **心跳任务**：`WORKSPACE/HEARTBEAT.md`
+
+---
+
+## 🛠️ 维护记录
+
+### 2026-03-19 脚本修复
+
+**修复内容**：
+- ✅ `archive_wechat.py` - 移除 `archive_manager` 依赖，现在可独立运行
+- ✅ `archive_bilibili.py` - 移除 `archive_manager` 依赖，现在可独立运行
+- ✅ 所有 14 个脚本均已验证，无外部依赖问题
+
+**脚本状态**：
+| 脚本 | 修复状态 |
+|------|----------|
+| `daily_collect.py` | ✅ 正常 |
+| `daily_push.py` | ✅ 正常 |
+| `daily_pipeline.py` | ✅ 正常 |
+| `weekly_collect.py` | ✅ 正常 |
+| `weekly_push.py` | ✅ 正常 |
+| `weekly_pipeline.py` | ✅ 正常 |
+| `archive_content.py` | ✅ 正常 |
+| `archive_wechat.py` | ✅ 已修复 |
+| `archive_bilibili.py` | ✅ 已修复 |
+| `cleanup.py` | ✅ 正常 |
+| `git_sync.py` | ✅ 正常 |
+| `check_status.py` | ✅ 正常 |
+| `fetch_wechat.py` | ✅ 正常 |
+| `fetch_bilibili.py` | ✅ 正常 |
 
 ---
 
