@@ -1,0 +1,9 @@
+
+============================================================
+[2026-03-19T08:20:05.764961] 开始执行: 知识库日报
+============================================================
+
+[STDERR]
+python: can't open file '/workspace/projects/workspace/skills/task-automation/scripts/daily_digest.py': [Errno 2] No such file or directory
+
+[2026-03-19T08:20:05.791969] 执行结束，返回码: 2

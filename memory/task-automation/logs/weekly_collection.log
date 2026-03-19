@@ -1,0 +1,275 @@
+
+============================================================
+[2026-03-19T08:17:13.284399] 开始执行: 周刊收集
+============================================================
+============================================================
+🚀 统一内容收集器 - 完整流程
+============================================================
+📅 目标周次: current
+
+
+============================================================
+🔄 步骤1: 收集所有知识库内容
+============================================================
+============================================================
+🔄 统一内容收集器 - 批量收集模式
+============================================================
+📅 目标周次: current
+
+
+============================================================
+📚 正在收集: 🤖 AI最新资讯
+============================================================
+📚 知识库: 🤖 AI最新资讯
+📅 目标周次: 2026-W12 (第12周)
+正在收集 AI最新资讯 第12期内容...
+搜索关键词: OpenAI Anthropic Google AI latest news, AI人工智能 最新动态 GPT Claude
+  📅 目标日期: 2026-03-18 (前天或昨天发布的内容)
+  目标来源: qbitai.com, 36kr.com, huxiu.com, ifanr.com, sspai.com...
+  搜索 [qbitai.com]: OpenAI GPT-5 GPT-4 ChatGPT 最新发...
+  搜索 [qbitai.com]: Claude Anthropic 新功能 更新...
+  搜索 [qbitai.com]: Google Gemini DeepMind AI 2026...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode bytes in position 65594-65595: unexpected end of data
+  搜索 [36kr.com]: OpenAI GPT-5 GPT-4 ChatGPT 最新发...
+  搜索 [36kr.com]: Claude Anthropic 新功能 更新...
+  搜索 [36kr.com]: Google Gemini DeepMind AI 2026...
+  搜索 [huxiu.com]: OpenAI GPT-5 GPT-4 ChatGPT 最新发...
+  搜索 [huxiu.com]: Claude Anthropic 新功能 更新...
+  搜索 [huxiu.com]: Google Gemini DeepMind AI 2026...
+  搜索 [ifanr.com]: OpenAI GPT-5 GPT-4 ChatGPT 最新发...
+  搜索 [ifanr.com]: Claude Anthropic 新功能 更新...
+  搜索 [ifanr.com]: Google Gemini DeepMind AI 2026...
+  搜索 [sspai.com]: OpenAI GPT-5 GPT-4 ChatGPT 最新发...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode bytes in position 65603-65604: unexpected end of data
+  搜索 [sspai.com]: Claude Anthropic 新功能 更新...
+  搜索 [sspai.com]: Google Gemini DeepMind AI 2026...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode bytes in position 65594-65595: unexpected end of data
+  从指定来源获取内容较少，进行通用搜索...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode byte 0xe7 in position 65598: unexpected end of data
+  ⚠️ 未搜索到任何内容
+  💡 提示: 可以手动添加文章或检查搜索配置
+     配置文件: skills/content-collector/config/sources.yaml
+✅ 收集到 0 条内容
+⚠️ 未收集到内容，请检查搜索配置或手动添加内容
+✅ 周刊已保存: /workspace/projects/workspace/memory/ai-content/weekly/weekly-2026-W12.md
+
+📊 内容统计:
+
+
+============================================================
+📚 正在收集: 🎮 游戏开发
+============================================================
+📚 知识库: 🎮 游戏开发
+📅 目标周次: 2026-W12 (第12周)
+正在收集 游戏开发 第12期内容...
+搜索关键词: Unity Unreal game development news, 游戏开发 Unity 独立游戏 最新动态
+  📅 目标日期: 2026-03-18 (前天或昨天发布的内容)
+  目标来源: youxiputao.com, sspai.com, zhihu.com, gcores.com, indienova.com...
+  搜索 [youxiputao.com]: Unity 2026 新功能 更新 教程...
+  搜索 [youxiputao.com]: Unreal Engine 5 UE5 虚幻引擎...
+  搜索 [youxiputao.com]: Godot 引擎 独立游戏 开发...
+  搜索 [sspai.com]: Unity 2026 新功能 更新 教程...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode bytes in position 65598-65599: unexpected end of data
+  搜索 [sspai.com]: Unreal Engine 5 UE5 虚幻引擎...
+  搜索 [sspai.com]: Godot 引擎 独立游戏 开发...
+  搜索 [zhihu.com]: Unity 2026 新功能 更新 教程...
+  搜索 [zhihu.com]: Unreal Engine 5 UE5 虚幻引擎...
+  搜索 [zhihu.com]: Godot 引擎 独立游戏 开发...
+  搜索 [gcores.com]: Unity 2026 新功能 更新 教程...
+  搜索 [gcores.com]: Unreal Engine 5 UE5 虚幻引擎...
+  搜索 [gcores.com]: Godot 引擎 独立游戏 开发...
+  从指定来源获取内容较少，进行通用搜索...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode bytes in position 65598-65599: unexpected end of data
+  ⚠️ 未搜索到任何内容
+  💡 提示: 可以手动添加文章或检查搜索配置
+✅ 收集到 0 条内容
+⚠️ 未收集到内容，请检查搜索配置或手动添加内容
+✅ 周刊已保存: /workspace/projects/workspace/memory/game-content/weekly/game-weekly-2026-W12.md
+
+📊 内容统计:
+
+
+============================================================
+📚 正在收集: 🌱 健康生活
+============================================================
+📚 知识库: 🌱 健康生活
+📅 目标周次: 2026-W12 (第12周)
+正在收集 健康生活 第12期内容...
+搜索关键词: 健康 运动 饮食 生活妙招, fitness nutrition mental health tips
+  📅 目标日期: 2026-03-18 (前天或昨天发布的内容)
+  目标来源: dxy.com, healthtimes.cn, guokr.com, lifetimes.cn, sspai.com...
+  搜索 [dxy.com]: 运动健身 锻炼方法 增肌减脂...
+  搜索 [dxy.com]: 跑步 瑜伽 游泳 健身计划...
+  搜索 [dxy.com]: HIIT 有氧运动 力量训练...
+  搜索 [healthtimes.cn]: 运动健身 锻炼方法 增肌减脂...
+  搜索 [healthtimes.cn]: 跑步 瑜伽 游泳 健身计划...
+  搜索 [healthtimes.cn]: HIIT 有氧运动 力量训练...
+  搜索 [guokr.com]: 运动健身 锻炼方法 增肌减脂...
+  搜索 [guokr.com]: 跑步 瑜伽 游泳 健身计划...
+  搜索 [guokr.com]: HIIT 有氧运动 力量训练...
+  搜索 [lifetimes.cn]: 运动健身 锻炼方法 增肌减脂...
+  搜索 [lifetimes.cn]: 跑步 瑜伽 游泳 健身计划...
+  搜索 [lifetimes.cn]: HIIT 有氧运动 力量训练...
+  从指定来源获取内容较少，进行通用搜索...
+  ⚠️ 搜索失败: 'utf-8' codec can't decode byte 0xe8 in position 65603: unexpected end of data
+  ⚠️ 搜索失败: 'utf-8' codec can't decode byte 0xe8 in position 65598: unexpected end of data
+  ⚠️ 未搜索到任何内容
+  💡 提示: 可以手动添加文章或检查搜索配置
+✅ 收集到 0 条内容
+⚠️ 未收集到内容，请检查搜索配置或手动添加内容
+✅ 周刊已保存: /workspace/projects/workspace/memory/health-content/weekly/health-weekly-2026-W12.md
+
+📊 内容统计:
+
+
+============================================================
+📊 收集完成汇总
+============================================================
+✅ 🤖 AI最新资讯: success
+✅ 🎮 游戏开发: success
+✅ 🌱 健康生活: success
+
+总计: 3/3 个知识库收集成功
+
+💡 提示: 使用 sync_feishu.py 同步到飞书知识库
+
+
+============================================================
+🔄 步骤2: 内容分类（已在收集时完成）
+============================================================
+✅ 内容已按模块分类
+  - 🤖 AI: 资讯/工具/研究/案例
+  - 🎮 游戏: 引擎/设计/技术/美术/音频/独游
+  - 🌱 健康: 运动/饮食/心理/睡眠/医疗/妙招
+
+============================================================
+🔄 步骤3: 本地归档（已在收集时完成）
+============================================================
+✅ 周刊已保存到 memory/ 目录
+  - ai-content/weekly/weekly-*.md
+  - game-content/weekly/game-weekly-*.md
+  - health-content/weekly/health-weekly-*.md
+
+============================================================
+🔄 步骤4: 同步到飞书知识库
+============================================================
+============================================================
+🔄 统一内容收集器 - 飞书同步
+============================================================
+📅 目标周次: 2026-W12 (第12周)
+
+
+============================================================
+📚 同步知识库: 🤖 AI最新资讯
+🆔 Space ID: 7616519632920251572
+============================================================
+📄 读取周刊: /workspace/projects/workspace/memory/ai-content/weekly/weekly-2026-W12.md
+📊 内容长度: 220 字符
+
+📁 创建层级结构...
+
+❌ AI最新资讯 同步失败
+   错误: 创建年度节点失败: 获取节点失败: [Errno 2] No such file or directory: 'feishu_wiki'
+
+============================================================
+📚 同步知识库: 🎮 游戏开发
+🆔 Space ID: 7616735513310924004
+============================================================
+📄 读取周刊: /workspace/projects/workspace/memory/game-content/weekly/game-weekly-2026-W12.md
+📊 内容长度: 218 字符
+
+📁 创建层级结构...
+
+❌ 游戏开发 同步失败
+   错误: 创建年度节点失败: 获取节点失败: [Errno 2] No such file or directory: 'feishu_wiki'
+
+============================================================
+📚 同步知识库: 🌱 健康生活
+🆔 Space ID: 7616737910330510558
+============================================================
+📄 读取周刊: /workspace/projects/workspace/memory/health-content/weekly/health-weekly-2026-W12.md
+📊 内容长度: 218 字符
+
+📁 创建层级结构...
+
+❌ 健康生活 同步失败
+   错误: 创建年度节点失败: 获取节点失败: [Errno 2] No such file or directory: 'feishu_wiki'
+
+============================================================
+📊 同步完成汇总
+============================================================
+❌ 🤖 AI最新资讯
+❌ 🎮 游戏开发
+❌ 🌱 健康生活
+
+总计: 0/3 个知识库同步成功
+
+============================================================
+📝 操作日志模板（请复制到 memory/YYYY-MM-DD.md）
+============================================================
+
+## 内容收集与同步
+时间: 2026-03-19 08:20
+
+### 同步状态
+| 知识库 | 周刊期数 | Wiki节点 | 状态 |
+|--------|----------|----------|------|
+| 🤖 AI最新资讯 | 第12期 | `N/A` | ❌ 失败 |
+| 🎮 游戏开发 | 第12期 | `N/A` | ❌ 失败 |
+| 🌱 健康生活 | 第12期 | `N/A` | ❌ 失败 |
+
+### 本地备份
+- `memory/ai-content/weekly/weekly-2026-W12.md`
+- `memory/game-content/weekly/game-weekly-2026-W12.md`
+- `memory/health-content/weekly/health-weekly-2026-W12.md`
+
+❌ 失败: 
+
+⚠️ 同步步骤失败
+
+============================================================
+🔄 步骤5: 更新操作日志
+============================================================
+✅ 请手动记录到: /workspace/projects/workspace/memory/2026-03-19.md
+
+日志模板:
+----------------------------------------
+## 内容收集与同步
+时间: 2026-03-19 08:20
+
+### 收集统计
+| 知识库 | 数量 | 分类分布 |
+|--------|------|----------|
+| 🤖 AI | XX条 | 资讯:X / 工具:X / 研究:X / 案例:X |
+| 🎮 游戏 | XX条 | 引擎:X / 技术:X / 设计:X / 美术:X / 音频:X / 独游:X |
+| 🌱 健康 | XX条 | 运动:X / 饮食:X / 心理:X / 睡眠:X / 医疗:X / 妙招:X |
+
+### 同步状态
+| 知识库 | 周刊期数 | Wiki节点 | 状态 |
+|--------|----------|----------|------|
+| 🤖 AI | 第X期 | `node_token` | ✅ 已同步 |
+| 🎮 游戏 | 第X期 | `node_token` | ✅ 已同步 |
+| 🌱 健康 | 第X期 | `node_token` | ✅ 已同步 |
+
+### 本地备份
+- `memory/ai-content/weekly/weekly-YYYY-WXX.md`
+- `memory/game-content/weekly/game-weekly-YYYY-WXX.md`
+- `memory/health-content/weekly/health-weekly-YYYY-WXX.md`
+----------------------------------------
+
+============================================================
+✅ 完整流程执行完毕
+============================================================
+⏱️  耗时: 170.1 秒
+
+📁 本地文件:
+  - memory/ai-content/weekly/
+  - memory/game-content/weekly/
+  - memory/health-content/weekly/
+
+📝 下一步:
+  1. 检查周刊内容质量
+  2. 手动编辑本周话题和精选内容
+  3. 记录操作日志到 memory/YYYY-MM-DD.md
+
+[2026-03-19T08:20:03.448796] 执行结束，返回码: 0
