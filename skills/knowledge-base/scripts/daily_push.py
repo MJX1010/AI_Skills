@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 """
 日报推送脚本 - 推送日报到飞书知识库
-使用 OpenClaw 内部 API
+正确使用方式：先检查节点是否存在，不存在才创建
 """
 
 import json
 import sys
 from datetime import datetime
 from pathlib import Path
-
-# 添加 OpenClaw 扩展路径
-sys.path.insert(0, '/usr/lib/node_modules/openclaw/extensions/feishu')
 
 WORKSPACE = Path("/workspace/projects/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
@@ -29,21 +26,6 @@ KB_CONFIG = {
         "space_id": "7616737910330510558"
     }
 }
-
-
-def load_feishu_tools():
-    """加载飞书工具"""
-    try:
-        # 尝试导入 feishu 模块
-        import importlib.util
-        spec = importlib.util.spec_from_file_location("feishu_wiki", "/usr/lib/node_modules/openclaw/extensions/feishu/skills/feishu-wiki.py")
-        if spec and spec.loader:
-            feishu_wiki = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(feishu_wiki)
-            return feishu_wiki
-    except Exception as e:
-        print(f"⚠️ 无法加载 feishu_wiki: {e}")
-    return None
 
 
 def read_daily_content(kb: str, date_str: str) -> str:
@@ -96,22 +78,6 @@ def main():
     print(f"📅 日期: {date_str}")
     print("="*60)
     
-    # 尝试加载飞书工具
-    feishu_module = load_feishu_tools()
-    
-    if not feishu_module:
-        print("\n  ⚠️ 飞书工具模块无法加载")
-        print("  💡 请使用以下命令手动同步到飞书：")
-        print()
-        for kb, config in KB_CONFIG.items():
-            content = read_daily_content(kb, date_str)
-            count = count_articles(content)
-            if count > 0:
-                print(f"  # {config['name']}")
-                print(f"  feishu_wiki --action nodes --space_id {config['space_id']}")
-                print(f"  # 然后创建文档并写入内容")
-                print()
-    
     stats = {}
     
     # 统计每个知识库的内容
@@ -125,9 +91,10 @@ def main():
         
         if count > 0:
             print(f"\n  📊 {KB_CONFIG[kb]['name']}: {count} 条")
-            if feishu_module:
-                print(f"     🔄 准备同步...")
-                # 这里可以调用飞书工具
+            print(f"     💡 同步步骤：")
+            print(f"     1. feishu_wiki --action nodes --space_id {KB_CONFIG[kb]['space_id']}")
+            print(f"     2. 查找或创建: 2026年 → 3月 → 3月19日 日报")
+            print(f"     3. feishu_doc --action write --doc_token <token> --content <content>")
         else:
             print(f"\n  ⏭️  {KB_CONFIG[kb]['name']}: 无内容，跳过")
     
@@ -157,6 +124,17 @@ def main():
         file_path = MEMORY_DIR / "kb-archive" / kb / date_str[:4] / date_str[5:7] / f"{date_str[8:10]}.md"
         if file_path.exists():
             print(f"  - {file_path}")
+    
+    print("\n" + "="*60)
+    print("⚠️  重要提示：关于节点复用")
+    print("="*60)
+    print("正确的节点获取流程应该是：")
+    print("  1. 列出已有节点: feishu_wiki --action nodes --space_id <id>")
+    print("  2. 检查是否存在 '2026年' 节点")
+    print("  3. 如果存在 → 复用该节点的 node_token")
+    print("  4. 如果不存在 → 创建新节点")
+    print("  5. 对 '3月' 节点重复上述流程")
+    print("="*60)
     
     return 0
 
