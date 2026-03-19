@@ -271,5 +271,90 @@ python skills/knowledge-base/scripts/cleanup.py
 
 ---
 
-*整理完成时间：2026-03-19 08:50*
+## 第二阶段：统一 link-collector 到 knowledge-base
+时间：2026-03-19 08:55
+
+### 合并内容
+将 `link-collector` skill 的功能合并到 `knowledge-base`：
+
+**新增的脚本**：
+| 脚本 | 功能 | 来源 |
+|------|------|------|
+| `collect_link.py` | 统一链接收集（自动分类） | 新建 |
+| `archive_wechat.py` | 微信文章归档 | link-collector |
+| `archive_bilibili.py` | B站视频归档 | link-collector |
+| `fetch_wechat.py` | 微信内容获取 | link-collector |
+| `fetch_bilibili.py` | B站内容获取 | link-collector |
+
+**链接收集工作流**：
+```
+用户发送链接
+    ↓
+自动分类（AI/游戏/健康/其他）
+    ↓
+获取内容 → 保存到对应位置
+    ↓
+标记已收集（防重复）
+```
+
+**分类规则**：
+- AI关键词 → 🤖 AI最新资讯
+- 游戏关键词 → 🎮 游戏开发
+- 健康关键词 → 🌱 健康生活
+- 其他 → 🔗 本地链接收藏
+
+### 删除的 skill
+- ✅ `skills/link-collector/` - 功能已合并到 knowledge-base
+
+---
+
+## 最终工作区结构
+
+```
+workspace/
+├── RULES.md                    # 统一规则
+├── HEARTBEAT.md                # 心跳任务
+├── skills/                     # 精简至7个skills
+│   ├── knowledge-base/         # ⭐ 统一知识库管理
+│   │   ├── SKILL.md
+│   │   └── scripts/
+│   │       ├── daily_collect.py      # 日报收集
+│   │       ├── daily_push.py         # 日报推送
+│   │       ├── weekly_collect.py     # 周报收集
+│   │       ├── weekly_push.py        # 周报推送
+│   │       ├── collect_link.py       # ⭐ 链接收集（新增）
+│   │       ├── archive_wechat.py     # 微信归档
+│   │       ├── archive_bilibili.py   # B站归档
+│   │       ├── cleanup.py            # 内容清理
+│   │       └── check_status.py       # 状态检查
+│   ├── coze-web-search/        # 网络搜索
+│   ├── coze-web-fetch/         # 网页提取
+│   ├── coze-image-gen/         # 图片生成
+│   ├── coze-voice-gen/         # 语音生成
+│   ├── openclaw-updater/       # OpenClaw更新
+│   ├── skill-creator/          # 创建skills
+│   └── skill-hub/              # Skill管理
+├── scripts/                    # 只剩3个脚本
+│   ├── track-usage.js
+│   ├── usage.js
+│   └── update-usage.sh
+├── config/
+└── memory/
+```
+
+---
+
+## Git 提交记录（完整）
+
+```
+48f6760 refactor: 统一知识库管理，整合所有脚本和规则
+c05a4fc docs: 添加工作区整理记录
+3fbc7fa chore: 删除旧脚本和废弃 skills
+3a05312 docs: 更新整理记录，添加删除详情
+5cc5307 refactor: 统一 link-collector 到 knowledge-base
+```
+
+---
+
+*整理完成时间：2026-03-19 08:58*
 *Git 状态：已推送至远程仓库*

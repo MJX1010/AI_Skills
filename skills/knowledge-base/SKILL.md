@@ -89,18 +89,27 @@ python skills/knowledge-base/scripts/collect_link.py --url "https://..." --title
 | 健康/生活 | 🌱 健康生活 知识库 |
 | 其他技术 | 🔗 本地链接收藏 |
 
-### 4️⃣ 微信文章归档
+### 4️⃣ 统一内容归档（推荐）⭐
 ```bash
-# 归档微信文章
-python skills/knowledge-base/scripts/archive_wechat.py --url "https://mp.weixin.qq.com/s/..."
+# 统一归档（自动识别微信/B站/通用链接）
+python skills/knowledge-base/scripts/archive_content.py --url "..."
 
-# 自动分类
-python skills/knowledge-base/scripts/archive_wechat.py --url "..." --auto-classify
+# 带标题
+python skills/knowledge-base/scripts/archive_content.py --url "..." --title "标题"
 ```
 
-### 5️⃣ B站视频归档
+**特点**：
+- ✅ 自动识别链接类型（微信/B站/网页）
+- ✅ 自动分类到 AI/游戏/健康 知识库
+- ✅ 和日报同一层级存储（年/月/日）
+- ✅ 自动去重
+
+### 5️⃣ 单独归档（备用）
 ```bash
-# 归档B站视频
+# 仅微信文章
+python skills/knowledge-base/scripts/archive_wechat.py --url "https://mp.weixin.qq.com/s/..."
+
+# 仅B站视频
 python skills/knowledge-base/scripts/archive_bilibili.py --url "https://b23.tv/..."
 ```
 
@@ -127,9 +136,11 @@ python skills/knowledge-base/scripts/check_status.py
 | `daily_pipeline.py` | 日报完整流程 | 定时任务 |
 | `weekly_collect.py` | 收集本周内容 | 周五定时 |
 | `weekly_push.py` | 推送周报到飞书 | 周六定时 |
-| **⭐ `collect_link.py`** | **收集用户链接** | **用户发送链接时** |
-| `archive_wechat.py` | 归档微信文章 | 收到微信文章 |
-| `archive_bilibili.py` | 归档B站视频 | 收到B站链接 |
+| `weekly_pipeline.py` | 周报完整流程 | 周五定时 |
+| `collect_link.py` | 收集通用链接 | 用户发送链接 |
+| **⭐ `archive_content.py`** | **统一归档（微信/B站/通用）** | **收到任何链接时** |
+| `archive_wechat.py` | 仅微信文章（备用） | 备用 |
+| `archive_bilibili.py` | 仅B站视频（备用） | 备用 |
 | `cleanup.py` | 清理过期内容 | 每天定时 |
 | `git_sync.py` | Git同步 | 每天定时 |
 | `check_status.py` | 查看任务状态 | 按需 |
