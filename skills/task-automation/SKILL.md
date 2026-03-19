@@ -12,15 +12,15 @@ description: |
 
 ## 📋 任务清单
 
-| 任务名称 | 频率 | 执行时间 | 优先级 | 脚本路径 |
-|----------|------|----------|--------|----------|
-| **Heartbeat** | 每4小时 | - | P0 | `HEARTBEAT.md` |
-| **周刊收集** | 每周 | 周五 18:00 | P1 | `scripts/weekly_collection.py` |
-| **知识库日报** | 每天 | 08:00 | P2 | `scripts/daily_digest.py` |
-| **周刊推送** | 每周 | 周六 09:00 | P2 | `scripts/weekly_push.py` |
-| **Skills维护** | 每周 | 周日 10:00 | P3 | `scripts/skills_maintenance.py` |
-| **OpenClaw更新** | 每周 | 周日 12:00 | P3 | `scripts/openclaw_update.py` |
-| **Git同步** | 每天 | 22:00 | P2 | `scripts/git_sync.py` |
+| 任务名称 | 频率 | 执行时间 | 优先级 | 脚本路径 | 功能说明 |
+|----------|------|----------|--------|----------|----------|
+| **Heartbeat** | 每4小时 | - | P0 | `HEARTBEAT.md` | 系统健康检查 |
+| **内容收集** | 每周 | 周五 18:00 | P1 | `scripts/collect_all.py` | 收集三个知识库内容 |
+| **知识库日报** | 每天 | 08:00 | P2 | `scripts/daily_digest.py` | 收集当日内容并推送到飞书对话 |
+| **知识库周报** | 每周 | 周六 09:00 | P2 | `scripts/weekly_push.py` | 汇总本周内容并推送到飞书对话 |
+| **Skills维护** | 每周 | 周日 10:00 | P3 | `scripts/skills_maintenance.py` | 检查Skills更新和完整性 |
+| **OpenClaw更新** | 每周 | 周日 12:00 | P3 | `scripts/openclaw_update.py` | 检查OpenClaw版本更新 |
+| **Git同步** | 每天 | 22:00 | P2 | `scripts/git_sync.py` | 自动提交并推送Git更改 |
 
 ---
 
@@ -306,6 +306,31 @@ tail -100 memory/task-automation/logs/weekly_collection.log
 # 查看所有错误日志
 grep "ERROR" memory/task-automation/logs/*.log
 ```
+
+---
+
+## 📁 知识库层级结构
+
+所有内容（日报和周报）统一按「年/月」层级组织：
+
+```
+知识库首页
+├── 📅 2026年
+│   ├── 📅 3月
+│   │   ├── 📄 3月17日 日报      ← 日报
+│   │   ├── 📄 3月18日 日报      ← 日报
+│   │   ├── 📄 3月19日 日报      ← 日报
+│   │   ├── 📄 第12期 - 03.17-03.23 周报  ← 周报（与日报同一层级）
+│   │   └── 📄 ...
+│   └── 📅 4月
+└── 📅 2025年
+```
+
+**设计原则：**
+- ✅ 日报和周报放在同一「年/月」层级下
+- ✅ 不单独为周报创建「周」层级
+- ✅ 日报命名：`MM月DD日 日报`
+- ✅ 周报命名：`第X期 - MM.DD-MM.DD 周报`
 
 ---
 

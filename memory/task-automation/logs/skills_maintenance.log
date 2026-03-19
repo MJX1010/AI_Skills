@@ -7,3 +7,100 @@
 python: can't open file '/workspace/projects/workspace/skills/skill-hub/scripts/check_updates.py': [Errno 2] No such file or directory
 
 [2026-03-19T08:20:10.455415] 执行结束，返回码: 2
+
+============================================================
+[2026-03-19T08:28:49.625661] 开始执行: Skills维护
+============================================================
+
+[STDERR]
+python: can't open file '/workspace/projects/workspace/skills/skill-hub/scripts/check_updates.py': [Errno 2] No such file or directory
+
+[2026-03-19T08:28:49.651858] 执行结束，返回码: 2
+
+============================================================
+[2026-03-19T08:28:59.864116] 开始执行: Skills维护
+============================================================
+
+[STDERR]
+python: can't open file '/workspace/projects/workspace/skills/skill-hub/scripts/check_updates.py': [Errno 2] No such file or directory
+
+[2026-03-19T08:28:59.892362] 执行结束，返回码: 2
+
+============================================================
+[2026-03-19T08:29:13.392361] 开始执行: Skills维护
+============================================================
+🛠️  Skills 维护
+
+============================================================
+
+🔍 检查 Skills 更新...
+
+📦 已安装 13 个 Skills:
+
+  • ai-content-collector
+  • content-collector
+  • coze-image-gen
+  • coze-voice-gen
+  • coze-web-fetch
+  • coze-web-search
+  • game-content-collector
+  • health-content-collector
+  • link-collector
+  • openclaw-updater
+  • skill-creator
+  • skill-hub
+  • task-automation
+
+============================================================
+⚠️  自动更新检查需要配置远程源
+============================================================
+
+目前 Skills 更新需要手动管理：
+
+1. **检查 GitHub 更新**
+   - 访问 https://github.com/openclaw/openclaw
+   - 查看 releases 页面
+
+2. **查看本地 Skills**
+   - 直接查看 skills/ 目录
+   - 检查 SKILL.md 更新
+
+3. **手动更新 Skill**
+   - 编辑 SKILL.md
+   - 更新脚本文件
+
+建议配置:
+- 为每个 skill 添加版本信息到 SKILL.md
+- 记录上次检查时间到 memory/skills-state.json
+
+已安装 Skills:
+
+  ✅ ai-content-collector
+  ✅ content-collector
+  ✅ coze-image-gen
+  ✅ coze-voice-gen
+  ✅ coze-web-fetch
+  ✅ coze-web-search
+  ✅ game-content-collector
+  ✅ health-content-collector
+  ✅ link-collector
+  ✅ openclaw-updater
+  ✅ skill-creator
+  ✅ skill-hub
+  ✅ task-automation
+
+✅ 检查完成，已记录到 /workspace/projects/workspace/memory/skills-state.json
+
+🔍 验证 Skill 完整性...
+
+✅ 所有 Skills 完整性正常
+
+🧹 清理旧日志...
+  /workspace/projects/workspace/memory/task-automation/logs: 6 个日志文件
+  共发现 6 个日志文件
+
+============================================================
+✅ Skills 维护完成!
+============================================================
+
+[2026-03-19T08:29:13.450898] 执行结束，返回码: 0

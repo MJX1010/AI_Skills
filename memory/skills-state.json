@@ -1,0 +1,19 @@
+{
+  "last_check": "2026-03-19T08:29:13.441107",
+  "skills_count": 13,
+  "skills_list": [
+    "ai-content-collector",
+    "content-collector",
+    "coze-image-gen",
+    "coze-voice-gen",
+    "coze-web-fetch",
+    "coze-web-search",
+    "game-content-collector",
+    "health-content-collector",
+    "link-collector",
+    "openclaw-updater",
+    "skill-creator",
+    "skill-hub",
+    "task-automation"
+  ]
+}

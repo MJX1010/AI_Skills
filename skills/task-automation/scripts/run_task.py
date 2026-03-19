@@ -32,8 +32,8 @@ TASKS = {
     },
     "skills_maintenance": {
         "name": "Skills维护",
-        "script": "skills/skill-hub/scripts/check_updates.py",
-        "args": ["--all"],
+        "script": "skills/task-automation/scripts/skills_maintenance.py",
+        "args": [],
         "description": "检查并更新Skills"
     },
     "openclaw_update": {
