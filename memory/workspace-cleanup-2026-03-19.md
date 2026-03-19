@@ -356,5 +356,105 @@ c05a4fc docs: 添加工作区整理记录
 
 ---
 
-*整理完成时间：2026-03-19 08:58*
+## 第三阶段：统一微信/B站归档
+时间：2026-03-19 09:15
+
+### 问题
+- 微信文章和B站视频归档是单独的脚本
+- 没有统一处理所有类型内容的入口
+- 归档后的位置和日报不在同一层级
+
+### 解决方案
+创建统一的 `archive_content.py` 脚本：
+
+**特点**：
+- ✅ 自动识别链接类型（微信/B站/网页）
+- ✅ 自动分类到 AI/游戏/健康 知识库
+- ✅ 和日报**同一层级**存储（年/月/日）
+- ✅ 自动去重
+
+**使用方式**：
+```bash
+# 统一归档（自动识别类型并分类）
+python skills/knowledge-base/scripts/archive_content.py --url "..."
+```
+
+**归档流程**：
+```
+收到链接（微信/B站/网页）
+    ↓
+自动识别类型
+    ↓
+提取标题和内容
+    ↓
+自动分类（AI/游戏/健康/其他）
+    ↓
+保存到对应知识库（年/月/日.md）
+    ↓
+和日报内容在同一文件
+```
+
+**存储位置**（和日报同一层级）：
+```
+memory/kb-archive/ai-latest-news/2026/03/19.md
+├── 日报自动收集的内容
+├── 用户发送的微信文章（自动分类为AI）
+├── 用户发送的B站视频（自动分类为AI）
+└── 其他链接
+```
+
+### 新增的脚本
+| 脚本 | 功能 |
+|------|------|
+| `archive_content.py` ⭐ | 统一归档（微信/B站/通用） |
+| `weekly_push.py` | 推送周报到飞书 |
+| `weekly_pipeline.py` | 周报完整流程 |
+| `git_sync.py` | Git自动同步 |
+
+### 更新的脚本
+- `SKILL.md` - 更新文档说明
+
+### Git 提交
+```
+a5a756b feat: 统一内容归档脚本 archive_content.py
+```
+
+---
+
+## 最终 knowledge-base skill 能力（15个脚本）
+
+| 类别 | 脚本 | 功能 |
+|------|------|------|
+| **日报** | `daily_collect.py` | 收集最近2天内容 |
+| | `daily_push.py` | 推送日报到飞书 |
+| | `daily_pipeline.py` | 日报完整流程 |
+| **周报** | `weekly_collect.py` | 收集本周内容 |
+| | `weekly_push.py` | 推送周报到飞书 |
+| | `weekly_pipeline.py` | 周报完整流程 |
+| **链接** | `collect_link.py` | 通用链接收集 |
+| | **⭐ `archive_content.py`** | **统一归档（微信/B站/通用）** |
+| | `archive_wechat.py` | 仅微信（备用） |
+| | `archive_bilibili.py` | 仅B站（备用） |
+| **维护** | `cleanup.py` | 清理过期内容 |
+| | `git_sync.py` | Git同步 |
+| | `check_status.py` | 查看状态 |
+| **内部** | `fetch_wechat.py` | 微信内容获取 |
+| | `fetch_bilibili.py` | B站内容获取 |
+
+---
+
+## 完整 Git 提交记录
+
+```
+48f6760 refactor: 统一知识库管理，整合所有脚本和规则
+c05a4fc docs: 添加工作区整理记录
+3fbc7fa chore: 删除旧脚本和废弃 skills
+3a05312 docs: 更新整理记录，添加删除详情
+5cc5307 refactor: 统一 link-collector 到 knowledge-base
+a5a756b feat: 统一内容归档脚本 archive_content.py
+```
+
+---
+
+*整理完成时间：2026-03-19 09:15*
 *Git 状态：已推送至远程仓库*
