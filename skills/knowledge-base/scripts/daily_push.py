@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
 日报推送脚本 - 推送日报到飞书知识库
-使用 OpenClaw 命令行工具
+使用 OpenClaw Gateway API
 """
 
-import argparse
 import json
-import subprocess
+import urllib.request
+import urllib.error
 from datetime import datetime
 from pathlib import Path
 
@@ -28,35 +28,30 @@ KB_CONFIG = {
     }
 }
 
+GATEWAY_URL = "http://127.0.0.1:5000"
 
-def run_openclaw_tool(tool: str, **kwargs) -> dict:
-    """运行 OpenClaw 工具"""
-    cmd = ["openclaw", tool]
-    for key, value in kwargs.items():
-        cmd.extend([f"--{key}", str(value)])
+
+def call_gateway(tool: str, action: str, **params) -> dict:
+    """调用 Gateway API"""
+    url = f"{GATEWAY_URL}/api/tools/{tool}"
+    
+    payload = {
+        "action": action,
+        "params": params
+    }
+    
+    headers = {
+        "Content-Type": "application/json"
+    }
     
     try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=60
-        )
+        data = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(url, data=data, headers=headers, method="POST")
         
-        if result.returncode == 0:
-            # 尝试解析 JSON 输出
-            try:
-                # 找到 JSON 部分（通常在输出末尾）
-                lines = result.stdout.strip().split("\n")
-                for line in reversed(lines):
-                    line = line.strip()
-                    if line and line.startswith("{"):
-                        return json.loads(line)
-                return {"success": True, "output": result.stdout}
-            except:
-                return {"success": True, "output": result.stdout}
-        else:
-            return {"success": False, "error": result.stderr}
+        with urllib.request.urlopen(req, timeout=30) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        return {"success": False, "error": f"HTTP {e.code}: {e.read().decode('utf-8')}"}
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -81,8 +76,8 @@ def count_articles(content: str) -> int:
 
 def get_or_create_node(space_id: str, parent_token: str, title: str) -> str:
     """获取或创建节点"""
-    # 首先尝试列出节点查找已有节点
-    result = run_openclaw_tool("feishu_wiki", action="nodes", space_id=space_id)
+    # 首先尝试列出节点
+    result = call_gateway("feishu_wiki", "nodes", space_id=space_id)
     
     if result.get("success") and "nodes" in result:
         for node in result["nodes"]:
@@ -91,9 +86,9 @@ def get_or_create_node(space_id: str, parent_token: str, title: str) -> str:
                 return node.get("node_token")
     
     # 创建新节点
-    result = run_openclaw_tool(
+    result = call_gateway(
         "feishu_wiki",
-        action="create",
+        "create",
         space_id=space_id,
         parent_node_token=parent_token,
         title=title,
@@ -119,7 +114,7 @@ def sync_to_feishu(kb: str, content: str, date_str: str) -> bool:
     print(f"\n  📤 同步 {config['name']} 到飞书...")
     
     # 1. 获取知识库首页
-    result = run_openclaw_tool("feishu_wiki", action="nodes", space_id=config['space_id'])
+    result = call_gateway("feishu_wiki", "nodes", space_id=config['space_id'])
     if not result.get("success") or "nodes" not in result or not result["nodes"]:
         print(f"    ⚠️ 无法获取知识库节点: {result.get('error', '未知错误')}")
         return False
@@ -139,9 +134,9 @@ def sync_to_feishu(kb: str, content: str, date_str: str) -> bool:
         return False
     
     # 4. 创建日报文档
-    result = run_openclaw_tool(
+    result = call_gateway(
         "feishu_wiki",
-        action="create",
+        "create",
         space_id=config['space_id'],
         parent_node_token=month_node,
         title=doc_title,
@@ -150,7 +145,7 @@ def sync_to_feishu(kb: str, content: str, date_str: str) -> bool:
     
     if not result.get("success"):
         # 可能是已存在，尝试查找
-        result = run_openclaw_tool("feishu_wiki", action="nodes", space_id=config['space_id'])
+        result = call_gateway("feishu_wiki", "nodes", space_id=config['space_id'])
         if result.get("success") and "nodes" in result:
             for node in result["nodes"]:
                 if node.get("title") == doc_title:
@@ -168,9 +163,9 @@ def sync_to_feishu(kb: str, content: str, date_str: str) -> bool:
         print(f"    📄 创建新文档: {doc_title}")
     
     # 5. 写入内容
-    result = run_openclaw_tool(
+    result = call_gateway(
         "feishu_doc",
-        action="write",
+        "write",
         doc_token=doc_token,
         content=content
     )
@@ -213,6 +208,7 @@ def main():
     print("📤 日报推送")
     print("="*60)
     print(f"📅 日期: {date_str}")
+    print(f"🌐 Gateway: {GATEWAY_URL}")
     print("="*60)
     
     stats = {}
@@ -256,4 +252,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    sys.exit(main())
