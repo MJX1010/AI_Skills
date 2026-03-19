@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 微信文章归档助手
-一键抓取微信文章并归档到层级结构
+一键抓取微信文章并归档到知识库
 """
 
 import argparse
@@ -11,17 +11,69 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# 导入归档管理器
-sys.path.insert(0, str(Path(__file__).parent))
-from archive_manager import LinkArchiveManager
+# 配置
+WORKSPACE = Path("/workspace/projects/workspace")
+MEMORY_DIR = WORKSPACE / "memory"
+STATE_DIR = MEMORY_DIR / "state"
+COLLECTED_URLS_FILE = STATE_DIR / "collected-urls.json"
+
+# 知识库配置
+KB_CONFIG = {
+    "ai-latest-news": {
+        "name": "🤖 AI最新资讯",
+        "space_id": "7616519632920251572",
+        "keywords": ["ai", "人工智能", "gpt", "claude", "openai", "anthropic", "llm", "大模型", "机器学习"]
+    },
+    "game-development": {
+        "name": "🎮 游戏开发",
+        "space_id": "7616735513310924004",
+        "keywords": ["game", "游戏", "unity", "unreal", "godot", "indie", "gamedev"]
+    },
+    "healthy-living": {
+        "name": "🌱 健康生活",
+        "space_id": "7616737910330510558",
+        "keywords": ["健康", "health", "健身", "运动", "饮食", "心理", "生活"]
+    }
+}
+
+
+def ensure_dirs():
+    """确保目录存在"""
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def load_collected_urls():
+    """加载已收集的URL"""
+    if COLLECTED_URLS_FILE.exists():
+        return json.loads(COLLECTED_URLS_FILE.read_text())
+    return {"urls": {}}
+
+
+def save_collected_urls(data):
+    """保存已收集的URL"""
+    COLLECTED_URLS_FILE.write_text(json.dumps(data, indent=2))
+
+
+def is_url_collected(url: str) -> bool:
+    """检查URL是否已收集"""
+    data = load_collected_urls()
+    return url in data.get("urls", {})
+
+
+def mark_url_collected(url: str, kb: str, title: str):
+    """标记URL为已收集"""
+    data = load_collected_urls()
+    data["urls"][url] = {
+        "first_collected": datetime.now().isoformat(),
+        "kb": kb,
+        "title": title
+    }
+    save_collected_urls(data)
+
 
 def fetch_wechat_article(url: str, method: str = "playwright") -> dict:
-    """
-    调用 fetch_wechat.py 抓取文章
-    """
+    """调用 fetch_wechat.py 抓取文章"""
     fetch_script = Path(__file__).parent / "fetch_wechat.py"
-    
-    output_file = f"/tmp/wechat_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     
     try:
         result = subprocess.run(
@@ -29,8 +81,7 @@ def fetch_wechat_article(url: str, method: str = "playwright") -> dict:
                 "python3", str(fetch_script),
                 url,
                 "--method", method,
-                "--format", "json",
-                "--output", output_file
+                "--format", "markdown"
             ],
             capture_output=True,
             text=True,
@@ -41,142 +92,134 @@ def fetch_wechat_article(url: str, method: str = "playwright") -> dict:
             print(f"❌ 抓取失败: {result.stderr}")
             return None
         
-        # 读取结果
-        if Path(output_file).exists():
-            data = json.loads(Path(output_file).read_text(encoding='utf-8'))
-            return data
+        # 解析输出
+        output = result.stdout
+        lines = output.split("\n")
         
-        return None
+        title = ""
+        content = ""
+        author = ""
+        
+        for line in lines:
+            if line.startswith("标题:"):
+                title = line.replace("标题:", "").strip()
+            elif line.startswith("公众号:") or line.startswith("作者:"):
+                author = line.split(":", 1)[1].strip()
+        
+        if not title:
+            title = "微信文章"
+        
+        return {
+            "title": title,
+            "content": output,
+            "author": author,
+            "url": url
+        }
         
     except Exception as e:
         print(f"❌ 抓取异常: {e}")
         return None
 
-def classify_article(article: dict) -> str:
-    """
-    根据文章内容自动分类
-    """
-    from classify_links import classify_link
-    
-    url = article.get('source_url', '')
-    title = article.get('title', '')
-    content = article.get('content', '')
-    
-    kb_key, confidence, reason = classify_link(url, title, content)
-    
-    print(f"📊 分类结果: {kb_key} (置信度: {confidence:.2f})")
-    print(f"   原因: {reason}")
-    
-    return kb_key
 
-def archive_article(article: dict, category: str = None, 
-                   auto_classify: bool = False) -> Path:
-    """
-    归档微信文章
+def classify_content(title: str, content: str) -> tuple:
+    """分类内容到知识库"""
+    text = (title + " " + content).lower()
     
-    Args:
-        article: 文章数据
-        category: 指定分类（如不提供则使用 auto_classify）
-        auto_classify: 是否自动分类
-    """
-    manager = LinkArchiveManager()
+    scores = {}
+    for kb_key, config in KB_CONFIG.items():
+        score = sum(1 for kw in config["keywords"] if kw in text)
+        scores[kb_key] = score
     
-    # 确定分类
-    if auto_classify or category is None:
-        kb_key = classify_article(article)
-        # 映射到链接分类
-        category_map = {
-            "ai-latest-news": "wechat-articles",
-            "game-dev": "wechat-articles",
-            "healthy-living": "wechat-articles",
-            "link-collection": "wechat-articles"
-        }
-        category = category_map.get(kb_key, "wechat-articles")
+    best_kb = max(scores, key=scores.get)
+    best_score = scores[best_kb]
     
-    # 提取信息
-    url = article.get('source_url', '')
-    title = article.get('title', '无标题')
-    author = article.get('author', '')
-    publish_time = article.get('publish_time', '')
-    content = article.get('content', '')[:500]  # 摘要长度
+    if best_score > 0:
+        return best_kb, best_score
     
-    # 构建来源信息
-    source = author if author else "微信公众号"
-    if publish_time:
-        source += f" · {publish_time}"
+    return "link-collection", 0.3
+
+
+def save_to_kb(kb: str, title: str, content: str, url: str) -> Path:
+    """保存到知识库"""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    year = date_str[:4]
+    month = date_str[5:7]
+    day = date_str[8:10]
     
-    # 添加到归档
-    doc_path = manager.add_link(
-        category=category,
-        url=url,
-        title=title,
-        summary=content,
-        source=source,
-        tags=["微信文章", "公众号"]
-    )
+    if kb in KB_CONFIG:
+        kb_dir = MEMORY_DIR / "kb-archive" / kb / year / month
+        kb_name = KB_CONFIG[kb]["name"]
+    else:
+        kb_dir = MEMORY_DIR / "link-collection" / year / month
+        kb_name = "链接收藏"
     
-    return doc_path
+    kb_dir.mkdir(parents=True, exist_ok=True)
+    file_path = kb_dir / f"{day}.md"
+    
+    # 构建条目
+    entry = f"""
+### 📱 [{title}]({url})
+> 来源: 微信公众号 | 收集时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}
+
+---
+"""
+    
+    if file_path.exists():
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(entry)
+    else:
+        header = f"# {kb_name} - {date_str} 日报\n\n"
+        file_path.write_text(header + entry, encoding="utf-8")
+    
+    return file_path
+
 
 def main():
-    parser = argparse.ArgumentParser(description='微信文章归档助手')
-    parser.add_argument('--url', '-u', help='微信文章URL')
-    parser.add_argument('--file', '-f', help='已抓取的JSON文件路径')
-    parser.add_argument('--method', '-m', default='playwright', 
-                        choices=['requests', 'playwright', 'auto'],
-                        help='抓取方法')
-    parser.add_argument('--category', '-c', 
-                        choices=['user-links', 'self-collected', 'wechat-articles'],
-                        help='指定分类（不指定则自动分类）')
-    parser.add_argument('--auto-classify', '-a', action='store_true',
-                        help='自动根据内容分类')
+    parser = argparse.ArgumentParser(description="归档微信文章")
+    parser.add_argument("--url", "-u", required=True, help="微信文章URL")
+    parser.add_argument("--method", "-m", default="playwright", help="抓取方法")
+    parser.add_argument("--auto-classify", "-a", action="store_true", help="自动分类")
     
     args = parser.parse_args()
     
-    print("=" * 60)
-    print("微信文章归档助手")
-    print("=" * 60)
-    print()
+    print("\n" + "="*60)
+    print("📱 微信文章归档")
+    print("="*60)
     
-    # 获取文章数据
-    article = None
+    # 检查是否已收集
+    if is_url_collected(args.url):
+        print(f"\n⏭️  已收集，跳过: {args.url}")
+        return 0
     
-    if args.file:
-        # 从文件读取
-        print(f"📂 从文件读取: {args.file}")
-        article = json.loads(Path(args.file).read_text(encoding='utf-8'))
+    # 抓取文章
+    print(f"\n🔍 抓取文章: {args.url}")
+    article = fetch_wechat_article(args.url, args.method)
     
-    elif args.url:
-        # 抓取文章
-        print(f"🔗 抓取文章: {args.url}")
-        article = fetch_wechat_article(args.url, args.method)
-        
-        if not article:
-            print("❌ 抓取失败")
-            sys.exit(1)
+    if not article:
+        print("❌ 抓取失败")
+        return 1
     
+    print(f"📄 标题: {article['title']}")
+    print(f"✍️  作者: {article.get('author', '未知')}")
+    
+    # 分类
+    if args.auto_classify:
+        kb, confidence = classify_content(article['title'], article['content'])
+        print(f"\n📂 分类: {KB_CONFIG.get(kb, {}).get('name', kb)} (置信度: {confidence:.2f})")
     else:
-        print("❌ 请提供 --url 或 --file 参数")
-        sys.exit(1)
+        kb = "link-collection"
+        print(f"\n📂 分类: 链接收藏 (未启用自动分类)")
     
-    # 显示文章信息
-    print(f"\n📄 文章信息:")
-    print(f"   标题: {article.get('title', '无标题')}")
-    print(f"   公众号: {article.get('author', '未知')}")
-    print(f"   发布时间: {article.get('publish_time', '未知')}")
-    print(f"   内容长度: {article.get('content_length', 0)} 字符")
-    print()
+    # 保存
+    file_path = save_to_kb(kb, article['title'], article['content'], args.url)
+    print(f"\n✅ 已保存: {file_path}")
     
-    # 归档
-    print("📦 开始归档...")
-    doc_path = archive_article(
-        article,
-        category=args.category,
-        auto_classify=args.auto_classify
-    )
+    # 标记已收集
+    mark_url_collected(args.url, kb, article['title'])
     
-    print(f"\n✅ 归档完成!")
-    print(f"   文档路径: {doc_path}")
-    print(f"   知识库: 链接收藏 > 微信文章")
+    print("="*60 + "\n")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
