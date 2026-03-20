@@ -1,0 +1,18 @@
+{
+  "lastChecks": {
+    "memory": "2026-03-20T17:17:00+08:00",
+    "git": "2026-03-20T17:17:00+08:00",
+    "system": "2026-03-20T17:17:00+08:00",
+    "daily_collection": "2026-03-20T10:00:00+08:00",
+    "weekly_collection": null
+  },
+  "nextScheduled": {
+    "weekly_collection": "2026-03-20T18:00:00+08:00",
+    "cleanup": "2026-03-20T23:00:00+08:00"
+  },
+  "diskUsage": {
+    "memory": "656K",
+    "skills": "600K",
+    "config": "12K"
+  }
+}
