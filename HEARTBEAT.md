@@ -7,6 +7,27 @@
 
 ## 📋 检查清单
 
+### 0. 定时任务执行（每次心跳）
+
+**检查是否到执行时间：**
+
+| 任务 | 执行时间 | 脚本 |
+|------|----------|------|
+| 日报收集 | 每天 08:00 | `scripts/cron_daily.sh` |
+| 周报收集 | 每周五 18:00 | `skills/knowledge-base/scripts/weekly_pipeline.py` |
+| 内容清理 | 每天 23:00 | `skills/knowledge-base/scripts/cleanup.py` |
+| Git自动提交 | 每次改动后 | `scripts/auto-git-commit.sh` |
+
+**执行日报任务（如果到时间）：**
+```bash
+# 检查当前时间是否为 08:00-08:30
+if [ "$(date +%H)" = "08" ]; then
+    sh /workspace/projects/workspace/scripts/cron_daily.sh
+fi
+```
+
+---
+
 ### 1. 记忆维护（每周一次）
 - [ ] 回顾本周 memory/YYYY-MM-DD.md 文件
 - [ ] 将重要事件、决策更新到 MEMORY.md
