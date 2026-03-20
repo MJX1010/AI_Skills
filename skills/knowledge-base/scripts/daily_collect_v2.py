@@ -207,15 +207,34 @@ def parse_search_results(output: str) -> list:
     results = []
     lines = output.split("\n")
     
+    current_title = None
+    current_url = None
+    
     for line in lines:
         line = line.strip()
-        if line.startswith("http") and " - " in line:
-            parts = line.split(" - ", 1)
-            if len(parts) >= 2:
+        
+        # 匹配标题行 [数字] 标题
+        if re.match(r'^\[\d+\]', line):
+            # 如果有之前的记录，先保存
+            if current_title and current_url:
                 results.append({
-                    "url": parts[0].strip(),
-                    "title": parts[1].strip()
+                    "url": current_url,
+                    "title": current_title
                 })
+            # 提取新标题
+            current_title = re.sub(r'^\[\d+\]\s*', '', line)
+            current_url = None
+        
+        # 匹配 URL: xxx
+        elif line.startswith("URL:"):
+            current_url = line.replace("URL:", "").strip()
+    
+    # 保存最后一条
+    if current_title and current_url:
+        results.append({
+            "url": current_url,
+            "title": current_title
+        })
     
     return results
 
