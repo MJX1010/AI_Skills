@@ -1,0 +1,30 @@
+{
+  "ai-latest-news": {
+    "space_id": "7616519632920251572",
+    "parent_token": "PhL6wlstzissQ1kKPwMc18xbngg",
+    "nodes": {
+      "2026年": {
+        "node_token": "ZdRUwc4y1iySQokS2R9cPVglnfh",
+        "obj_token": "EagndXlWLoelNixeSabcB65JnId"
+      },
+      "2026年/3月": {
+        "node_token": "DWaLwREo1iwUuvkk41HcXRRKnfh",
+        "obj_token": "LMsadphkeo8SIPxzgPQcViPqnGs"
+      },
+      "2026年/3月/3月20日 日报": {
+        "node_token": "ZyE8wQcisiGIvFkCCuBcO5rKnId",
+        "obj_token": "JOvqdLvirocHfJxHB7icD4xRnub"
+      }
+    }
+  },
+  "game-development": {
+    "space_id": "7616735513310924004",
+    "parent_token": "U9EWwwL8ui16IEkrN8vcIRISnFg",
+    "nodes": {}
+  },
+  "healthy-living": {
+    "space_id": "7616737910330510558",
+    "parent_token": "XD2PwwJukiD8a8koNAAc4Fedn5t",
+    "nodes": {}
+  }
+}

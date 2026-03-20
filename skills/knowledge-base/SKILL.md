@@ -16,6 +16,100 @@ description: |
   Triggers: "收集日报", "收集周报", "收集链接", "归档文章", "推送知识库", "清理内容"
 ---
 
+# ⚠️ 飞书同步路径规则（重要）
+
+## 同步策略
+
+**核心原则：先查询飞书 → 有则复用 → 无则创建 → 避免重复**
+
+### 查询路径
+```
+1. 列出首页下的子节点
+   feishu_wiki --action nodes --space_id <space_id> --parent_node_token <root_token>
+
+2. 查找匹配的年份节点（如："2026年"）
+   - 找到 → 复用 node_token
+   - 未找到 → 创建新节点
+
+3. 在年份节点下查找月份节点（如："3月"）
+   - 找到 → 复用 node_token
+   - 未找到 → 创建新节点
+
+4. 在月份节点下查找日报节点（如："📅 日报 2026-03" 或 "3月20日 日报"）
+   - 找到 → 复用 obj_token（文档token）
+   - 未找到 → 创建新节点
+
+5. 追加内容到文档
+   feishu_doc --action append --doc_token <obj_token> --content <content>
+```
+
+### 知识库节点层级
+
+#### 🤖 AI最新资讯（space_id: 7616519632920251572）
+```
+首页 (PhL6wlstzissQ1kKPwMc18xbngg)
+├── 2026年 (Xhe3w81rqiNX0akqdCLc4LvYn2c) ← 当前使用
+│   └── 3月 (DXDSw3upPinqWgkqN8XcXLCOnLh)
+│       └── 📅 日报 2026-03 (UJidwZYcaio533kTngicrLy8ned)
+│           ├── 2026-03-17 日报
+│           ├── 第12期 - 3月19日
+│           └── 3月20日 日报 ← 新内容追加到这里
+├── 2026年 (XIgwwKRA4irDmIkyIdCcm6ELnqZ) ← 旧节点（避免使用）
+└── 2026年 (ZdRUwc4y1iySQokS2R9cPVglnfh) ← 旧节点（避免使用）
+```
+
+#### 🎮 游戏开发（space_id: 7616735513310924004）
+```
+首页 (U9EWwwL8ui16IEkrN8vcIRISnFg)
+└── [按年份-月份层级创建]
+```
+
+#### 🌱 健康生活（space_id: 7616737910330510558）
+```
+首页 (XD2PwwJukiD8a8koNAAc4Fedn5t)
+└── [按年份-月份层级创建]
+```
+
+### 同步流程示例
+
+**用户发送链接：https://b23.tv/xxx**
+
+**步骤1：本地归档**
+```bash
+python skills/knowledge-base/scripts/archive_content.py \
+  --url "https://b23.tv/xxx" \
+  --title "AI视频标题"
+```
+输出同步信息：space_id, parent_token, content_entry 等
+
+**步骤2：查询飞书节点**
+```bash
+feishu_wiki --action nodes \
+  --space_id 7616519632920251572 \
+  --parent_node_token PhL6wlstzissQ1kKPwMc18xbngg
+```
+查找 "2026年" 节点 → 复用 Xhe3w81rqiNX0akqdCLc4LvYn2c
+
+**步骤3：逐级查找/创建**
+- 在年份节点下找 "3月" → 复用 DXDSw3upPinqWgkqN8XcXLCOnLh
+- 在月份节点下找 "📅 日报 2026-03" → 复用 UJidwZYcaio533kTngicrLy8ned
+- 在日报节点下找 "3月20日 日报" → 复用 SQ25w4aUIijQj4kkQK1c8bapnMh
+
+**步骤4：追加内容**
+```bash
+feishu_doc --action append \
+  --doc_token DwjydeEopoT6bdxfUWHc18PnnTe \
+  --content "### 📺 [标题](url)\n> 来源: Bilibili | 收集时间: 2026-03-20\n\n---\n"
+```
+
+### 注意事项
+
+1. **不要依赖本地缓存** - 每次同步前先查询飞书获取最新状态
+2. **同名节点处理** - 飞书允许多个同名节点，选择第一个匹配的即可
+3. **层级结构** - 目前AI知识库使用 "📅 日报 YYYY-MM" 作为中间层级
+4. **文档追加** - 使用 `append` 而不是 `write`，避免覆盖已有内容
+5. **重复检测** - 追加前检查文档内容，避免重复添加相同链接
+
 # Knowledge Base - 统一知识库管理
 
 工作区的**唯一**知识库管理 skill，整合所有内容收集、分类、推送、清理功能。
@@ -133,6 +227,30 @@ python skills/knowledge-base/scripts/check_status.py
 | `fetch_wechat.py` | 微信内容获取 | 内部调用 | ✅ 正常 |
 | `fetch_bilibili.py` | B站内容获取 | 内部调用 | ✅ 正常 |
 
+### 脚本使用说明
+
+**`archive_content.py` - 链接归档核心脚本**
+
+```bash
+# 基本用法
+python skills/knowledge-base/scripts/archive_content.py \
+  --url "https://b23.tv/xxx" \
+  --title "视频标题"
+```
+
+**输出字段说明：**
+- `status`: success / skipped / error
+- `kb`: 分类的知识库（ai-latest-news / game-development / healthy-living / link-collection）
+- `file`: 本地存储路径
+- `feishu_sync`: 飞书同步信息（仅在分类到知识库时返回）
+  - `space_id`: 知识库空间ID
+  - `parent_token`: 首页节点token
+  - `year/month/day`: 日期信息
+  - `doc_title`: 日报标题
+  - `content_entry`: 要追加的内容
+
+**重要：** 此脚本**不直接调用飞书API**，只负责本地归档和生成同步信息。飞书同步由 Agent 直接调用工具完成。
+
 ---
 
 ## 📊 知识库配置
@@ -194,20 +312,94 @@ memory/link-collection/
 ```
 用户发送链接
     ↓
-收集链接信息（URL、标题）
+1. 执行 archive_content.py（本地归档）
+   - 自动分类（AI/游戏/健康/其他）
+   - 保存到 memory/kb-archive/{kb}/2026/03/20.md
+   - 返回 feishu_sync 信息
     ↓
-自动分类（AI/游戏/健康/其他）
+2. Agent 直接调用飞书工具（云端同步）
+   - 查询飞书知识库现有节点
+   - 找到则复用，未找到则创建
+   - 追加内容到日报文档
     ↓
-获取内容（使用 coze-web-fetch）
-    ↓
-保存到对应位置
-    ├── AI/游戏/健康 → 知识库日报 + 飞书
-    └── 其他技术 → 本地链接收藏
-    ↓
-标记为已收集（防止重复）
-    ↓
-反馈用户结果
+3. 反馈用户结果（本地 + 云端状态）
 ```
+
+### 飞书同步详细步骤
+
+**第一步：本地归档**
+```bash
+python skills/knowledge-base/scripts/archive_content.py \
+  --url "https://b23.tv/xxx" \
+  --title "视频标题"
+```
+
+**返回信息示例：**
+```json
+{
+  "status": "success",
+  "kb": "ai-latest-news",
+  "feishu_sync": {
+    "space_id": "7616519632920251572",
+    "parent_token": "PhL6wlstzissQ1kKPwMc18xbngg",
+    "kb_name": "🤖 AI最新资讯",
+    "year": "2026",
+    "month": "3",
+    "day": "20",
+    "doc_title": "3月20日 日报",
+    "content_entry": "### 📺 [标题](url)\n> 来源: Bilibili | 收集时间: ...\n\n---\n"
+  }
+}
+```
+
+**第二步：查询飞书节点（逐级）**
+```bash
+# 1. 查询首页下的子节点
+feishu_wiki --action nodes \
+  --space_id 7616519632920251572 \
+  --parent_node_token PhL6wlstzissQ1kKPwMc18xbngg
+
+# 2. 在年份节点下查询
+feishu_wiki --action nodes \
+  --space_id 7616519632920251572 \
+  --parent_node_token <year_node_token>
+
+# 3. 在月份节点下查询
+feishu_wiki --action nodes \
+  --space_id 7616519632920251572 \
+  --parent_node_token <month_node_token>
+
+# 4. 在日报容器下查询
+feishu_wiki --action nodes \
+  --space_id 7616519632920251572 \
+  --parent_node_token <daily_container_token>
+```
+
+**第三步：获取/创建节点**
+- 如果找到匹配的节点 → 复用其 `node_token` 或 `obj_token`
+- 如果未找到 → 创建新节点：
+```bash
+feishu_wiki --action create \
+  --space_id 7616519632920251572 \
+  --parent_node_token <parent_token> \
+  --title "节点标题" \
+  --obj_type docx
+```
+
+**第四步：追加内容**
+```bash
+feishu_doc --action append \
+  --doc_token <obj_token> \
+  --content "内容"
+```
+
+### 关键要点
+
+1. **脚本只负责本地归档** - `archive_content.py` 不直接调用飞书API
+2. **Agent 负责飞书同步** - 只有 Agent 能直接调用 `feishu_wiki` 和 `feishu_doc` 工具
+3. **查询优先于创建** - 每次同步前必须先查询飞书，避免重复创建节点
+4. **层级结构** - AI知识库使用特定的层级：首页 → 年份 → 月份 → 日报容器 → 具体日报
+5. **追加而非覆盖** - 使用 `append` 操作向现有文档添加内容
 
 ### 使用示例
 
