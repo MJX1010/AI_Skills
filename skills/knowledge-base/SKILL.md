@@ -397,6 +397,54 @@ feishu_doc --action append \
 
 1. **脚本只负责本地归档** - `archive_content.py` 不直接调用飞书API
 2. **Agent 负责飞书同步** - 只有 Agent 能直接调用 `feishu_wiki` 和 `feishu_doc` 工具
+3. **先查询后创建** - 每次同步前必须先查询飞书，避免重复创建节点
+
+---
+
+## 🔒 Git 自动提交规则
+
+### 原则
+
+**每次修改工作区内容后，必须自动提交到 Git**
+
+### 执行时机
+
+- ✅ 完成用户请求后（如：归档链接、更新文档）
+- ✅ 后台任务（heartbeat/cron）结束时
+- ✅ 任何文件改动完成后
+
+### 提交脚本
+
+```bash
+#!/bin/bash
+cd /workspace/projects/workspace
+if [ -n "$(git status --porcelain)" ]; then
+    git add -A
+    git commit -m "auto: $(date '+%Y-%m-%d %H:%M') 自动提交"
+    git push
+fi
+```
+
+### 使用方式
+
+**手动执行：**
+```bash
+sh /workspace/projects/workspace/scripts/auto-git-commit.sh
+```
+
+**Agent 自动执行：**
+每次完成用户请求后，Agent 会自动检查并提交改动。
+
+### 提交信息格式
+
+```
+auto: 2026-03-20 08:23 自动提交
+```
+
+或带描述：
+```
+auto: 2026-03-20 08:23 归档B站视频到AI知识库
+```
 3. **查询优先于创建** - 每次同步前必须先查询飞书，避免重复创建节点
 4. **层级结构** - AI知识库使用特定的层级：首页 → 年份 → 月份 → 日报容器 → 具体日报
 5. **追加而非覆盖** - 使用 `append` 操作向现有文档添加内容
