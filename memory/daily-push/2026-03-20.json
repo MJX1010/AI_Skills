@@ -3,17 +3,17 @@
   "stats": {
     "ai-latest-news": {
       "name": "🤖 AI最新资讯",
-      "count": 0
+      "count": 40
     },
     "game-development": {
       "name": "🎮 游戏开发",
-      "count": 0
+      "count": 33
     },
     "healthy-living": {
       "name": "🌱 健康生活",
-      "count": 0
+      "count": 25
     }
   },
-  "message": "📚 **知识库日报** | 2026-03-20 周五\n\n今日暂无新增内容\n",
-  "pushed_at": "2026-03-20T07:13:16.347555"
+  "message": "📚 **知识库日报** | 2026-03-20 周五\n\n今日共新增 **98** 条内容\n\n---\n\n🤖 AI最新资讯: 40 条\n🎮 游戏开发: 33 条\n🌱 健康生活: 25 条\n\n---\n📖 点击查看完整知识库",
+  "pushed_at": "2026-03-20T10:00:57.682308"
 }
