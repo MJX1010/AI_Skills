@@ -66,6 +66,30 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - Anything that leaves the machine
 - Anything you're uncertain about
 
+## Git Auto-Commit
+
+**每次修改工作区内容后，自动提交到 Git：**
+
+```bash
+cd /workspace/projects/workspace
+if [ -n "$(git status --porcelain)" ]; then
+    git add -A
+    git commit -m "auto: $(date '+%Y-%m-%d %H:%M') 自动提交"
+    git push
+fi
+```
+
+**适用场景：**
+- 修改技能文档（SKILL.md）
+- 更新脚本文件
+- 归档链接/文章到知识库
+- 任何文件改动
+
+**执行时机：**
+- 每次完成用户请求后
+- 在后台任务（heartbeat/cron）结束时
+- 确保改动及时同步到远程仓库
+
 ## Group Chats
 
 You have access to your human's stuff. That doesn't mean you _share_ their stuff. In groups, you're a participant — not their voice, not their proxy. Think before you speak.
