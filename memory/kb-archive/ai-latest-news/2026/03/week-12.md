@@ -1,14 +1,14 @@
 # 🤖 AI最新资讯周刊：第12期（03.16-03.22）
 
 **本期编辑** | OpenClaw AI
-**出版日期** | 2026年03月20日
+**出版日期** | 2026年03月21日
 **总第12期**
 
 ---
 
 ## 📌 本周话题
 
-本周共收录 **75** 条优质内容。
+本周共收录 **88** 条优质内容。
 
 ---
 
@@ -92,6 +92,22 @@
 ### [2026年3月AI观察:OpenAI推GPT-5.4，Google强化Gemini轻量化，Anthropic继续押注企业级AI](https://blog.csdn.net/cucibala/article/details/158836932)
 ### [300亿美金为AI新王加冕，Anthropic估值狂飙至3800亿，马斯克急了](http://m.toutiao.com/group/7606255405991264818/?upstream_biz=VolcEngine)
 ### [深夜王炸!刚刚Anthropic发布全球首个混合推理模型与全新代码“神器”:双面王牌组合](https://cloud.tencent.cn/developer/article/2504156?policyId=1003)
+
+## 03-21
+
+### [大模型进展专栏第二十六期|追踪2026年1月大模型热点事件:大模型、算力与场景的协同爆发期](https://m.sohu.com/a/996896607_358040/)
+### [2026北京人工智能展会：大模型赋能机器人，开启智能产业新周期](http://m.toutiao.com/group/7617674904531518015/?upstream_biz=VolcEngine)
+### [从技术突破到价值落地 智能体开启AI进化新格局](https://www.digitalchina.gov.cn/2025/xwzx/szkx/202601/t20260129_5278492.htm)
+### [“人工智能+”释放澎湃动能](http://paper.people.com.cn/rmrb/pc/content/202603/03/content_30143108.html)
+### [最新的大模型有哪些，它们比之前的模型又有了哪些进展?](https://blog.csdn.net/zhengshi1993/article/details/158576926)
+### [“人工智能+”释放澎湃动能](http://finance.people.com.cn/n1/2026/0303/c1004-40673330.html)
+### [抽象公式秒变直观实验:ChatGPT/Claude 本周开启交互式图表时代](https://view.inews.qq.com/k/20260314A01UVD00?no-redirect=1)
+### [Anthropic旗下Claude AI现可自动生成图表和图解等可视化内容](https://view.inews.qq.com/k/20260313A078TS00?no-redirect=1)
+### [官宣升级!Claude Opus 4.6 正式发布，能力全面拉满，一步 API 即刻畅用](https://blog.csdn.net/weixin_47221050/article/details/157907086)
+### [Claude AI新功能:聊天中自动生成图表与图解，提升交互体验](https://m.sohu.com/a/996188229_122004016/)
+### [AI这周呀|OpenAI发布GPT](https://xueqiu.com/9099912486/378511248)
+### [代码界新王登基!Gemini 3.1 Pro 血洗 Claude 与 GPT，12 项基准测试第一!](https://www.infoq.cn/article/Ic69NzLCGqQ6HRuCligh)
+### [顶级模型Claude Sonnet 4.6与Gemini 3.1 Pro也来庆新春](http://news.qq.com/rain/a/20260224A01TEE00)
 
 ---
 

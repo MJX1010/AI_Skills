@@ -644,6 +644,96 @@
       "first_collected": "2026-03-21T06:57:39.061429",
       "kb": "ai-latest-news",
       "title": "\u5fae\u4fe1\u6587\u7ae0"
+    },
+    "https://m.sohu.com/a/996896607_358040/": {
+      "first_collected": "2026-03-21T09:19:30.409995",
+      "kb": "ai-latest-news",
+      "title": "\u5927\u6a21\u578b\u8fdb\u5c55\u4e13\u680f\u7b2c\u4e8c\u5341\u516d\u671f|\u8ffd\u8e2a2026\u5e741\u6708\u5927\u6a21\u578b\u70ed\u70b9\u4e8b\u4ef6:\u5927\u6a21\u578b\u3001\u7b97\u529b\u4e0e\u573a\u666f\u7684\u534f\u540c\u7206\u53d1\u671f"
+    },
+    "http://m.toutiao.com/group/7617674904531518015/?upstream_biz=VolcEngine": {
+      "first_collected": "2026-03-21T09:19:30.412813",
+      "kb": "ai-latest-news",
+      "title": "2026\u5317\u4eac\u4eba\u5de5\u667a\u80fd\u5c55\u4f1a\uff1a\u5927\u6a21\u578b\u8d4b\u80fd\u673a\u5668\u4eba\uff0c\u5f00\u542f\u667a\u80fd\u4ea7\u4e1a\u65b0\u5468\u671f"
+    },
+    "https://www.digitalchina.gov.cn/2025/xwzx/szkx/202601/t20260129_5278492.htm": {
+      "first_collected": "2026-03-21T09:19:30.415944",
+      "kb": "ai-latest-news",
+      "title": "\u4ece\u6280\u672f\u7a81\u7834\u5230\u4ef7\u503c\u843d\u5730 \u667a\u80fd\u4f53\u5f00\u542fAI\u8fdb\u5316\u65b0\u683c\u5c40"
+    },
+    "http://paper.people.com.cn/rmrb/pc/content/202603/03/content_30143108.html": {
+      "first_collected": "2026-03-21T09:19:30.417860",
+      "kb": "ai-latest-news",
+      "title": "\u201c\u4eba\u5de5\u667a\u80fd+\u201d\u91ca\u653e\u6f8e\u6e43\u52a8\u80fd"
+    },
+    "https://blog.csdn.net/zhengshi1993/article/details/158576926": {
+      "first_collected": "2026-03-21T09:19:30.419875",
+      "kb": "ai-latest-news",
+      "title": "\u6700\u65b0\u7684\u5927\u6a21\u578b\u6709\u54ea\u4e9b\uff0c\u5b83\u4eec\u6bd4\u4e4b\u524d\u7684\u6a21\u578b\u53c8\u6709\u4e86\u54ea\u4e9b\u8fdb\u5c55?"
+    },
+    "http://finance.people.com.cn/n1/2026/0303/c1004-40673330.html": {
+      "first_collected": "2026-03-21T09:19:30.422352",
+      "kb": "ai-latest-news",
+      "title": "\u201c\u4eba\u5de5\u667a\u80fd+\u201d\u91ca\u653e\u6f8e\u6e43\u52a8\u80fd"
+    },
+    "https://view.inews.qq.com/k/20260314A01UVD00?no-redirect=1": {
+      "first_collected": "2026-03-21T09:19:45.359745",
+      "kb": "ai-latest-news",
+      "title": "\u62bd\u8c61\u516c\u5f0f\u79d2\u53d8\u76f4\u89c2\u5b9e\u9a8c:ChatGPT/Claude \u672c\u5468\u5f00\u542f\u4ea4\u4e92\u5f0f\u56fe\u8868\u65f6\u4ee3"
+    },
+    "https://view.inews.qq.com/k/20260313A078TS00?no-redirect=1": {
+      "first_collected": "2026-03-21T09:19:45.363153",
+      "kb": "ai-latest-news",
+      "title": "Anthropic\u65d7\u4e0bClaude AI\u73b0\u53ef\u81ea\u52a8\u751f\u6210\u56fe\u8868\u548c\u56fe\u89e3\u7b49\u53ef\u89c6\u5316\u5185\u5bb9"
+    },
+    "https://blog.csdn.net/weixin_47221050/article/details/157907086": {
+      "first_collected": "2026-03-21T09:19:45.365914",
+      "kb": "ai-latest-news",
+      "title": "\u5b98\u5ba3\u5347\u7ea7!Claude Opus 4.6 \u6b63\u5f0f\u53d1\u5e03\uff0c\u80fd\u529b\u5168\u9762\u62c9\u6ee1\uff0c\u4e00\u6b65 API \u5373\u523b\u7545\u7528"
+    },
+    "https://m.sohu.com/a/996188229_122004016/": {
+      "first_collected": "2026-03-21T09:19:45.369517",
+      "kb": "ai-latest-news",
+      "title": "Claude AI\u65b0\u529f\u80fd:\u804a\u5929\u4e2d\u81ea\u52a8\u751f\u6210\u56fe\u8868\u4e0e\u56fe\u89e3\uff0c\u63d0\u5347\u4ea4\u4e92\u4f53\u9a8c"
+    },
+    "https://xueqiu.com/9099912486/378511248": {
+      "first_collected": "2026-03-21T09:19:45.372322",
+      "kb": "ai-latest-news",
+      "title": "AI\u8fd9\u5468\u5440|OpenAI\u53d1\u5e03GPT"
+    },
+    "https://www.infoq.cn/article/Ic69NzLCGqQ6HRuCligh": {
+      "first_collected": "2026-03-21T09:19:45.374993",
+      "kb": "ai-latest-news",
+      "title": "\u4ee3\u7801\u754c\u65b0\u738b\u767b\u57fa!Gemini 3.1 Pro \u8840\u6d17 Claude \u4e0e GPT\uff0c12 \u9879\u57fa\u51c6\u6d4b\u8bd5\u7b2c\u4e00!"
+    },
+    "http://news.qq.com/rain/a/20260224A01TEE00": {
+      "first_collected": "2026-03-21T09:19:45.377783",
+      "kb": "ai-latest-news",
+      "title": "\u9876\u7ea7\u6a21\u578bClaude Sonnet 4.6\u4e0eGemini 3.1 Pro\u4e5f\u6765\u5e86\u65b0\u6625"
+    },
+    "https://view.inews.qq.com/k/20260314A06BSQ00?no-redirect=1": {
+      "first_collected": "2026-03-21T09:20:00.659600",
+      "kb": "game-development",
+      "title": "Unity\u5f15\u64ce\u8981\u539f\u751f\u9002\u914dSteamOS\u548cLinux\uff0c\u544a\u522b\u517c\u5bb9\u5c42!"
+    },
+    "https://www.trfsz.com/newsview1903651.html": {
+      "first_collected": "2026-03-21T09:20:06.904643",
+      "kb": "healthy-living",
+      "title": "\u5065\u5eb7\u996e\u98df\u4e0e\u8fd0\u52a8\u5efa\u8bae"
+    },
+    "http://www.zgdazxw.com.cn/jdgw/20260122-74014/": {
+      "first_collected": "2026-03-21T09:20:06.906488",
+      "kb": "healthy-living",
+      "title": "\u63ed\u793a\u5065\u5eb7\u517b\u751f\u65b0\u8d8b\u52bf:\u79d1\u5b66\u996e\u98df\u4e0e\u8fd0\u52a8\u7ed3\u5408"
+    },
+    "https://www.ahkjxww.com/liuanjiankang/63762.html": {
+      "first_collected": "2026-03-21T09:20:06.909256",
+      "kb": "healthy-living",
+      "title": "2026\uff0c\u4e0d\u518d\u903c\u81ea\u5df1\u201c\u81ea\u5f8b\u201d!\u505a\u597d\u8fd98\u4ef6\u5c0f\u4e8b\uff0c\u5065\u5eb7\u81ea\u7136\u6765"
+    },
+    "https://m.sohu.com/a/996691963_121956422/": {
+      "first_collected": "2026-03-21T09:20:06.910846",
+      "kb": "healthy-living",
+      "title": "2026\u5e74\u5065\u5eb7\u6307\u5357:\u638c\u63e1\u751f\u6d3b\u7684\u56db\u5927\u57fa\u77f3"
     }
   },
   "titles": [

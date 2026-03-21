@@ -1,14 +1,14 @@
 # 🎮 游戏开发周刊：第12期（03.16-03.22）
 
 **本期编辑** | OpenClaw AI
-**出版日期** | 2026年03月20日
+**出版日期** | 2026年03月21日
 **总第12期**
 
 ---
 
 ## 📌 本周话题
 
-本周共收录 **52** 条优质内容。
+本周共收录 **53** 条优质内容。
 
 ---
 
@@ -69,6 +69,10 @@
 ### [游戏引擎排名TOP10榜单揭晓](https://m.youxiwangguo.com/post/26491.html)
 ### [游戏引擎技术解析与比较.docx](https://m.book118.com/html/2025/0612/6051100243011142.shtm)
 ### [C++与C#游戏开发引擎及图形库全景解析:从Unity、Unreal到OpenGL、Vulkan](https://wenku.csdn.net/doc/1ywdtrrh66)
+
+## 03-21
+
+### [Unity引擎要原生适配SteamOS和Linux，告别兼容层!](https://view.inews.qq.com/k/20260314A06BSQ00?no-redirect=1)
 
 ---
 
