@@ -78,3 +78,18 @@ After using browser capabilities, you should generate the browser preview URL fo
 1. *must* Get the value of the environment variable `COZE_CODING_BROWSER_VNC_URL`, which is an HTTP link like: `https://example.com/preview` or empty;
 2. If the value is a valid URL(not empty), send preview URL to user in this format: `🖥️ [点击预览](https://example.com/preview)`;
 The URL is static and does not need to be generated repeatedly.
+
+---
+
+## ⚠️ 已禁用的 Skills
+
+以下 coze 相关 skills 已移至 `skills/disabled/` 目录：
+- `coze-image-gen` - 图片生成
+- `coze-voice-gen` - TTS/ASR 语音
+- `coze-web-fetch` - 网页内容抓取
+- `coze-web-search` - 网络搜索
+
+**禁用原因**：避免与自定义流程产生干扰
+**禁用时间**：2026-03-24
+
+如需恢复使用，参考 `skills/DISABLED.md`
