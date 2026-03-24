@@ -1254,6 +1254,261 @@
       "first_collected": "2026-03-24T14:01:06.559488",
       "kb": "ai-latest-news",
       "title": "千问上线AI打车，一句话搞定选车、选地点、选时间"
+    },
+    "https://xie.infoq.cn/article/12678390ea8efb705b7b4956a?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411246",
+      "kb": "ai-latest-news",
+      "title": "AI 智能体 8 层架构：生产级系统构建指南"
+    },
+    "https://www.infoq.cn/article/3ZLmLsMVwD1PzL6s86YO?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411257",
+      "kb": "ai-latest-news",
+      "title": "英伟达早不靠GPU躺赢！黄仁勋终极预判：10亿程序员时代将至，AI智能彻底廉价"
+    },
+    "https://www.infoq.cn/article/0GQAKKpCe2DFq6BtJhdx?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411259",
+      "kb": "ai-latest-news",
+      "title": "一夜变天！Claude 正式下场“接管电脑”，OpenClaw被逼到墙角"
+    },
+    "https://www.infoq.cn/article/I56iru1tbLQxVRt9gaEa?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411261",
+      "kb": "ai-latest-news",
+      "title": "3月27-28日相约杭州！极客时间携智能体时代AI人才粮仓模型亮相CSTD人才发展灯塔峰会"
+    },
+    "https://www.infoq.cn/video/jzSzcszN0dLwv57hvaxk?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411263",
+      "kb": "ai-latest-news",
+      "title": "AI 可观测如何助力 Agentic 时代的确定性工程？"
+    },
+    "https://www.infoq.cn/article/P4c8cU7dalmhvWbAsqHL?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411264",
+      "kb": "ai-latest-news",
+      "title": "从写文案到盯数据、算 ROI，流量见顶后，AI Agent 正在杀进核心业务"
+    },
+    "https://www.infoq.cn/article/0yPYTaTgSzlDbwXiZeuK?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411266",
+      "kb": "ai-latest-news",
+      "title": "HubSpot推出多模型AI代码审查工具Sidekick，反馈速度提升90%，工程师认可率达80%"
+    },
+    "https://www.infoq.cn/article/k2M5O0zzCGgw2GsaCDxp?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411267",
+      "kb": "ai-latest-news",
+      "title": "Java 26 发布，带来语言创新、类库优化、性能提升与安全性增强"
+    },
+    "https://www.infoq.cn/article/oWDM8y5ozWwrNdyUdhc1?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411268",
+      "kb": "ai-latest-news",
+      "title": "Agentic AI 时代，软件工程如何被重塑｜QCon 北京 2026 即将开幕"
+    },
+    "https://www.infoq.cn/article/MH22YHstzlv7ROS6diuj?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411270",
+      "kb": "ai-latest-news",
+      "title": "用AI清退全部外包？网易回应；百度挖DeepSeek核心人才入职；曝宇树对外称弹性双休，内部是另一套规则，非常卷｜AI周报"
+    },
+    "https://www.infoq.cn/article/cBqdxzzI0YOXSUAbsaxz?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411271",
+      "kb": "ai-latest-news",
+      "title": "英伟达联手 Akamai：AI Grid 背后的 Token 成本与吞吐博弈"
+    },
+    "https://www.infoq.cn/article/Lkz0JbjovfDrJSx516bz?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411272",
+      "kb": "ai-latest-news",
+      "title": "DoorDash 推出 DashCLIP，利用 3200 万个标签将图像、文本与查询对齐，实现了语义搜索"
+    },
+    "https://www.infoq.cn/article/KqAcgCpuD2I5gXRI8jE1?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411273",
+      "kb": "ai-latest-news",
+      "title": "直播预告｜从养一只虾到开虾塘：数字员工如何在企业实现规模化高效协作？"
+    },
+    "https://www.infoq.cn/article/zzFiZjsGRTL0cm0apC19?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411275",
+      "kb": "ai-latest-news",
+      "title": "谷歌开源适用于 Python 的通用表达式语言"
+    },
+    "https://www.infoq.cn/article/Xge5O9rQeOlg0gu0Diic?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411276",
+      "kb": "ai-latest-news",
+      "title": "Deep Research 智能体工程化实践：从原型到生产级服务的关键挑战与解法｜QCon北京"
+    },
+    "https://www.infoq.cn/article/71MQtQpYKbCLSbXo6v8u?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411277",
+      "kb": "ai-latest-news",
+      "title": "极客部落“OPC 创业者招募计划”正式发布，赋能 AI 时代“一人独角兽”"
+    },
+    "https://www.infoq.cn/article/g29j1RVFBqGg1t4BQExV?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411278",
+      "kb": "ai-latest-news",
+      "title": "Bosch 集团首席 AI 科学家阎栋博士已确认出席QCon北京站，探讨AI大模型是否会吞噬软件世界"
+    },
+    "https://www.infoq.cn/article/C2WQHsZF6ruKr61USuSa?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411280",
+      "kb": "ai-latest-news",
+      "title": "AICon 2026 上海站正式启动：OpenClaw 袭来，我们来谈点真的"
+    },
+    "https://www.infoq.cn/article/ZaJmZWklKB37egQrQzBk?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411281",
+      "kb": "ai-latest-news",
+      "title": "DoorDash 构建大模型对话模拟与评估闭环，实现客服机器人规模化测试"
+    },
+    "https://www.infoq.cn/article/ssaAohmSCrr8J2BcFgh2?utm_source=rss&utm_medium=article": {
+      "first_collected": "2026-03-24T18:48:11.411282",
+      "kb": "ai-latest-news",
+      "title": "Netflix发现了在现代CPU上扩展容器时的内核级瓶颈"
+    },
+    "https://www.leiphone.com/category/industrynews/Vj1tvfib3FyWhg9P.html": {
+      "first_collected": "2026-03-24T18:48:11.411284",
+      "kb": "ai-latest-news",
+      "title": "大华股份SMB业务：以边缘智能与场景定制，打通AI落地“最后一公里”"
+    },
+    "https://www.leiphone.com/category/industrynews/EYqNM6TlxH4qzGvp.html": {
+      "first_collected": "2026-03-24T18:48:11.411285",
+      "kb": "ai-latest-news",
+      "title": "从AI编程到Agent开发 九章云极智算云助力生态普惠升级"
+    },
+    "https://www.leiphone.com/category/industrynews/lA9KFsIvqf4Ozvgy.html": {
+      "first_collected": "2026-03-24T18:48:11.411287",
+      "kb": "ai-latest-news",
+      "title": "第一只会做生意的「龙虾」来了：从选品到采购，30分钟「手搓」出一家网店"
+    },
+    "https://www.leiphone.com/category/chips/8r92TWvVQBcNeHYN.html": {
+      "first_collected": "2026-03-24T18:48:11.411288",
+      "kb": "ai-latest-news",
+      "title": "7位专家拆解GTC，结论让英伟达难堪"
+    },
+    "https://www.leiphone.com/category/industrynews/a6MRb7oWS3HKM9fh.html": {
+      "first_collected": "2026-03-24T18:48:11.411289",
+      "kb": "ai-latest-news",
+      "title": "独家｜华为云新加坡总经理胡维琦将加入MiniMax，或向贠烨祎汇报"
+    },
+    "https://www.leiphone.com/category/industrynews/hHW86xSO6FIOym0V.html": {
+      "first_collected": "2026-03-24T18:48:11.411290",
+      "kb": "ai-latest-news",
+      "title": "网易有道龙虾获OpenClaw创始人点赞：“Love LobsterAI”！"
+    },
+    "https://www.leiphone.com/category/ai/i2qav3Kf2zuMNscH.html": {
+      "first_collected": "2026-03-24T18:48:11.411292",
+      "kb": "ai-latest-news",
+      "title": "西湖大学王东林团队论文：机器人需要“通古今，知未来”丨CVPR 2026"
+    },
+    "https://www.leiphone.com/category/ai/7LLMb5d4vPqtDAIo.html": {
+      "first_collected": "2026-03-24T18:48:11.411293",
+      "kb": "ai-latest-news",
+      "title": "西交大 x A*STAR 论文：让 AI 学会「保持一致」，多图生成迎来关键突破丨CVPR 2026"
+    },
+    "https://www.leiphone.com/category/ai/FzpnMQYz0iVOPf1t.html": {
+      "first_collected": "2026-03-24T18:48:11.411294",
+      "kb": "ai-latest-news",
+      "title": "趋境科技迎重磅加盟，院士+教授领衔，领跑高效能AI Token生产新生态"
+    },
+    "https://www.leiphone.com/category/industrynews/3ka12q61qefteK9V.html": {
+      "first_collected": "2026-03-24T18:48:11.411295",
+      "kb": "ai-latest-news",
+      "title": "西门子搬上阿里云，工业仿真软件接入千问"
+    },
+    "https://www.leiphone.com/category/weiwu/4Y3yLrjJ6NUI5gcH.html": {
+      "first_collected": "2026-03-24T18:48:11.411297",
+      "kb": "ai-latest-news",
+      "title": "独家丨Plaud中国区CEO莫子皓离职，瞄准AI硬件创业"
+    },
+    "https://www.leiphone.com/category/weiwu/f32Nkbrx6MERSZLB.html": {
+      "first_collected": "2026-03-24T18:48:11.411298",
+      "kb": "ai-latest-news",
+      "title": "AWE 2026 探展回顾：30人大佬团，0距离对话明星企业CXO"
+    },
+    "https://www.leiphone.com/category/zaobao/tcZpKTzqlz97BVVU.html": {
+      "first_collected": "2026-03-24T18:48:11.411299",
+      "kb": "ai-latest-news",
+      "title": "余承东：华为手机终于实现了全面回归！网友：至此，全是麒麟；疑员工内涵小鹏智驾靠吹和后期？地平线余凯回应；小米老是赶潮流？雷军回应"
+    },
+    "https://www.leiphone.com/category/industrynews/NOZUMqgYtuAWQ3uU.html": {
+      "first_collected": "2026-03-24T18:48:11.411301",
+      "kb": "ai-latest-news",
+      "title": "美团发布2026黑珍珠境外榜单，首尔首次纳入发榜城市"
+    },
+    "https://www.leiphone.com/category/industrycloud/eFze2ICe2llWPGtl.html": {
+      "first_collected": "2026-03-24T18:48:11.411302",
+      "kb": "ai-latest-news",
+      "title": "独家丨腾讯云AI业务突发调整，CTO王慧星分管云产品三部"
+    },
+    "https://www.leiphone.com/category/robot/hxOjW3WsUIXvWXhs.html": {
+      "first_collected": "2026-03-24T18:48:11.411303",
+      "kb": "ai-latest-news",
+      "title": "独家 | 大疆系仿生柔性机器人擎羽科技，连续完成两轮数千万元融资"
+    },
+    "https://www.leiphone.com/category/industrynews/SW4hVLCkUX9nIs7m.html": {
+      "first_collected": "2026-03-24T18:48:11.411305",
+      "kb": "ai-latest-news",
+      "title": "锚定工业AI‘操作系统’，西门子在京发布新技术并拓展伙伴合作"
+    },
+    "https://www.leiphone.com/category/industrynews/wcBUEY543JV481uY.html": {
+      "first_collected": "2026-03-24T18:48:11.411306",
+      "kb": "healthy-living",
+      "title": "2026年智能手环首选：华为手环 11系列凭什么定义“运动健康手环王”？"
+    },
+    "https://www.leiphone.com/category/industrynews/69TcSsm0DfnOiBxY.html": {
+      "first_collected": "2026-03-24T18:48:11.411307",
+      "kb": "ai-latest-news",
+      "title": "阶跃星辰发布 Step Plan 包月订阅方案，主打 OpenClaw 场景！开发者社区半价大放送"
+    },
+    "https://www.leiphone.com/category/transportation/KIebT8FcVN8p7h7R.html": {
+      "first_collected": "2026-03-24T18:48:11.411308",
+      "kb": "ai-latest-news",
+      "title": "奇瑞汽车电池之夜：技术谋破局，生态兴产业"
+    },
+    "https://www.qbitai.com/2026/03/391750.html": {
+      "first_collected": "2026-03-24T18:48:11.411310",
+      "kb": "ai-latest-news",
+      "title": "黄仁勋暴论核弹：AGI已经实现，Ilya错了，程序员有10亿"
+    },
+    "https://www.qbitai.com/2026/03/391744.html": {
+      "first_collected": "2026-03-24T18:48:11.411312",
+      "kb": "ai-latest-news",
+      "title": "你的模型真的会”举一反三”吗？RoboChallenge Table30 V2 正式发布，泛化时代开幕"
+    },
+    "https://www.qbitai.com/2026/03/391698.html": {
+      "first_collected": "2026-03-24T18:48:11.411313",
+      "kb": "ai-latest-news",
+      "title": "LeCun的世界模型单GPU就能跑了"
+    },
+    "https://www.qbitai.com/2026/03/391668.html": {
+      "first_collected": "2026-03-24T18:48:11.411315",
+      "kb": "ai-latest-news",
+      "title": "又一华为天才少年入局具身创业！用视频生成数据训家用机器人，首个模型登顶具身基模榜单"
+    },
+    "https://www.qbitai.com/2026/03/391584.html": {
+      "first_collected": "2026-03-24T18:48:11.411316",
+      "kb": "ai-latest-news",
+      "title": "阿里在海外上了个“企业级龙虾”，我用它30分钟手搓了一家网店"
+    },
+    "https://www.gamedeveloper.com/business/screen-australia-hands-out-1-4-million-to-local-developers": {
+      "first_collected": "2026-03-24T18:48:11.411317",
+      "kb": "ai-latest-news",
+      "title": "Screen Australia hands out $1.4 million to local developers"
+    },
+    "https://www.gamedeveloper.com/business/capcom-says-it-will-use-generative-ai-to-speed-up-production": {
+      "first_collected": "2026-03-24T18:48:11.411319",
+      "kb": "ai-latest-news",
+      "title": "Capcom says it will use generative AI to speed up production"
+    },
+    "https://www.gamedeveloper.com/production/pentiment-director-offers-advice-to-develop-games-quicker": {
+      "first_collected": "2026-03-24T18:48:11.411320",
+      "kb": "ai-latest-news",
+      "title": "Pentiment director: experimenting during a game's production is 'extremely risky'"
+    },
+    "https://www.gamedeveloper.com/production/union-workers-send-a-message-to-game-industry-execs-let-go-of-the-power-now-or-be-forced-to-let-go-of-it-later-": {
+      "first_collected": "2026-03-24T18:48:11.411321",
+      "kb": "ai-latest-news",
+      "title": "Union workers send a message to game industry execs: 'Let go of the power now, or be forced to let go of it later.'"
+    },
+    "https://www.gamedeveloper.com/business/two-more-leadership-exists-took-place-at-xbox": {
+      "first_collected": "2026-03-24T18:48:11.411322",
+      "kb": "ai-latest-news",
+      "title": "Two more leadership exits take place at Xbox"
+    },
+    "https://www.gamedeveloper.com/production/whoops-pearl-abyss-forgot-to-mention-it-used-generative-ai-to-create-crimson-desert": {
+      "first_collected": "2026-03-24T18:48:11.411323",
+      "kb": "ai-latest-news",
+      "title": "Pearl Abyss forgot to mention it used generative AI to create assets for Crimson Desert"
     }
   },
   "titles": [

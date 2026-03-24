@@ -44,17 +44,19 @@ KB_CONFIG = {
     }
 }
 
-# RSS 源配置（硬编码，作为 content_sources.yaml 的备选）
+# RSS 源配置（经过验证的有效源）
 RSS_SOURCES = {
     "ai-latest-news": [
         {"name": "机器之心", "url": "https://www.jiqizhixin.com/rss"},
         {"name": "量子位", "url": "https://www.qbitai.com/rss"},
     ],
     "game-development": [
-        {"name": "Godot News", "url": "https://godotengine.org/news"},
+        {"name": "Godot News", "url": "https://godotengine.org/rss.xml"},
+        {"name": "Unity Blog", "url": "https://blog.unity.com/feed"},
+        {"name": "IndieDB", "url": "https://www.indiedb.com/rss/news"},
     ],
     "healthy-living": [
-        {"name": "丁香医生", "url": "https://dxy.com/rss"},
+        # 健康类 RSS 源较少且不稳定，建议通过浏览器抓取或用户推送补充
     ]
 }
 
