@@ -6,8 +6,8 @@ cd /workspace/projects/workspace
 # 记录开始时间
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始执行日报收集..." >> memory/logs/cron.log
 
-# 执行日报收集
-python skills/knowledge-base/scripts/daily_pipeline.py >> memory/logs/cron.log 2>&1
+# 执行日报收集 (使用 v2 RSS采集版本)
+python skills/knowledge-base/scripts/daily_pipeline_v2.py >> memory/logs/cron.log 2>&1
 
 # 自动提交git
 sh scripts/auto-git-commit.sh >> memory/logs/cron.log 2>&1
