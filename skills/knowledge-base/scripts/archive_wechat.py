@@ -100,12 +100,18 @@ def fetch_wechat_article(url: str, method: str = "playwright") -> dict:
         content = ""
         author = ""
         
-        for line in lines:
-            if line.startswith("标题:"):
+        # 优先从 markdown 格式解析标题 (# 开头的标题)
+        for i, line in enumerate(lines):
+            # Markdown 格式标题: # 标题
+            if line.startswith("# ") and not title:
+                title = line[2:].strip()
+            # 旧格式兼容: 标题: xxx
+            elif line.startswith("标题:") and not title:
                 title = line.replace("标题:", "").strip()
-            elif line.startswith("公众号:") or line.startswith("作者:"):
-                author = line.split(":", 1)[1].strip()
+            elif line.startswith("**公众号**:") or line.startswith("公众号:"):
+                author = line.split(":", 1)[1].strip().strip('*')
         
+        # 如果没找到标题，使用默认
         if not title:
             title = "微信文章"
         
@@ -174,11 +180,55 @@ def save_to_kb(kb: str, title: str, content: str, url: str) -> Path:
     return file_path
 
 
+def manual_input_mode(url: str) -> dict:
+    """手动输入模式 - 当自动抓取失败时使用"""
+    print("\n" + "-"*60)
+    print("📝 手动粘贴模式")
+    print("-"*60)
+    print("\n💡 请按以下步骤操作:")
+    print("   1. 在微信中打开该文章")
+    print("   2. 复制文章标题")
+    print("   3. 复制全文内容 (Ctrl+A, Ctrl+C)")
+    print("\n请粘贴文章标题 (回车确认):")
+    
+    try:
+        title = input().strip()
+        if not title:
+            title = "微信文章"
+        
+        print("\n请粘贴文章内容 (输入 END 单独一行结束):")
+        lines = []
+        while True:
+            line = input()
+            if line.strip() == "END":
+                break
+            lines.append(line)
+        
+        content = "\n".join(lines)
+        
+        print("\n请输入公众号名称 (可选，直接回车跳过):")
+        author = input().strip()
+        
+        return {
+            "title": title,
+            "content": content,
+            "author": author or "未知",
+            "url": url
+        }
+    except EOFError:
+        print("\n❌ 输入中断")
+        return None
+    except KeyboardInterrupt:
+        print("\n❌ 用户取消")
+        return None
+
+
 def main():
     parser = argparse.ArgumentParser(description="归档微信文章")
     parser.add_argument("--url", "-u", required=True, help="微信文章URL")
     parser.add_argument("--method", "-m", default="playwright", help="抓取方法")
     parser.add_argument("--auto-classify", "-a", action="store_true", help="自动分类")
+    parser.add_argument("--manual", action="store_true", help="强制使用手动模式")
     
     args = parser.parse_args()
     
@@ -191,16 +241,26 @@ def main():
         print(f"\n⏭️  已收集，跳过: {args.url}")
         return 0
     
-    # 抓取文章
-    print(f"\n🔍 抓取文章: {args.url}")
-    article = fetch_wechat_article(args.url, args.method)
+    article = None
+    
+    # 如果不是强制手动模式，先尝试自动抓取
+    if not args.manual:
+        print(f"\n🔍 尝试自动抓取: {args.url}")
+        article = fetch_wechat_article(args.url, args.method)
+    
+    # 如果自动抓取失败或未尝试，进入手动模式
+    if not article:
+        if not args.manual:
+            print("\n⚠️  自动抓取被微信拦截，切换到手动模式...")
+        article = manual_input_mode(args.url)
     
     if not article:
-        print("❌ 抓取失败")
+        print("❌ 归档失败")
         return 1
     
-    print(f"📄 标题: {article['title']}")
+    print(f"\n📄 标题: {article['title']}")
     print(f"✍️  作者: {article.get('author', '未知')}")
+    print(f"📝 内容长度: {len(article.get('content', ''))} 字符")
     
     # 分类
     if args.auto_classify:
@@ -208,7 +268,7 @@ def main():
         print(f"\n📂 分类: {KB_CONFIG.get(kb, {}).get('name', kb)} (置信度: {confidence:.2f})")
     else:
         kb = "link-collection"
-        print(f"\n📂 分类: 链接收藏 (未启用自动分类)")
+        print(f"\n📂 分类: 链接收藏")
     
     # 保存
     file_path = save_to_kb(kb, article['title'], article['content'], args.url)

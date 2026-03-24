@@ -546,6 +546,34 @@ python skills/knowledge-base/scripts/collect_link.py \
 
 ## 🛠️ 维护记录
 
+### 2026-03-24 archive_wechat.py 增强
+
+**改进内容**：
+- ✅ **标题解析修复** - 新增 Markdown 格式解析（`# 标题`），解决标题显示"微信文章"问题
+- ✅ **手动粘贴模式** - 新增 `--manual` 参数，自动抓取失败时可切换手动输入
+- ✅ **自动降级** - 自动抓取失败时自动切换到手动模式
+
+**使用方式**：
+```bash
+# 正常自动抓取
+python3 skills/knowledge-base/scripts/archive_wechat.py \
+  --url "https://mp.weixin.qq.com/s/xxx" \
+  --method playwright \
+  --auto-classify
+
+# 强制手动模式（微信反爬时）
+python3 skills/knowledge-base/scripts/archive_wechat.py \
+  --url "https://mp.weixin.qq.com/s/xxx" \
+  --manual \
+  --auto-classify
+```
+
+**手动模式流程**：
+1. 脚本提示输入文章标题
+2. 粘贴文章内容（输入 END 结束）
+3. 输入公众号名称（可选）
+4. 自动分类并归档
+
 ### 2026-03-19 脚本修复
 
 **修复内容**：
