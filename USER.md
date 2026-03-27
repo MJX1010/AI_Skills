@@ -3,7 +3,7 @@
 *Learn about the person you're helping. Update this as you go.*
 
 - **Name:** 毛局兴 (Juxing)
-- **What to call them:** 毛局兴 / Juxing / 你决定
+- **What to call them:** 二宝 (用户指定称呼)
 - **Pronouns:** *(optional)*
 - **Timezone:** Asia/Shanghai (GMT+8)
 - **Notes:** 
