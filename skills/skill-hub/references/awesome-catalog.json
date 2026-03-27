@@ -1,0 +1,52 @@
+{
+  "total": 4,
+  "categories": 36,
+  "synced_at": "2026-03-27T09:02:19.863636",
+  "source": "VoltAgent/awesome-openclaw-skills",
+  "skills": [
+    {
+      "name": "boss-ai-agent",
+      "category": "Productivity & Tasks",
+      "link": "https://github.com/openclaw/skills/tree/main/skills/tonypk/boss-ai-agent/SKILL.md",
+      "description": "AI management middleware with 14 mentors and 9 culture packs.",
+      "credibility": 45,
+      "source": "awesome-list",
+      "installed": false,
+      "vet_status": null,
+      "vet_date": null
+    },
+    {
+      "name": "bluente-translate",
+      "category": "PDF & Documents",
+      "link": "https://github.com/openclaw/skills/blob/main/skills/varsmallrookie/bluente-translate/SKILL.md",
+      "description": "Translate your documents with formatting intact in 2 minutes.",
+      "credibility": 45,
+      "source": "awesome-list",
+      "installed": false,
+      "vet_status": null,
+      "vet_date": null
+    },
+    {
+      "name": "amai-id",
+      "category": "Security & Passwords",
+      "link": "https://www.clawhub.ai/Gonzih/amai-id",
+      "description": "Soul-Bound Keys and Soulchain for persistent.",
+      "credibility": 45,
+      "source": "awesome-list",
+      "installed": false,
+      "vet_status": null,
+      "vet_date": null
+    },
+    {
+      "name": "agent-security-harness",
+      "category": "Security & Passwords",
+      "link": "https://github.com/openclaw/skills/tree/main/skills/msaleme/agent-security-harness/SKILL.md",
+      "description": "Security testing for AI agent wire protocols and platforms.",
+      "credibility": 45,
+      "source": "awesome-list",
+      "installed": false,
+      "vet_status": null,
+      "vet_date": null
+    }
+  ]
+}
