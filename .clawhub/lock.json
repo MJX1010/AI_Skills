@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "web-content-fetcher": {
+      "version": "1.0.1",
+      "installedAt": 1775007423696
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1775022962200
+    }
+  }
+}
