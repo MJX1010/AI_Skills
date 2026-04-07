@@ -1,1 +1,16 @@
-{\n  \\"lastChecks\\": {\n    \\"memory\\": \\"2026-03-29T14:35:00Z\\",\n    \\"git\\": \\"2026-04-06T01:19:00Z\\",\n    \\"system\\": \\"2026-04-06T01:19:00Z\\",\n    \\"token\\": \\"2026-03-18T13:55:00Z\\",\n    \\"weekly_digest\\": \\"2026-03-21T17:04:00Z\\",\n    \\"openclaw_update\\": \\"2026-04-05T01:17:00Z\\",\n    \\"daily_content\\": \\"2026-04-06T01:19:00Z\\",\n    \\"weekly_collection\\": \\"2026-03-27T11:03:00Z\\",\n    \\"cleanup\\": \\"2026-03-28T15:00:00Z\\",\n    \\"skills_maintenance\\": \\"2026-04-05T01:17:00Z\\"\n  },\n  \\"todayEvolutionLogs\\": [],\n  \\"notes\\": \\"周一 09:19，心跳检查完成 - 执行日报收集\\"\n}\n
+{
+  "lastChecks": {
+    "memory": "2026-03-29T14:35:00Z",
+    "git": "2026-04-07T09:25:00Z",
+    "system": "2026-04-07T09:25:00Z",
+    "token": "2026-03-18T13:55:00Z",
+    "weekly_digest": "2026-03-21T17:04:00Z",
+    "openclaw_update": "2026-04-05T01:17:00Z",
+    "daily_content": "2026-04-07T09:25:00Z",
+    "weekly_collection": "2026-03-27T11:03:00Z",
+    "cleanup": "2026-03-28T15:00:00Z",
+    "skills_maintenance": "2026-04-05T01:17:00Z"
+  },
+  "todayEvolutionLogs": [],
+  "notes": "周二 17:25，心跳检查完成 - 补执行日报收集，今日无新内容"
+}
