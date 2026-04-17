@@ -384,3 +384,19 @@ To https://github.com/MJX1010/AI_Skills.git
    aa9a909..58abf7e  main -> main
 [2026-03-25 08:01:54] ✅ 已提交并推送: auto: 2026-03-25 08:01 自动提交 5 个文件
 [2026-03-25 08:01:54] 日报任务完成
+[2026-04-17 09:58:54] 开始执行日报收集...
+
+============================================================
+🔄 日报完整流程 v2 (RSS采集)
+============================================================
+📅 日期: 2026-04-17
+============================================================
+
+【步骤1】RSS 采集...
+
+Traceback (most recent call last):
+  File "/workspace/projects/workspace/skills/knowledge-base/scripts/daily_collect_rss.py", line 16, in <module>
+    import feedparser
+ModuleNotFoundError: No module named 'feedparser'
+
+❌ RSS 采集失败，停止流程
