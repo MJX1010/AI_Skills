@@ -400,3 +400,7 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'feedparser'
 
 ❌ RSS 采集失败，停止流程
+hint: The '.git/hooks/post-commit' hook was ignored because it's not set as executable.
+hint: You can disable this warning with `git config advice.ignoredHook false`.
+[main 8a3e7dc] auto: 2026-04-17 09:58 自动提交 2 个文件
+ 2 files changed, 21 insertions(+), 3 deletions(-)
