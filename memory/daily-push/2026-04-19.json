@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-19",
+  "stats": {
+    "ai-latest-news": {
+      "name": "🤖 AI最新资讯",
+      "count": 3
+    },
+    "game-development": {
+      "name": "🎮 游戏开发",
+      "count": 1
+    },
+    "healthy-living": {
+      "name": "🌱 健康生活",
+      "count": 0
+    }
+  },
+  "message": "📚 **知识库日报** | 2026-04-19 周日\n\n今日共新增 **4** 条内容\n\n---\n\n🤖 AI最新资讯: 3 条\n🎮 游戏开发: 1 条\n\n---\n📖 点击查看完整知识库",
+  "pushed_at": "2026-04-19T10:11:29.794186"
+}
