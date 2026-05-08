@@ -2,15 +2,15 @@
   "lastChecks": {
     "memory": "2026-05-02T02:42:00Z",
     "git": "2026-05-07T10:57:00Z",
-    "system": "2026-05-08T06:56:00Z",
+    "system": "2026-05-08T22:59:00Z",
     "token": "2026-03-18T13:55:00Z",
     "weekly_digest": "2026-03-21T17:04:00Z",
     "openclaw_update": "2026-05-03T02:44:00Z",
-    "daily_content": "2026-05-07T02:55:00Z",
-    "weekly_collection": "2026-05-01T18:42:00Z",
+    "daily_content": "2026-05-08T10:59:00Z - SKIPPED (coze-web-search disabled)",
+    "weekly_collection": "2026-05-08T18:00:00Z - SKIPPED (coze-web-search disabled)",
     "cleanup": "2026-05-06T14:55:00Z",
     "skills_maintenance": "2026-04-26T06:22:00Z"
   },
   "todayEvolutionLogs": [],
-  "notes": "周四 18:57 心跳 - Git同步完成（3文件），日报已执行，周报明天18:00执行，系统正常"
+  "notes": "周五 22:59 心跳 - 日报/周报均跳过（coze-web-search已禁用），清理任务23:00执行"
 }
